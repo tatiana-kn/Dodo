@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		14B473102C3003D10058639D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4730F2C3003D10058639D /* AppDelegate.swift */; };
 		14B473122C3003D10058639D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B473112C3003D10058639D /* SceneDelegate.swift */; };
-		14B473142C3003D10058639D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B473132C3003D10058639D /* ViewController.swift */; };
+		14B473142C3003D10058639D /* MenuScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B473132C3003D10058639D /* MenuScreenVC.swift */; };
 		14B473172C3003D10058639D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 14B473162C3003D10058639D /* Base */; };
 		14B473192C3003D50058639D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B473182C3003D50058639D /* Assets.xcassets */; };
 		14B4731C2C3003D50058639D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 14B4731B2C3003D50058639D /* Base */; };
+		14B4732C2C300C770058639D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4732B2C300C770058639D /* ProductCell.swift */; };
+		14B4732E2C300C990058639D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4732D2C300C990058639D /* Product.swift */; };
+		14B473302C300CC20058639D /* ProductsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4732F2C300CC20058639D /* ProductsService.swift */; };
+		14B473322C300CF60058639D /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B473312C300CF60058639D /* UIView+Shadow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		14B4730C2C3003D10058639D /* Dodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B4730F2C3003D10058639D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B473112C3003D10058639D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		14B473132C3003D10058639D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14B473132C3003D10058639D /* MenuScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenVC.swift; sourceTree = "<group>"; };
 		14B473162C3003D10058639D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14B473182C3003D50058639D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14B4731B2C3003D50058639D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14B4731D2C3003D50058639D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14B4732B2C300C770058639D /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		14B4732D2C300C990058639D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		14B4732F2C300CC20058639D /* ProductsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsService.swift; sourceTree = "<group>"; };
+		14B473312C300CF60058639D /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,83 @@
 		14B4730E2C3003D10058639D /* Dodo */ = {
 			isa = PBXGroup;
 			children = (
-				14B4730F2C3003D10058639D /* AppDelegate.swift */,
-				14B473112C3003D10058639D /* SceneDelegate.swift */,
-				14B473132C3003D10058639D /* ViewController.swift */,
-				14B473152C3003D10058639D /* Main.storyboard */,
-				14B473182C3003D50058639D /* Assets.xcassets */,
-				14B4731A2C3003D50058639D /* LaunchScreen.storyboard */,
-				14B4731D2C3003D50058639D /* Info.plist */,
+				14B473232C300A7B0058639D /* App */,
+				14B473242C300A920058639D /* Screens */,
+				14B473272C300ACF0058639D /* Models */,
+				14B473282C300AD90058639D /* Services */,
+				14B473292C300AEF0058639D /* Extensions */,
+				14B4732A2C300B010058639D /* Resources */,
 			);
 			path = Dodo;
+			sourceTree = "<group>";
+		};
+		14B473232C300A7B0058639D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				14B4730F2C3003D10058639D /* AppDelegate.swift */,
+				14B473112C3003D10058639D /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		14B473242C300A920058639D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				14B473252C300AA60058639D /* Menu */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		14B473252C300AA60058639D /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				14B473132C3003D10058639D /* MenuScreenVC.swift */,
+				14B473262C300AB70058639D /* Cells */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		14B473262C300AB70058639D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14B4732B2C300C770058639D /* ProductCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		14B473272C300ACF0058639D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				14B4732D2C300C990058639D /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		14B473282C300AD90058639D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				14B4732F2C300CC20058639D /* ProductsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		14B473292C300AEF0058639D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				14B473312C300CF60058639D /* UIView+Shadow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		14B4732A2C300B010058639D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14B473152C3003D10058639D /* Main.storyboard */,
+				14B4731A2C3003D50058639D /* LaunchScreen.storyboard */,
+				14B473182C3003D50058639D /* Assets.xcassets */,
+				14B4731D2C3003D50058639D /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14B473142C3003D10058639D /* ViewController.swift in Sources */,
+				14B473322C300CF60058639D /* UIView+Shadow.swift in Sources */,
+				14B473142C3003D10058639D /* MenuScreenVC.swift in Sources */,
+				14B4732C2C300C770058639D /* ProductCell.swift in Sources */,
+				14B4732E2C300C990058639D /* Product.swift in Sources */,
 				14B473102C3003D10058639D /* AppDelegate.swift in Sources */,
 				14B473122C3003D10058639D /* SceneDelegate.swift in Sources */,
+				14B473302C300CC20058639D /* ProductsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Dodo/Info.plist;
+				INFOPLIST_FILE = Dodo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -324,7 +404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Dodo/Info.plist;
+				INFOPLIST_FILE = Dodo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
