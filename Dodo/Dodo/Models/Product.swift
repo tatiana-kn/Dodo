@@ -8,8 +8,8 @@
 import Foundation
 
 struct Product {
-    var name: String
-    var detail: String
-    var price: Int
-    var image: String
+    let name: String
+    let detail: String
+    let price: Int
+    let image: String
 }
