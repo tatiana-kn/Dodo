@@ -70,6 +70,21 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
         cell.update(product)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let product = products[indexPath.row]
+        
+        let detailVC = DetailScreenVC()
+        
+//        detailVC.product = product
+        
+//        let detailVC = DetailScreenVC(product: product)
+        
+        detailVC.update(product)
+        
+        present(detailVC, animated: true)
+    }
 }
 
 #Preview(traits: .portrait) {

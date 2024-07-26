@@ -16,6 +16,8 @@ class ControlsCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.spacing = 15
         stackView.alignment = .center
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
         
         return stackView
     }()
@@ -49,7 +51,6 @@ class ControlsCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 extension ControlsCell {
@@ -61,12 +62,21 @@ extension ControlsCell {
     
     private func setupConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        sizeControls.translatesAutoresizingMaskIntoConstraints = false
+        doughControls.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            sizeControls.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            sizeControls.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8),
+            doughControls.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            doughControls.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8)
         ])
     }
 }

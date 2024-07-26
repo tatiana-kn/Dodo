@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PhotoCollectionCell: UICollectionViewCell {
+final class IngredientCollectionCell: UICollectionViewCell {
     
     static let reuseID = "PhotoCollectionCell"
     
@@ -46,10 +46,15 @@ final class PhotoCollectionCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func update(_ ingredient: Ingredient) {
+        nameLabel.text = ingredient.name
+        priceLabel.text = String(ingredient.price)
+    }
 }
 
 //MARK: - Layout
-extension PhotoCollectionCell {
+extension IngredientCollectionCell {
     private func setupViews() {
         contentView.addSubview(photoImageView)
         contentView.addSubview(nameLabel)
@@ -84,6 +89,6 @@ extension PhotoCollectionCell {
 }
 
 #Preview(traits: .portrait) {
-    IngredientsCell()
+    IngredientsContainerCell()
 }
 

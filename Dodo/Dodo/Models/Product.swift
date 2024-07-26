@@ -12,4 +12,11 @@ struct Product {
     let detail: String
     let price: Int
     let image: String
+    let ingredients: [Ingredient]?
+}
+
+struct Ingredient {
+    let name: String
+    let image: String
+    let price: Int
 }

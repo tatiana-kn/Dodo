@@ -32,6 +32,10 @@ class DetailPhotoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func update(_ product: Product?) {
+        detailImageView.image = UIImage(named: product?.image ?? "default")
+    }
+    
 }
 
 extension DetailPhotoCell {
@@ -42,7 +46,7 @@ extension DetailPhotoCell {
     private func setupConstraints() {
         detailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            detailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            detailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             detailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             detailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             detailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
@@ -51,5 +55,5 @@ extension DetailPhotoCell {
 }
 
 #Preview(traits: .portrait) {
-    DetailScreenVC()
+    DetailPhotoCell()
 }

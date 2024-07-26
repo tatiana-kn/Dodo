@@ -7,8 +7,14 @@
 
 import UIKit
 
-class IngredientsCell: UITableViewCell {
+class IngredientsContainerCell: UITableViewCell {
     static let reuseID = "IngredientsCell"
+    
+    var product: Product? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,9 +34,10 @@ class IngredientsCell: UITableViewCell {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .orange
         
+        
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(PhotoCollectionCell.self, forCellWithReuseIdentifier: PhotoCollectionCell.reuseID)
+        collectionView.register(IngredientCollectionCell.self, forCellWithReuseIdentifier: IngredientCollectionCell.reuseID)
         return collectionView
     }()
     
@@ -44,10 +51,15 @@ class IngredientsCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func update(_ product: Product?) {
+        self.product = product
+    }
+    
 }
 
 //MARK: - Layout
-extension IngredientsCell {
+extension IngredientsContainerCell {
     private func setupViews() {
         contentView.addSubview(collectionView)
     }
@@ -59,30 +71,36 @@ extension IngredientsCell {
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            collectionView.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
 }
 
 //MARK: - UICollectionViewDelegate
-extension IngredientsCell: UICollectionViewDelegate {
+extension IngredientsContainerCell: UICollectionViewDelegate {
 }
 
 //MARK: - UICollectionViewDataSource
-extension IngredientsCell: UICollectionViewDataSource {
+extension IngredientsContainerCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        product?.ingredients?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionCell.reuseID, for: indexPath) as? PhotoCollectionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IngredientCollectionCell.reuseID, for: indexPath) as? IngredientCollectionCell else {
             return UICollectionViewCell()
         }
+        
+        if let ingredient = product?.ingredients?[indexPath.row] {
+            cell.update(ingredient)
+        }
+        
         cell.backgroundColor = .yellow
         return cell
     }
 }
 
 #Preview(traits: .portrait) {
-    IngredientsCell()
+    IngredientsContainerCell()
 }

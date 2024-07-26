@@ -17,25 +17,31 @@ class DescriptionCell: UITableViewCell {
         stackView.spacing = 15
         stackView.alignment = .leading
         
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
         return stackView
     }()
     
     private let nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.text = "Pizza"
-        nameLabel.font = UIFont.systemFont(ofSize: 25)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 24)
         return nameLabel
     }()
     
     private let descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Pizza description"
+        descriptionLabel.textColor = .gray
+        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 20)
         return descriptionLabel
     }()
     
     private let ingredientsLabel: UILabel = {
         let ingredientsLabel = UILabel()
         ingredientsLabel.text = "Pizza ingredients"
+        ingredientsLabel.font = UIFont.systemFont(ofSize: 20)
         return ingredientsLabel
     }()
     
@@ -50,6 +56,10 @@ class DescriptionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func update(_ product: Product?) {
+        nameLabel.text = product?.name
+        descriptionLabel.text = product?.detail
+    }
 }
 
 extension DescriptionCell {

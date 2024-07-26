@@ -9,6 +9,14 @@ import UIKit
 
 final class DetailScreenVC: UIViewController {
     
+    var product: Product? 
+//    {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
+    
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -17,20 +25,33 @@ final class DetailScreenVC: UIViewController {
         tableView.register(DetailPhotoCell.self, forCellReuseIdentifier: DetailPhotoCell.reuseID)
         tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.reuseID)
         tableView.register(ControlsCell.self, forCellReuseIdentifier: ControlsCell.reuseID)
-        tableView.register(IngredientsCell.self, forCellReuseIdentifier: IngredientsCell.reuseID)
-        
-        tableView.rowHeight = UITableView.automaticDimension // ??
-        tableView.estimatedRowHeight = 500
+        tableView.register(IngredientsContainerCell.self, forCellReuseIdentifier: IngredientsContainerCell.reuseID)
         
         return tableView
     }()
-
+    
+//    init(product: Product) {
+//        self.product = product
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
+    func update(_ product: Product) {
+        self.product = product
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupConstraints()
     }
+    
+    
 }
 
 extension DetailScreenVC {
@@ -62,6 +83,9 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailPhotoCell.reuseID, for: indexPath) as? DetailPhotoCell else {
                 return UITableViewCell()
             }
+            
+            cell.update(product)
+            
             return cell
         }
         
@@ -69,6 +93,8 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionCell.reuseID, for: indexPath) as? DescriptionCell else {
                 return UITableViewCell()
             }
+            
+            cell.update(product)
             return cell
         }
         
@@ -80,9 +106,12 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.row == 3 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsCell.reuseID, for: indexPath) as? IngredientsCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsContainerCell.reuseID, for: indexPath) as? IngredientsContainerCell else {
                 return UITableViewCell()
             }
+            
+            cell.update(product)
+            
             return cell
         }
         
@@ -90,7 +119,7 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-#Preview(traits: .portrait) {
-    DetailScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    DetailScreenVC(product:)
+//}
 
