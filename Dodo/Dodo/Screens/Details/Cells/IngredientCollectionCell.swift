@@ -14,9 +14,10 @@ final class IngredientCollectionCell: UICollectionViewCell {
     var photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
-        imageView.image = UIImage(named: "hawaii")
-        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "default")
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+
         return imageView
     }()
     
@@ -67,11 +68,10 @@ extension IngredientCollectionCell {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            photoImageView.heightAnchor.constraint(equalToConstant: 100),
-            photoImageView.widthAnchor.constraint(equalToConstant: 100),
-            photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
+            photoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -83,7 +83,8 @@ extension IngredientCollectionCell {
         NSLayoutConstraint.activate([
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10)
+            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

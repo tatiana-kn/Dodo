@@ -8,7 +8,8 @@
 import UIKit
 
 class MenuScreenVC: UIViewController {
-    let productService = ProductsService()
+//    let productService = ProductsService()
+    var productLoader = ProductsLoader()
     
     var products: [Product] = [] {
         didSet {
@@ -30,18 +31,20 @@ class MenuScreenVC: UIViewController {
         
         setupViews()
         setupConstraints()
-        fetchProducts()
+        loadProducts()
+//        fetchProducts()
     }
     
-    private func fetchProducts() {
-        products = productService.fetchProduct()
-    }
+//    private func fetchProducts() {
+//        products = productService.fetchProduct()
+//    }
 }
 
 //MARK: - Layout
 extension MenuScreenVC {
     private func setupViews() {
         view.addSubview(tableView)
+        view.backgroundColor = .white
     }
     
     private func setupConstraints() {
@@ -74,18 +77,34 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let product = products[indexPath.row]
-        
         let detailVC = DetailScreenVC()
         
 //        detailVC.product = product
-        
 //        let detailVC = DetailScreenVC(product: product)
         
         detailVC.update(product)
-        
         present(detailVC, animated: true)
     }
 }
+
+extension MenuScreenVC {
+        private func loadProducts() {
+            productLoader.loadUsers { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let products):
+                    
+                    DispatchQueue.main.async {
+                        self.products = products
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+}
+
 
 #Preview(traits: .portrait) {
     MenuScreenVC()

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1413BDE12C53D6C600D5642A /* ProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE02C53D6C600D5642A /* ProductsLoader.swift */; };
+		1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE22C53D71000D5642A /* NetworkClient.swift */; };
+		1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */; };
+		1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE92C5E486400D5642A /* IngredientsLoader.swift */; };
 		14B473102C3003D10058639D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4730F2C3003D10058639D /* AppDelegate.swift */; };
 		14B473122C3003D10058639D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B473112C3003D10058639D /* SceneDelegate.swift */; };
 		14B473142C3003D10058639D /* MenuScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B473132C3003D10058639D /* MenuScreenVC.swift */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1413BDE02C53D6C600D5642A /* ProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsLoader.swift; sourceTree = "<group>"; };
+		1413BDE22C53D71000D5642A /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigurator.swift; sourceTree = "<group>"; };
+		1413BDE92C5E486400D5642A /* IngredientsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsLoader.swift; sourceTree = "<group>"; };
 		14B4730C2C3003D10058639D /* Dodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B4730F2C3003D10058639D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B473112C3003D10058639D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +115,7 @@
 		14B473252C300AA60058639D /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */,
 				14B473132C3003D10058639D /* MenuScreenVC.swift */,
 				14B473262C300AB70058639D /* Cells */,
 			);
@@ -133,6 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				14B4732F2C300CC20058639D /* ProductsService.swift */,
+				1413BDE22C53D71000D5642A /* NetworkClient.swift */,
+				1413BDE02C53D6C600D5642A /* ProductsLoader.swift */,
+				1413BDE92C5E486400D5642A /* IngredientsLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -250,14 +262,18 @@
 			files = (
 				14B473322C300CF60058639D /* UIView+Shadow.swift in Sources */,
 				14BB39822C38249400B8796F /* DetailPhotoCell.swift in Sources */,
+				1413BDE12C53D6C600D5642A /* ProductsLoader.swift in Sources */,
 				14BB39802C38225500B8796F /* DetailScreenVC.swift in Sources */,
 				14B473142C3003D10058639D /* MenuScreenVC.swift in Sources */,
 				14BB397E2C36BDA400B8796F /* IngredientCollectionCell.swift in Sources */,
 				14B4732C2C300C770058639D /* ProductCell.swift in Sources */,
 				14B4732E2C300C990058639D /* Product.swift in Sources */,
 				14BB39842C382B1800B8796F /* DescriptionCell.swift in Sources */,
+				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
+				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
 				14BB39862C38307A00B8796F /* ControlsCell.swift in Sources */,
 				14B473102C3003D10058639D /* AppDelegate.swift in Sources */,
+				1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */,
 				14B473122C3003D10058639D /* SceneDelegate.swift in Sources */,
 				14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */,
 				14B473302C300CC20058639D /* ProductsService.swift in Sources */,

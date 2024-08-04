@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Product {
+struct ProductResponse: Decodable {
+    let products: [Product]
+}
+
+struct Product: Decodable {
     let name: String
     let detail: String
     let price: Int
@@ -15,7 +19,11 @@ struct Product {
     let ingredients: [Ingredient]?
 }
 
-struct Ingredient {
+struct IngredientsResponse: Decodable {
+    let ingredients: [Ingredient]
+}
+
+struct Ingredient: Decodable {
     let name: String
     let image: String
     let price: Int

@@ -73,10 +73,10 @@ extension ControlsCell {
         ])
         
         NSLayoutConstraint.activate([
-            sizeControls.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            sizeControls.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8),
-            doughControls.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            doughControls.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8)
+            sizeControls.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
+            sizeControls.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -8),
+            doughControls.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
+            doughControls.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -8)
         ])
     }
 }

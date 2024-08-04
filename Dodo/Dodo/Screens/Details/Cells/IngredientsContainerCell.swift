@@ -102,5 +102,5 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
 }
 
 #Preview(traits: .portrait) {
-    IngredientsContainerCell()
+    IngredientCollectionCell()
 }

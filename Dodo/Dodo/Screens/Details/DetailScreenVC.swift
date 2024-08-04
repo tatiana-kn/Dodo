@@ -9,13 +9,14 @@ import UIKit
 
 final class DetailScreenVC: UIViewController {
     
-    var product: Product? 
+    var ingredientLoader = IngredientsLoader()
+    var ingredients: [Ingredient]?
+    var product: Product?
 //    {
 //        didSet {
 //            tableView.reloadData()
 //        }
 //    }
-    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -49,9 +50,8 @@ final class DetailScreenVC: UIViewController {
         
         setupView()
         setupConstraints()
+        loadIngredients()
     }
-    
-    
 }
 
 extension DetailScreenVC {
@@ -119,7 +119,24 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//#Preview(traits: .portrait) {
-//    DetailScreenVC(product:)
-//}
+extension DetailScreenVC {
+    private func loadIngredients() {
+        ingredientLoader.loadIngredients { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let ingredients):
+                DispatchQueue.main.async {
+                    self.ingredients = ingredients
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+
+#Preview(traits: .portrait) {
+    DetailScreenVC()
+}
 

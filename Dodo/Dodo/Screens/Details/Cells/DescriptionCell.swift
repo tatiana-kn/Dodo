@@ -35,6 +35,7 @@ class DescriptionCell: UITableViewCell {
         descriptionLabel.text = "Pizza description"
         descriptionLabel.textColor = .gray
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        descriptionLabel.numberOfLines = 0
         return descriptionLabel
     }()
     
@@ -42,6 +43,7 @@ class DescriptionCell: UITableViewCell {
         let ingredientsLabel = UILabel()
         ingredientsLabel.text = "Pizza ingredients"
         ingredientsLabel.font = UIFont.systemFont(ofSize: 20)
+        ingredientsLabel.numberOfLines = 0
         return ingredientsLabel
     }()
     
@@ -58,7 +60,7 @@ class DescriptionCell: UITableViewCell {
     
     func update(_ product: Product?) {
         nameLabel.text = product?.name
-        descriptionLabel.text = product?.detail
+        ingredientsLabel.text = product?.detail
     }
 }
 
