@@ -51,6 +51,7 @@ final class IngredientCollectionCell: UICollectionViewCell {
     func update(_ ingredient: Ingredient) {
         nameLabel.text = ingredient.name
         priceLabel.text = String(ingredient.price)
+        photoImageView.image = UIImage(named: ingredient.image) ?? UIImage(named: "default")
     }
 }
 
@@ -90,6 +91,6 @@ extension IngredientCollectionCell {
 }
 
 #Preview(traits: .portrait) {
-    IngredientsContainerCell()
+    IngredientCollectionCell()
 }
 

@@ -46,8 +46,6 @@ extension DetailPhotoCell {
     private func setupConstraints() {
         detailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            detailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-//            detailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             detailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             detailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

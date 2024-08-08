@@ -10,6 +10,11 @@ import UIKit
 class IngredientsContainerCell: UITableViewCell {
     static let reuseID = "IngredientsCell"
     
+    var ingredients: [Ingredient] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     var product: Product? {
         didSet {
             collectionView.reloadData()
@@ -56,6 +61,9 @@ class IngredientsContainerCell: UITableViewCell {
         self.product = product
     }
     
+    func update(_ ingredients: [Ingredient]) {
+        self.ingredients = ingredients
+    }
 }
 
 //MARK: - Layout
@@ -84,7 +92,8 @@ extension IngredientsContainerCell: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension IngredientsContainerCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        product?.ingredients?.count ?? 0
+//        product?.ingredients?.count ?? 0
+        ingredients.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,9 +101,13 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        if let ingredient = product?.ingredients?[indexPath.row] {
-            cell.update(ingredient)
-        }
+//        if let ingredient = product?.ingredients?[indexPath.row] {
+//            cell.update(ingredient)
+//        }
+        
+        let ingredient = ingredients[indexPath.row]
+        cell.update(ingredient)
+
         
         cell.backgroundColor = .yellow
         return cell
@@ -102,5 +115,5 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
 }
 
 #Preview(traits: .portrait) {
-    IngredientCollectionCell()
+    DetailScreenVC()
 }

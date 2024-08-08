@@ -10,7 +10,7 @@ import UIKit
 final class DetailScreenVC: UIViewController {
     
     var ingredientLoader = IngredientsLoader()
-    var ingredients: [Ingredient]?
+    var ingredients: [Ingredient] = []
     var product: Product?
 //    {
 //        didSet {
@@ -48,26 +48,25 @@ final class DetailScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        setupViews()
         setupConstraints()
         loadIngredients()
     }
 }
 
 extension DetailScreenVC {
-    private func setupView() {
+    private func setupViews() {
         view.addSubview(tableView)
     }
     
     private func setupConstraints() {
-        let safeArea = view.safeAreaLayoutGuide
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -109,8 +108,8 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsContainerCell.reuseID, for: indexPath) as? IngredientsContainerCell else {
                 return UITableViewCell()
             }
-            
-            cell.update(product)
+//            cell.update(product)
+            cell.update(ingredients)
             
             return cell
         }

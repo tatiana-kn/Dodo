@@ -16,7 +16,6 @@ class DescriptionCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.spacing = 15
         stackView.alignment = .leading
-        
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
         
@@ -74,8 +73,6 @@ extension DescriptionCell {
     
     private func setupConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
-//        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-//        ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -83,7 +80,6 @@ extension DescriptionCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-        
     }
 }
 
