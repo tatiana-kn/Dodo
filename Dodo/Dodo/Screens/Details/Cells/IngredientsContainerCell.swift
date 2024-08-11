@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IngredientsContainerCell: UITableViewCell {
+final class IngredientsContainerCell: UITableViewCell {
     static let reuseID = "IngredientsCell"
     
     var ingredients: [Ingredient] = [] {
@@ -80,7 +80,7 @@ extension IngredientsContainerCell {
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 500)
+            collectionView.heightAnchor.constraint(equalToConstant: 501)
         ])
     }
 }

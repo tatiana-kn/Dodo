@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum MenuSections: Int, CaseIterable {
+    case banners
+    case products
+}
+ 
 class MenuScreenVC: UIViewController {
 //    let productService = ProductsService()
     var productLoader = ProductsLoader()
@@ -23,6 +28,8 @@ class MenuScreenVC: UIViewController {
         $0.delegate = self
         $0.dataSource = self
         $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
+        $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
+
         return $0
     }(UITableView())
     
@@ -61,17 +68,47 @@ extension MenuScreenVC {
 
 //MARK: - UITableViewDataSource
 extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return MenuSections.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        products.count
+        
+        if let sectionType = MenuSections(rawValue: section) {
+            switch sectionType {
+            case .banners:
+                return 1
+            case .products:
+                return products.count
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
-            fatalError("Fatal error for cell at \(indexPath)")
+        
+        if let sectionType = MenuSections(rawValue: indexPath.section) {
+            switch sectionType {
+            case .banners:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
+                    fatalError("Fatal error for cell at \(indexPath)")
+                }
+                cell.update(products)
+                return cell
+                
+//             return UITableViewCell()
+            case .products:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
+                    fatalError("Fatal error for cell at \(indexPath)")
+                }
+                let product = products[indexPath.row]
+                cell.update(product)
+                return cell
+            }
         }
-        let product = products[indexPath.row]
-        cell.update(product)
-        return cell
+        
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

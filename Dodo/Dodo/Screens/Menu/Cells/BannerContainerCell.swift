@@ -10,7 +10,7 @@ import UIKit
 final class BannerContainerCell: UITableViewCell {
     static let reuseID = "BannerContainerCell"
     
-    var product: Product? {
+    var products: [Product] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -55,8 +55,8 @@ final class BannerContainerCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ product: Product?) {
-        self.product = product
+    func update(_ products: [Product]) {
+        self.products = products
     }
 
 }
@@ -75,7 +75,7 @@ extension BannerContainerCell {
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 501)
+            collectionView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }
@@ -87,21 +87,16 @@ extension BannerContainerCell: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension BannerContainerCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        product?.ingredients?.count ?? 0
+        products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionCell.reuseID, for: indexPath) as? BannerCollectionCell else {
             return UICollectionViewCell()
         }
-        
-//        if let ingredient = product?.ingredients?[indexPath.row] {
-//            cell.update(ingredient)
-//        }
-        
-        let ingredient = ingredients[indexPath.row]
-        cell.update(ingredient)
+        let product = products[indexPath.row]
 
+        cell.update(product)
         
         cell.backgroundColor = .yellow
         return cell

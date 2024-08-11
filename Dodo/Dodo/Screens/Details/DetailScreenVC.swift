@@ -12,11 +12,6 @@ final class DetailScreenVC: UIViewController {
     var ingredientLoader = IngredientsLoader()
     var ingredients: [Ingredient] = []
     var product: Product?
-//    {
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
