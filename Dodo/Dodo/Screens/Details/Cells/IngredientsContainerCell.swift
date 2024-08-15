@@ -36,9 +36,10 @@ final class IngredientsContainerCell: UITableViewCell {
         
         layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         layout.itemSize = CGSize(width: cellSize, height: cellSize * 2)
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .orange
-        
+        collectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: 500).isActive = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -79,8 +80,8 @@ extension IngredientsContainerCell {
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 501)
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+//            collectionView.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
 }

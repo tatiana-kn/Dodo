@@ -18,26 +18,12 @@ final class BannerContainerCell: UITableViewCell {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
-//        let itemCount: CGFloat = 3
-//        let padding:CGFloat = 20
-//        let paddingCount = itemCount + 1
-        
         layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = padding
-//        layout.minimumInteritemSpacing = padding
-        
-//        let paddingSize = paddingCount * padding
-//        let cellSize = (UIScreen.main.bounds.width - paddingSize) / itemCount
-//        
-//        layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        
-        layout.itemSize = CGSize(width: 200, height: 150)
+        layout.itemSize = CGSize(width: 250, height: 130)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .orange
-        
-        
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(BannerCollectionCell.self, forCellWithReuseIdentifier: BannerCollectionCell.reuseID)
@@ -75,7 +61,7 @@ extension BannerContainerCell {
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 300)
+            collectionView.heightAnchor.constraint(equalToConstant: 180)
         ])
     }
 }
@@ -95,11 +81,18 @@ extension BannerContainerCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let product = products[indexPath.row]
-
         cell.update(product)
-        
-        cell.backgroundColor = .yellow
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let product = products[indexPath.row]
+//        let detailVC = DetailScreenVC()
+//        detailVC.update(product)
+//        present(detailVC, animated: true)
+//    }
 }
 
+#Preview(traits: .portrait) {
+    MenuScreenVC()
+}

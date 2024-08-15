@@ -18,16 +18,16 @@ final class BannerCollectionCell: UICollectionViewCell {
     
     private var verticalStackView: UIStackView = {
         $0.axis = .vertical
-        $0.spacing = 15
+        $0.spacing = 10
         $0.alignment = .leading
-        $0.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 12, trailing: 0)
+        $0.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0)
         $0.isLayoutMarginsRelativeArrangement = true
         return $0
     }(UIStackView())
     
     private var nameLabel: UILabel = {
         $0.text = "Пепперони"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
+        $0.font = UIFont.boldSystemFont(ofSize: 18)
         return $0
     }(UILabel())
     
@@ -47,8 +47,8 @@ final class BannerCollectionCell: UICollectionViewCell {
         $0.image = UIImage(named: "pizza")
         $0.contentMode = .scaleAspectFill
         let width = UIScreen.main.bounds.width
-        $0.heightAnchor.constraint(equalToConstant: 0.40 * width).isActive = true
-        $0.widthAnchor.constraint(equalToConstant: 0.40 * width).isActive = true
+        $0.heightAnchor.constraint(equalToConstant: 0.25 * width).isActive = true
+        $0.widthAnchor.constraint(equalToConstant: 0.25 * width).isActive = true
         return $0
     }(UIImageView())
     
@@ -74,7 +74,7 @@ final class BannerCollectionCell: UICollectionViewCell {
 extension BannerCollectionCell {
     
     struct Layout {
-        static let offset: CGFloat = 8
+        static let offset: CGFloat = 4
     }
     
     private func setupViews() {
@@ -117,5 +117,8 @@ extension BannerCollectionCell {
             verticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Layout.offset)
         ])
     }
-    
+}
+
+#Preview(traits: .portrait) {
+    MenuScreenVC()
 }
