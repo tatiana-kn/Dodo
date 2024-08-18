@@ -94,10 +94,18 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
                     fatalError("Fatal error for cell at \(indexPath)")
                 }
+                
+                cell.onBannerCellSelected = { product in
+                    //                    print("-> ", product)
+                    //                    let detailVC = DetailScreenVC()
+                    let detailVC = DetailConfigurator().configure()
+                    detailVC.update(product)
+                    self.present(detailVC, animated: true)
+                }
+                
                 cell.update(products)
                 return cell
                 
-//             return UITableViewCell()
             case .products:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
                     fatalError("Fatal error for cell at \(indexPath)")
@@ -114,7 +122,8 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let product = products[indexPath.row]
-        let detailVC = DetailScreenVC()
+        let detailVC = DetailConfigurator().configure()
+//        let detailVC = DetailScreenVC()
         
 //        detailVC.product = product
 //        let detailVC = DetailScreenVC(product: product)

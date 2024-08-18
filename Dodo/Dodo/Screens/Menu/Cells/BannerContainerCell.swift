@@ -10,6 +10,9 @@ import UIKit
 final class BannerContainerCell: UITableViewCell {
     static let reuseID = "BannerContainerCell"
     
+    
+    var onBannerCellSelected: ((Product)->())?
+    
     var products: [Product] = [] {
         didSet {
             collectionView.reloadData()
@@ -85,12 +88,13 @@ extension BannerContainerCell: UICollectionViewDataSource {
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let product = products[indexPath.row]
-//        let detailVC = DetailScreenVC()
-//        detailVC.update(product)
-//        present(detailVC, animated: true)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let product = products[indexPath.row]
+        let detailVC = DetailScreenVC()
+        detailVC.update(product)
+    
+        onBannerCellSelected?(product)
+    }
 }
 
 #Preview(traits: .portrait) {

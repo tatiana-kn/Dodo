@@ -16,9 +16,9 @@ class DetailPhotoCell: UITableViewCell {
         let screenWidth = UIScreen.main.bounds.width
         imageView.contentMode = .scaleAspectFit
         imageView.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: screenWidth).isActive = true
-        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: screenWidth)
-        heightConstraint.priority = .defaultHigh
+        imageView.heightAnchor.constraint(equalToConstant: screenWidth).isActive = true
+//        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: screenWidth)
+//        heightConstraint.priority = .defaultHigh
 //        imageView.heightAnchor.constraint(lessThanOrEqualToConstant: screenWidth).isActive = true
         
         return imageView
@@ -50,7 +50,7 @@ extension DetailPhotoCell {
         detailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             detailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            detailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            detailImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
         ])
     }
 }
