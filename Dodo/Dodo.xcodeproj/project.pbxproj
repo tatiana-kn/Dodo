@@ -31,6 +31,9 @@
 		14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB39872C396F4D00B8796F /* IngredientsContainerCell.swift */; };
 		14DBF3572C6E6C5D006AED4B /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3562C6E6C5D006AED4B /* MainTabVC.swift */; };
 		14DBF3732C721C29006AED4B /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3722C721C29006AED4B /* DetailConfigurator.swift */; };
+		14DBF3762C75FD2F006AED4B /* CartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */; };
+		14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3782C7603F7006AED4B /* CartCell.swift */; };
+		14DBF37B2C763260006AED4B /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF37A2C763260006AED4B /* CustomStepper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		14BB39872C396F4D00B8796F /* IngredientsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsContainerCell.swift; sourceTree = "<group>"; };
 		14DBF3562C6E6C5D006AED4B /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
 		14DBF3722C721C29006AED4B /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
+		14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreenVC.swift; sourceTree = "<group>"; };
+		14DBF3782C7603F7006AED4B /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		14DBF37A2C763260006AED4B /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,7 @@
 				14DBF3722C721C29006AED4B /* DetailConfigurator.swift */,
 				14BB397F2C38225500B8796F /* DetailScreenVC.swift */,
 				14BB397C2C36BD7900B8796F /* Cells */,
+				14DBF3742C75FCDF006AED4B /* Cart */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -197,6 +204,24 @@
 				14BB39812C38249400B8796F /* DetailPhotoCell.swift */,
 				14BB39832C382B1800B8796F /* DescriptionCell.swift */,
 				14BB39852C38307A00B8796F /* ControlsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		14DBF3742C75FCDF006AED4B /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */,
+				14DBF37A2C763260006AED4B /* CustomStepper.swift */,
+				14DBF3772C7603CF006AED4B /* Cells */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		14DBF3772C7603CF006AED4B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14DBF3782C7603F7006AED4B /* CartCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -276,6 +301,7 @@
 				14BB39822C38249400B8796F /* DetailPhotoCell.swift in Sources */,
 				14B3D92C2C664D9B0054CDFA /* BannerCollectionCell.swift in Sources */,
 				14DBF3572C6E6C5D006AED4B /* MainTabVC.swift in Sources */,
+				14DBF3762C75FD2F006AED4B /* CartScreenVC.swift in Sources */,
 				1413BDE12C53D6C600D5642A /* ProductsLoader.swift in Sources */,
 				14BB39802C38225500B8796F /* DetailScreenVC.swift in Sources */,
 				14B473142C3003D10058639D /* MenuScreenVC.swift in Sources */,
@@ -283,6 +309,7 @@
 				14B4732C2C300C770058639D /* ProductCell.swift in Sources */,
 				14B4732E2C300C990058639D /* Product.swift in Sources */,
 				14BB39842C382B1800B8796F /* DescriptionCell.swift in Sources */,
+				14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */,
 				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
 				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
 				14BB39862C38307A00B8796F /* ControlsCell.swift in Sources */,
@@ -290,6 +317,7 @@
 				1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */,
 				14DBF3732C721C29006AED4B /* DetailConfigurator.swift in Sources */,
 				14B3D92A2C664C500054CDFA /* BannerContainerCell.swift in Sources */,
+				14DBF37B2C763260006AED4B /* CustomStepper.swift in Sources */,
 				14B473122C3003D10058639D /* SceneDelegate.swift in Sources */,
 				14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */,
 				14B473302C300CC20058639D /* ProductsService.swift in Sources */,
