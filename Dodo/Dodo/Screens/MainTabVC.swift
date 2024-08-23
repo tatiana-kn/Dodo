@@ -23,6 +23,13 @@ class MainTabVC: UITabBarController {
         return controller
     }()
     
+    let cartController: CartScreenVC = {
+        let controller = CartScreenVC()
+        let tabItem = UITabBarItem.init(title: "", image: UIImage(systemName: "cart"), selectedImage: UIImage(systemName: "cart"))
+        controller.tabBarItem = tabItem
+        return controller
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +41,7 @@ class MainTabVC: UITabBarController {
         
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
-        viewControllers = [menuController, profileController]
+        viewControllers = [menuController,cartController, profileController]
  
     }
 }

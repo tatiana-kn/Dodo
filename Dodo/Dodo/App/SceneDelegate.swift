@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow.init(windowScene: windowScene)
 //        let menuVC = MenuScreenVC()
-        window?.rootViewController = MenuConfigurator().configure()
+//        window?.rootViewController = MenuConfigurator().configure()
+        window?.rootViewController = MainTabVC()
+
         window?.makeKeyAndVisible()
     }
 

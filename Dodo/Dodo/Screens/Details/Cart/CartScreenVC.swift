@@ -48,7 +48,7 @@ extension CartScreenVC {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(orderButton)
-//        view.backgroundColor = .white
+        view.backgroundColor = .white
     }
     
     private func setupConstraints() {
