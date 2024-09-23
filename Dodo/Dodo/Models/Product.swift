@@ -7,23 +7,25 @@
 
 import Foundation
 
-struct ProductResponse: Decodable {
+struct ProductResponse: Codable {
     let products: [Product]
 }
 
-struct Product: Decodable {
+struct Product: Codable {
+    
     let name: String
     let detail: String
     let price: Int
     let image: String
     let ingredients: [Ingredient]?
+    var count: Int?
 }
 
-struct IngredientsResponse: Decodable {
+struct IngredientsResponse: Codable {
     let ingredients: [Ingredient]
 }
 
-struct Ingredient: Decodable {
+struct Ingredient: Codable {
     let name: String
     let image: String
     let price: Int

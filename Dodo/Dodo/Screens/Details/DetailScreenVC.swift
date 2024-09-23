@@ -12,6 +12,7 @@ final class DetailScreenVC: UIViewController {
     var ingredientLoader = IngredientsLoader()
     var ingredients: [Ingredient] = []
     var product: Product?
+    var productsRepository = ProductsRepository()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -24,6 +25,17 @@ final class DetailScreenVC: UIViewController {
         tableView.register(IngredientsContainerCell.self, forCellReuseIdentifier: IngredientsContainerCell.reuseID)
         
         return tableView
+    }()
+    
+    private lazy var orderButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Оформить за", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .orange
+        button.layer.cornerRadius = 20
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
+        return button
     }()
     
 //    init(product: Product) {
@@ -47,21 +59,37 @@ final class DetailScreenVC: UIViewController {
         setupConstraints()
         loadIngredients()
     }
+    
+    @objc private func addToCart(_ sender: UIButton) {
+        guard let product else { return }
+        
+        productsRepository.add(product)
+//        print(productsRepository.retrieve())
+    }
+    
 }
 
 extension DetailScreenVC {
     private func setupViews() {
         view.addSubview(tableView)
+        view.addSubview(orderButton)
+        view.backgroundColor = .white
     }
     
     private func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        orderButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//            tableView.bottomAnchor.constraint(equalTo: orderButton.topAnchor),
+            
+            orderButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
+            orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
+            orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
     }
 }

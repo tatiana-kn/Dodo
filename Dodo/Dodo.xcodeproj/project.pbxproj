@@ -34,6 +34,7 @@
 		14DBF3762C75FD2F006AED4B /* CartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */; };
 		14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3782C7603F7006AED4B /* CartCell.swift */; };
 		14DBF37B2C763260006AED4B /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF37A2C763260006AED4B /* CustomStepper.swift */; };
+		14DBF3812C78C8C7006AED4B /* ProductsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3802C78C8C7006AED4B /* ProductsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreenVC.swift; sourceTree = "<group>"; };
 		14DBF3782C7603F7006AED4B /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		14DBF37A2C763260006AED4B /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
+		14DBF3802C78C8C7006AED4B /* ProductsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				1413BDE22C53D71000D5642A /* NetworkClient.swift */,
 				1413BDE02C53D6C600D5642A /* ProductsLoader.swift */,
 				1413BDE92C5E486400D5642A /* IngredientsLoader.swift */,
+				14DBF3802C78C8C7006AED4B /* ProductsRepository.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				14B4732E2C300C990058639D /* Product.swift in Sources */,
 				14BB39842C382B1800B8796F /* DescriptionCell.swift in Sources */,
 				14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */,
+				14DBF3812C78C8C7006AED4B /* ProductsRepository.swift in Sources */,
 				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
 				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
 				14BB39862C38307A00B8796F /* ControlsCell.swift in Sources */,

@@ -87,10 +87,9 @@ final class CartCell: UITableViewCell {
         detailedLabel.text = product.detail
         priceLabel.text = "\(product.price) р"
         productImageView.image = UIImage(named: product.image) ?? UIImage(named: "default")
+        stepper.currentValue = product.count ?? 0
     }
-    
 }
-
 
 extension CartCell {
     
@@ -167,7 +166,7 @@ extension CartCell {
         ])
         
         NSLayoutConstraint.activate([
-            stepper.widthAnchor.constraint(equalToConstant: 150)
+            stepper.widthAnchor.constraint(greaterThanOrEqualToConstant: 150)
         ])
     }
     
@@ -176,8 +175,8 @@ extension CartCell {
     }
     
     @objc private func stepperChangedValueAction(sender: CustomStepper) {
-        print(sender)
-        print(sender.currentValue)
+//        print(sender)
+//        print(sender.currentValue)
     }
 }
 

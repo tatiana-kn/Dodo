@@ -9,6 +9,13 @@ import UIKit
 
 final class CartScreenVC: UIViewController {
     
+    var productsRepository = ProductsRepository()
+    var products: [Product] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Корзина"
@@ -40,6 +47,7 @@ final class CartScreenVC: UIViewController {
 
         setupViews()
         setupConstraints()
+        loadCartProducts()
     }
 }
 
@@ -82,14 +90,22 @@ extension CartScreenVC {
 
 extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as? CartCell else {
             fatalError("Fatal error for cell at \(indexPath)")
         }
+        let product = products[indexPath.row]
+        cell.update(product)
         return cell
+    }
+}
+
+extension CartScreenVC {
+    func loadCartProducts() {
+        products = productsRepository.retrieve()
     }
 }
 
