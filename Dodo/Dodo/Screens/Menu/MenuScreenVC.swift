@@ -8,12 +8,12 @@
 import UIKit
 
 enum MenuSections: Int, CaseIterable {
+    case stories
     case banners
     case products
 }
- 
+
 class MenuScreenVC: UIViewController {
-//    let productService = ProductsService()
     var productLoader = ProductsLoader()
     
     var products: [Product] = [] {
@@ -29,7 +29,8 @@ class MenuScreenVC: UIViewController {
         $0.dataSource = self
         $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
         $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
-
+        $0.register(StoriesContainerCell.self, forCellReuseIdentifier: StoriesContainerCell.reuseID)
+        
         return $0
     }(UITableView())
     
@@ -39,12 +40,7 @@ class MenuScreenVC: UIViewController {
         setupViews()
         setupConstraints()
         loadProducts()
-//        fetchProducts()
     }
-    
-//    private func fetchProducts() {
-//        products = productService.fetchProduct()
-//    }
 }
 
 //MARK: - Layout
@@ -81,6 +77,8 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 return 1
             case .products:
                 return products.count
+            case .stories:
+                return 1
             }
         }
         return 0
@@ -96,8 +94,6 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 }
                 
                 cell.onBannerCellSelected = { product in
-                    //                    print("-> ", product)
-                    //                    let detailVC = DetailScreenVC()
                     let detailVC = DetailConfigurator().configure()
                     detailVC.update(product)
                     self.present(detailVC, animated: true)
@@ -113,6 +109,12 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 let product = products[indexPath.row]
                 cell.update(product)
                 return cell
+                
+            case .stories:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
+                    fatalError("Fatal error for cell at \(indexPath)")
+                }
+                return cell
             }
         }
         
@@ -123,10 +125,10 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
         
         let product = products[indexPath.row]
         let detailVC = DetailConfigurator().configure()
-//        let detailVC = DetailScreenVC()
+        //        let detailVC = DetailScreenVC()
         
-//        detailVC.product = product
-//        let detailVC = DetailScreenVC(product: product)
+        //        detailVC.product = product
+        //        let detailVC = DetailScreenVC(product: product)
         
         detailVC.update(product)
         present(detailVC, animated: true)
@@ -134,21 +136,21 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MenuScreenVC {
-        private func loadProducts() {
-            productLoader.loadUsers { [weak self] result in
-                guard let self else { return }
-                switch result {
-                case .success(let products):
-                    
-                    DispatchQueue.main.async {
-                        self.products = products
-                        self.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
+    private func loadProducts() {
+        productLoader.loadUsers { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let products):
+                
+                DispatchQueue.main.async {
+                    self.products = products
+                    self.tableView.reloadData()
                 }
+            case .failure(let error):
+                print(error)
             }
         }
+    }
 }
 
 #Preview(traits: .portrait) {
