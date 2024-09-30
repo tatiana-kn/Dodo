@@ -78,6 +78,3 @@ extension StoriesContainerCell: UICollectionViewDataSource {
     }
 }
 
-#Preview(traits: .portrait) {
-    StoriesContainerCell()
-}

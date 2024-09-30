@@ -52,7 +52,7 @@ final class CustomStepper: UIControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        setupContraints()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -83,7 +83,7 @@ extension CustomStepper {
         horizontalStackView.addArrangedSubview(increaseButton)
     }
     
-    private func setupContraints() {
+    private func setupConstraints() {
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

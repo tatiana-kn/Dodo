@@ -22,9 +22,14 @@ class MenuScreenVC: UIViewController {
         }
     }
     
+    private var addressView: AddressView = {
+        let addressView = AddressView()
+        return addressView
+    }()
+    
     private lazy var tableView: UITableView = {
         $0.separatorStyle = .none
-        $0.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+//        $0.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
         $0.delegate = self
         $0.dataSource = self
         $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
@@ -47,16 +52,27 @@ class MenuScreenVC: UIViewController {
 extension MenuScreenVC {
     private func setupViews() {
         view.addSubview(tableView)
+        view.addSubview(addressView)
         view.backgroundColor = .white
     }
     
     private func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        addressView.translatesAutoresizingMaskIntoConstraints = false
+        
         let safeArea = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            addressView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
+            addressView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
+            addressView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
+            addressView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -25)
+        ])
+        
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
+//            tableView.topAnchor.constraint(equalTo: addressView.bottomAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
         ])
     }

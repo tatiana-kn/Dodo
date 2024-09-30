@@ -64,7 +64,7 @@ extension BannerContainerCell {
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 180)
+            collectionView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
 }
