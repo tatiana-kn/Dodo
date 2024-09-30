@@ -10,6 +10,10 @@ import UIKit
 final class CartCell: UITableViewCell {
     static let reuseID = "CartCell"
     
+    var product: Product?
+    
+    var onStepperValueChanged: ((Product) -> ())?
+    
     private var cardStackView: UIStackView = {
         $0.axis = .vertical
         $0.applyShadow(cornerRadius: 10)
@@ -83,6 +87,7 @@ final class CartCell: UITableViewCell {
     }
     
     func update(_ product: Product) {
+        self.product = product
         nameLabel.text = product.name
         detailedLabel.text = product.detail
         priceLabel.text = "\(product.price) р"
@@ -175,6 +180,13 @@ extension CartCell {
     }
     
     @objc private func stepperChangedValueAction(sender: CustomStepper) {
+        
+        
+        product?.count = sender.currentValue
+        
+        guard let product else { return }
+        onStepperValueChanged?(product)
+        
 //        print(sender)
 //        print(sender.currentValue)
     }

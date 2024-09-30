@@ -47,7 +47,7 @@ final class CartScreenVC: UIViewController {
 
         setupViews()
         setupConstraints()
-        loadCartProducts()
+        loadProductsFromStorage()
     }
 }
 
@@ -99,12 +99,23 @@ extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
         }
         let product = products[indexPath.row]
         cell.update(product)
+        
+            
+        cell.onStepperValueChanged = { product in
+            self.updateProductInStorage(product)
+        }
         return cell
     }
 }
-
+//Business logic
 extension CartScreenVC {
-    func loadCartProducts() {
+    
+    func updateProductInStorage(_ product: Product) {
+        self.productsRepository.update(product)
+        loadProductsFromStorage()
+    }
+    
+    func loadProductsFromStorage() {
         products = productsRepository.retrieve()
     }
 }

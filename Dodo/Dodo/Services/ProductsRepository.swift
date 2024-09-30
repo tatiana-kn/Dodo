@@ -10,9 +10,9 @@ import Foundation
 //Класс-сервис - бизнес-логика - архивируем массив продуктов
 
 protocol IProductsRepository {
-    func save(_ products: [Product]) //сохраняем
     func retrieve() -> [Product] //закдалываем их массивом
     func add(_ product: Product)
+    func update(_ product: Product)
 }
 
 final class ProductsRepository: IProductsRepository {
@@ -23,7 +23,7 @@ final class ProductsRepository: IProductsRepository {
     private let key = "Products"
     
     //MARK: - Public methods
-    func save(_ products: [Product]) { //метод сохранить
+    private func save(_ products: [Product]) { //метод сохранить
         
         //Array<Product> -> Data
         //массив кладем в бинарник и кодируем, бинарник кладем в UserDefaults
@@ -68,8 +68,8 @@ final class ProductsRepository: IProductsRepository {
         print(array)
     }
     
-    func delete(_ product: Product) {
-        var array = retrieve() // Нужно ли здесь?
+    func delete(_ product: Product) { //  удалить?
+        var array = retrieve()
         
         if let index = array.firstIndex(where: { $0.name == product.name }) {
             if let count = array[index].count {
@@ -77,7 +77,21 @@ final class ProductsRepository: IProductsRepository {
             }
         }
         
+        array.removeAll { $0.count == 0 }
 //        array.append(product)
+        save(array)
+        print(array)
+    }
+    
+    func update(_ product: Product) {
+        var array = retrieve()
+        
+        if let index = array.firstIndex(where: { $0.name == product.name }) {
+            if let count = array[index].count {
+                array[index].count = product.count
+            }
+        }
+        array.removeAll { $0.count == 0 }
         save(array)
         print(array)
     }
