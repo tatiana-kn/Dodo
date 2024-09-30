@@ -23,7 +23,6 @@ final class AddressView: UIView {
         let nameLabel = UILabel()
         nameLabel.text = "Address"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-//        nameLabel.textAlignment = .left
         return nameLabel
     }()
     
@@ -68,15 +67,15 @@ extension AddressView {
         
         NSLayoutConstraint.activate([
             addressLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
-            addressLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            addressLabel.topAnchor.constraint(equalTo: stackView.topAnchor),
-            addressLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+            addressLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.leadingAnchor),
+            addressLabel.topAnchor.constraint(greaterThanOrEqualTo: stackView.topAnchor),
+            addressLabel.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            imageView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            imageView.topAnchor.constraint(equalTo: stackView.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+            imageView.trailingAnchor.constraint(lessThanOrEqualTo: stackView.trailingAnchor)
+//            imageView.topAnchor.constraint(lessThanOrEqualTo: stackView.topAnchor),
+//            imageView.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
         ])
     }
 }
