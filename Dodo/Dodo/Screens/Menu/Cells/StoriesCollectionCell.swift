@@ -36,7 +36,7 @@ final class StoriesCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ product: Product) {
+    func update() { // ???
         storyImageView.image = UIImage(named: "default")
     }
 }

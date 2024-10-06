@@ -10,6 +10,8 @@ import UIKit
 final class StoriesContainerCell: UITableViewCell {
     static let reuseID = "StoriesContainerCell"
     
+    var onStoriesCellSelected: (()->())?
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -74,7 +76,9 @@ extension StoriesContainerCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+//        let storiesVC = StoriesScreenVC()
+        
+        onStoriesCellSelected?()
     }
 }
 

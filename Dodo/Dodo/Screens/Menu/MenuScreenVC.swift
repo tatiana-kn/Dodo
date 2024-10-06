@@ -130,6 +130,11 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
                     fatalError("Fatal error for cell at \(indexPath)")
                 }
+                
+                cell.onStoriesCellSelected = {
+                    let storiesVC = StoriesScreenVC()
+                    self.present(storiesVC, animated: true)
+                }
                 return cell
             }
         }

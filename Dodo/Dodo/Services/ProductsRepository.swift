@@ -87,9 +87,7 @@ final class ProductsRepository: IProductsRepository {
         var array = retrieve()
         
         if let index = array.firstIndex(where: { $0.name == product.name }) {
-            if let count = array[index].count {
-                array[index].count = product.count
-            }
+            array[index].count = product.count
         }
         array.removeAll { $0.count == 0 }
         save(array)
