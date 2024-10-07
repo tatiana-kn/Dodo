@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class StoriesCollectionCell: UICollectionViewCell {
     static let reuseID = "StoriesCollectionCell"
-    
+
     private var containerView: UIView = {
         $0.backgroundColor = .white
         $0.applyShadow(cornerRadius: 20)
@@ -36,8 +37,10 @@ final class StoriesCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update() { // ???
-        storyImageView.image = UIImage(named: "default")
+    func update(_ story: Story) {
+        
+        let url = URL.init(string: story.path)
+        storyImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default"))
     }
 }
 
@@ -74,3 +77,5 @@ extension StoriesCollectionCell {
 #Preview(traits: .portrait) {
     StoriesCollectionCell()
 }
+
+

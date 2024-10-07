@@ -10,19 +10,16 @@ import UIKit
 final class StoriesCell: UICollectionViewCell {
     static let reuseID = "StoriesCell"
     
+    var storiesLoader = StoriesLoader()
+    
     private var containerView: UIView = {
         $0.backgroundColor = .white
-//        $0.applyShadow(cornerRadius: 20)
         return $0
     }(UIView())
     
     private var storyImageView: UIImageView = {
         $0.image = UIImage(named: "default")
         $0.contentMode = .scaleAspectFit
-//        let width = UIScreen.main.bounds.width
-//        let height = UIScreen.main.bounds.height
-//        $0.heightAnchor.constraint(equalToConstant: width).isActive = true
-//        $0.widthAnchor.constraint(equalToConstant: height).isActive = true
         return $0
     }(UIImageView())
     
@@ -35,6 +32,11 @@ final class StoriesCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func update(_ story: Story) {
+        let url = URL.init(string: story.path)
+        storyImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default"))
     }
 }
 

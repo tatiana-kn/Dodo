@@ -10,7 +10,15 @@ import UIKit
 final class StoriesContainerCell: UITableViewCell {
     static let reuseID = "StoriesContainerCell"
     
-    var onStoriesCellSelected: (()->())?
+    let imageCache = NSCache<NSString, UIImage>()
+    
+    var stories: [Story] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var onStoriesCellSelected: ((IndexPath)->())?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +43,10 @@ final class StoriesContainerCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func update(_ stories: [Story]) {
+        self.stories = stories
     }
 
 }
@@ -65,20 +77,24 @@ extension StoriesContainerCell: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension StoriesContainerCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        stories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoriesCollectionCell.reuseID, for: indexPath) as? StoriesCollectionCell else {
             return UICollectionViewCell()
         }
+        let story = stories[indexPath.item]
+//        cell.update(story, imageCache: imageCache)
+        cell.update(story)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let storiesVC = StoriesScreenVC()
-        
-        onStoriesCellSelected?()
+//        let story = stories[indexPath.item]
+        //let storiesVC = StoriesScreenVC()
+        //storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
+        onStoriesCellSelected?(indexPath)
     }
 }
 

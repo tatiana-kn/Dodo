@@ -30,3 +30,11 @@ struct Ingredient: Codable {
     let image: String
     let price: Int
 }
+
+struct StoriesResponse: Codable {
+    let stories: [Story]
+}
+
+struct Story: Codable {
+    let path: String
+}

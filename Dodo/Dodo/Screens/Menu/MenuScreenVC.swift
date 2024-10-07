@@ -15,12 +15,17 @@ enum MenuSections: Int, CaseIterable {
 
 class MenuScreenVC: UIViewController {
     var productLoader = ProductsLoader()
+    var storiesLoader = StoriesLoader()
     
     var products: [Product] = [] {
         didSet {
             tableView.reloadData()
         }
     }
+    
+    var stories: [Story] = [] 
+    
+    var imageCache: NSCache<NSString, UIImage>?
     
     private var addressView: AddressView = {
         let addressView = AddressView()
@@ -45,36 +50,7 @@ class MenuScreenVC: UIViewController {
         setupViews()
         setupConstraints()
         loadProducts()
-    }
-}
-
-//MARK: - Layout
-extension MenuScreenVC {
-    private func setupViews() {
-        view.addSubview(tableView)
-        view.addSubview(addressView)
-        view.backgroundColor = .white
-    }
-    
-    private func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        addressView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let safeArea = view.safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([
-            addressView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
-            addressView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
-            addressView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            addressView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -25)
-        ])
-        
-        NSLayoutConstraint.activate([
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
-//            tableView.topAnchor.constraint(equalTo: addressView.bottomAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
-        ])
+        loadStories()
     }
 }
 
@@ -130,10 +106,16 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
                     fatalError("Fatal error for cell at \(indexPath)")
                 }
+                cell.update(stories)
                 
-                cell.onStoriesCellSelected = {
+                cell.onStoriesCellSelected = { [self] indexPath in
                     let storiesVC = StoriesScreenVC()
+//                    storiesVC.update(story)
+//                    storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
                     self.present(storiesVC, animated: true)
+                    
+                    storiesVC.update(stories, indexPath)
+                    
                 }
                 return cell
             }
@@ -171,6 +153,51 @@ extension MenuScreenVC {
                 print(error)
             }
         }
+    }
+    
+    private func loadStories() {
+        storiesLoader.loadStories { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let stories):
+                DispatchQueue.main.async {
+                    self.stories = stories
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+
+//MARK: - Layout
+extension MenuScreenVC {
+    private func setupViews() {
+        view.addSubview(tableView)
+        view.addSubview(addressView)
+        view.backgroundColor = .white
+    }
+    
+    private func setupConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        addressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let safeArea = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            addressView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
+            addressView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
+            addressView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
+            addressView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -25)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
+//            tableView.topAnchor.constraint(equalTo: addressView.bottomAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
+        ])
     }
 }
 
