@@ -10,7 +10,7 @@ import UIKit
 final class StoriesContainerCell: UITableViewCell {
     static let reuseID = "StoriesContainerCell"
     
-    let imageCache = NSCache<NSString, UIImage>()
+//    let imageCache = NSCache<NSString, UIImage>()
     
     var stories: [Story] = [] {
         didSet {
@@ -51,25 +51,6 @@ final class StoriesContainerCell: UITableViewCell {
 
 }
 
-//MARK: - Layout
-extension StoriesContainerCell {
-    private func setupViews() {
-        contentView.addSubview(collectionView)
-    }
-    
-    private func setupConstraints() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 130)
-        ])
-    }
-}
-
 //MARK: - UICollectionViewDelegate
 extension StoriesContainerCell: UICollectionViewDelegate {
 }
@@ -95,6 +76,25 @@ extension StoriesContainerCell: UICollectionViewDataSource {
         //let storiesVC = StoriesScreenVC()
         //storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
         onStoriesCellSelected?(indexPath)
+    }
+}
+
+//MARK: - Layout
+extension StoriesContainerCell {
+    private func setupViews() {
+        contentView.addSubview(collectionView)
+    }
+    
+    private func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            collectionView.heightAnchor.constraint(equalToConstant: 130)
+        ])
     }
 }
 

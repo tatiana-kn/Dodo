@@ -8,20 +8,7 @@
 import UIKit
 
 final class StoriesScreenVC: UIViewController {
-    
-    var storiesLoader = StoriesLoader()
-    
-    var stories: [Story] = [] {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    
-//    var imageCache: NSCache<NSString, UIImage>? {
-//        didSet {
-//            collectionView.reloadData()
-//        }
-//    }
+    var stories: [Story] = []
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -53,27 +40,13 @@ final class StoriesScreenVC: UIViewController {
     
     func update(_ stories: [Story], _ indexPath: IndexPath) {
         self.stories = stories
-        
-        print(indexPath)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        collectionView.performBatchUpdates({
+            collectionView.reloadData()
+        }, completion: { _ in
             self.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-        
-        }
-       
-        print(stories)
+        })
     }
-    
-//    func update(_ stories: [Story], startingAt index: Int, imageCache: NSCache<NSString, UIImage> ) {
-//        self.stories = stories
-//        self.imageCache = imageCache
-//        collectionView.reloadData()
-//        let indexPath = IndexPath(item: index, section: 0)
-//        self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-//        print("screen")
-//    }
 }
-
-
 
 //MARK: - UICollectionViewDelegate
 extension StoriesScreenVC: UICollectionViewDelegate {
@@ -90,15 +63,9 @@ extension StoriesScreenVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let story = stories[indexPath.item]
-//        cell.update(story, imageCache: imageCache)
-        
         cell.update(story)
         return cell
     }
-}
-
-#Preview(traits: .portrait) {
-    StoriesScreenVC()
 }
 
 //MARK: - Layout
@@ -117,4 +84,9 @@ extension StoriesScreenVC {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
+}
+
+
+#Preview(traits: .portrait) {
+    StoriesScreenVC()
 }

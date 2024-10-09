@@ -45,19 +45,19 @@ struct StoriesLoader: IStoriesLoader {
         }
     }
     
-    func loadStoryImage(from url: String, handler: @escaping (Result<Data, Error>) -> Void) {
-        guard let imageURL = URL(string: url) else {
-            handler(.failure(NSError(domain: "Invalid URL", code: 400, userInfo: nil)))
-            return
-        }
-        
-        networkClient.fetch(url: imageURL) { result in
-            switch result {
-            case .success(let data):
-                handler(.success(data))
-            case .failure(let error):
-                handler(.failure(error))
-            }
-        }
-    }
+//    func loadStoryImage(from url: String, handler: @escaping (Result<Data, Error>) -> Void) {
+//        guard let imageURL = URL(string: url) else {
+//            handler(.failure(NSError(domain: "Invalid URL", code: 400, userInfo: nil)))
+//            return
+//        }
+//        
+//        networkClient.fetch(url: imageURL) { result in
+//            switch result {
+//            case .success(let data):
+//                handler(.success(data))
+//            case .failure(let error):
+//                handler(.failure(error))
+//            }
+//        }
+//    }
 }
