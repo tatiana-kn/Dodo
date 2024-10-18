@@ -8,6 +8,8 @@
 import UIKit
 
 final class AddressView: UIView {
+    var onAdressButtonTapped: (() -> ())?
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -19,11 +21,15 @@ final class AddressView: UIView {
         return stackView
     }()
     
-    private let addressLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.text = "Address"
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        return nameLabel
+    private let addressButton: UIButton = {
+        let addressButton = UIButton()
+        addressButton.setTitle("Address", for: .normal)
+        addressButton.setTitleColor(.black, for: .normal)
+        addressButton.addTarget(nil, action: #selector(adressButtonTapped), for: .touchUpInside)
+        
+//        addressButton.text = "Address"
+//        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        return addressButton
     }()
     
     var imageView: UIImageView = {
@@ -44,18 +50,23 @@ final class AddressView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func adressButtonTapped(_ sender: UIButton) {
+        onAdressButtonTapped?()
+    }
+    
 }
 
 extension AddressView {
     private func setupViews() {
         addSubview(stackView)
-        stackView.addArrangedSubview(addressLabel)
+        stackView.addArrangedSubview(addressButton)
         stackView.addArrangedSubview(imageView)
     }
     
     private func setupConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressButton.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -66,10 +77,10 @@ extension AddressView {
         ])
         
         NSLayoutConstraint.activate([
-            addressLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
-            addressLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.leadingAnchor),
-            addressLabel.topAnchor.constraint(greaterThanOrEqualTo: stackView.topAnchor),
-            addressLabel.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
+            addressButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
+            addressButton.trailingAnchor.constraint(lessThanOrEqualTo: imageView.leadingAnchor),
+            addressButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.topAnchor),
+            addressButton.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([

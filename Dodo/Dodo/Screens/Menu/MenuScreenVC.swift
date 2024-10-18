@@ -49,8 +49,16 @@ class MenuScreenVC: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupBindings()
+        
         loadProducts()
         loadStories()
+    }
+    
+    func setupBindings() {
+        addressView.onAdressButtonTapped = {
+            self.navigateToMapScreen()
+        }
     }
 }
 
@@ -138,6 +146,15 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+//MARK: Navigation
+extension MenuScreenVC {
+    func navigateToMapScreen() {
+        let mapVC = MapScreenVC()
+        present(mapVC, animated: true)
+    }
+}
+
+//MARK: Business logic
 extension MenuScreenVC {
     private func loadProducts() {
         productLoader.loadUsers { [weak self] result in

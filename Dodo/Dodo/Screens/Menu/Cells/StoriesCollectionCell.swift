@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import SDWebImage
+//import SDWebImage
+import Kingfisher
 
 final class StoriesCollectionCell: UICollectionViewCell {
     static let reuseID = "StoriesCollectionCell"
@@ -39,7 +40,8 @@ final class StoriesCollectionCell: UICollectionViewCell {
     
     func update(_ story: Story) {
         let url = URL.init(string: story.path)
-        storyImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default"))
+//        storyImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default"))
+        storyImageView.kf.setImage(with: url, placeholder: UIImage(named: "default"))
     }
 }
 

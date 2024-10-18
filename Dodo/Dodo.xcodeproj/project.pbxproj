@@ -13,6 +13,8 @@
 		1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE92C5E486400D5642A /* IngredientsLoader.swift */; };
 		1456537B2CA9B6A70039C8AE /* StoriesContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456537A2CA9B6A70039C8AE /* StoriesContainerCell.swift */; };
 		1456537D2CA9B6C70039C8AE /* StoriesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456537C2CA9B6C70039C8AE /* StoriesCollectionCell.swift */; };
+		1474275B2CBD22EB00022865 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1474275A2CBD22EB00022865 /* Kingfisher */; };
+		1474275D2CBD36DF00022865 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1474275C2CBD36DF00022865 /* MapView.swift */; };
 		149AB76F2CAA8ED90004A66F /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AB76E2CAA8ED90004A66F /* AddressView.swift */; };
 		14B3D92A2C664C500054CDFA /* BannerContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3D9292C664C500054CDFA /* BannerContainerCell.swift */; };
 		14B3D92C2C664D9B0054CDFA /* BannerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3D92B2C664D9B0054CDFA /* BannerCollectionCell.swift */; };
@@ -52,6 +54,7 @@
 		1413BDE92C5E486400D5642A /* IngredientsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsLoader.swift; sourceTree = "<group>"; };
 		1456537A2CA9B6A70039C8AE /* StoriesContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesContainerCell.swift; sourceTree = "<group>"; };
 		1456537C2CA9B6C70039C8AE /* StoriesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCollectionCell.swift; sourceTree = "<group>"; };
+		1474275C2CBD36DF00022865 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		149AB76E2CAA8ED90004A66F /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		14B3D9292C664C500054CDFA /* BannerContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerContainerCell.swift; sourceTree = "<group>"; };
 		14B3D92B2C664D9B0054CDFA /* BannerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionCell.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1474275B2CBD22EB00022865 /* Kingfisher in Frameworks */,
 				14CAD1EE2CB3F2860009B54C /* SDWebImageMapKit in Frameworks */,
 				14CAD1EC2CB3F2860009B54C /* SDWebImage in Frameworks */,
 			);
@@ -97,10 +101,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		147427582CBD222000022865 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		14B473032C3003D00058639D = {
 			isa = PBXGroup;
 			children = (
 				14B4730E2C3003D10058639D /* Dodo */,
+				147427582CBD222000022865 /* Frameworks */,
 				14B4730D2C3003D10058639D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +165,7 @@
 				1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */,
 				14B473132C3003D10058639D /* MenuScreenVC.swift */,
 				149AB76E2CAA8ED90004A66F /* AddressView.swift */,
+				1474275C2CBD36DF00022865 /* MapView.swift */,
 				14B473262C300AB70058639D /* Cells */,
 			);
 			path = Menu;
@@ -286,6 +299,7 @@
 			packageProductDependencies = (
 				14CAD1EB2CB3F2860009B54C /* SDWebImage */,
 				14CAD1ED2CB3F2860009B54C /* SDWebImageMapKit */,
+				1474275A2CBD22EB00022865 /* Kingfisher */,
 			);
 			productName = Dodo;
 			productReference = 14B4730C2C3003D10058639D /* Dodo.app */;
@@ -317,6 +331,7 @@
 			mainGroup = 14B473032C3003D00058639D;
 			packageReferences = (
 				14CAD1EA2CB3F2860009B54C /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				147427592CBD22EB00022865 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 14B4730D2C3003D10058639D /* Products */;
 			projectDirPath = "";
@@ -346,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14B473322C300CF60058639D /* UIView+Shadow.swift in Sources */,
+				1474275D2CBD36DF00022865 /* MapView.swift in Sources */,
 				14BB39822C38249400B8796F /* DetailPhotoCell.swift in Sources */,
 				14B3D92C2C664D9B0054CDFA /* BannerCollectionCell.swift in Sources */,
 				14DBF3572C6E6C5D006AED4B /* MainTabVC.swift in Sources */,
@@ -534,6 +550,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -565,6 +582,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -606,6 +624,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		147427592CBD22EB00022865 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
 		14CAD1EA2CB3F2860009B54C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -617,6 +643,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1474275A2CBD22EB00022865 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 147427592CBD22EB00022865 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		14CAD1EB2CB3F2860009B54C /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 14CAD1EA2CB3F2860009B54C /* XCRemoteSwiftPackageReference "SDWebImage" */;
