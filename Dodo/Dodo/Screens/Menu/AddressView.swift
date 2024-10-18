@@ -26,9 +26,6 @@ final class AddressView: UIView {
         addressButton.setTitle("Address", for: .normal)
         addressButton.setTitleColor(.black, for: .normal)
         addressButton.addTarget(nil, action: #selector(adressButtonTapped), for: .touchUpInside)
-        
-//        addressButton.text = "Address"
-//        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         return addressButton
     }()
     

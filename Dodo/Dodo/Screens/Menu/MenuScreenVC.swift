@@ -25,7 +25,7 @@ class MenuScreenVC: UIViewController {
     
     var stories: [Story] = [] 
     
-    var imageCache: NSCache<NSString, UIImage>?
+//    var imageCache: NSCache<NSString, UIImage>?
     
     private var addressView: AddressView = {
         let addressView = AddressView()
@@ -57,7 +57,7 @@ class MenuScreenVC: UIViewController {
     
     func setupBindings() {
         addressView.onAdressButtonTapped = {
-            self.navigateToMapScreen()
+            self.navigateToAddressListScreen()
         }
     }
 }
@@ -148,9 +148,9 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
 
 //MARK: Navigation
 extension MenuScreenVC {
-    func navigateToMapScreen() {
-        let mapVC = MapScreenVC()
-        present(mapVC, animated: true)
+    func navigateToAddressListScreen() {
+        let addressListVC = AddressListScreenVC()
+        present(addressListVC, animated: true)
     }
 }
 
