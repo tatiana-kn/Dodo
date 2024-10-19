@@ -19,17 +19,28 @@ final class AddressCell: UITableViewCell {
         return stackView
     }()
     
+    var selectImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "circle") // largecircle.fill.circle
+        imageView.tintColor = .gray
+        imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(lessThanOrEqualToConstant: 25).isActive = true
+        return imageView
+    }()
+    
     private let addressLabel: UILabel = {
         let label = UILabel()
         label.text = "addressLabel"
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
     private let editButton: UIButton = {
         let editButton = UIButton()
-        editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-        editButton.tintColor = .darkGray
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "pencil", withConfiguration: largeConfig)
+        editButton.setImage(image, for: .normal)
+        editButton.tintColor = .gray
         editButton.addTarget(nil, action: #selector(editButtonTapped), for: .touchUpInside)
         return editButton
     }()
@@ -45,15 +56,18 @@ final class AddressCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func update() {
+    }
+    
     @objc func editButtonTapped(_ sender: UIButton) {
-        
+        print("editButtonTapped")
     }
 }
 
 extension AddressCell {
     private func setupViews() {
-        
         contentView.addSubview(horizontalStackView)
+        horizontalStackView.addArrangedSubview(selectImageView)
         horizontalStackView.addArrangedSubview(addressLabel)
         horizontalStackView.addArrangedSubview(editButton)
     }

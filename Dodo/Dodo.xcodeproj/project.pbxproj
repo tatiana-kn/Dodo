@@ -47,6 +47,7 @@
 		14DBF3812C78C8C7006AED4B /* ProductsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3802C78C8C7006AED4B /* ProductsRepository.swift */; };
 		14F26B082CC27DFC0092EE0E /* AddressListScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */; };
 		14F26B0C2CC29FA80092EE0E /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B0B2CC29FA80092EE0E /* AddressCell.swift */; };
+		14F26B0E2CC3F5C20092EE0E /* AddressListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		14DBF3802C78C8C7006AED4B /* ProductsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsRepository.swift; sourceTree = "<group>"; };
 		14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListScreenVC.swift; sourceTree = "<group>"; };
 		14F26B0B2CC29FA80092EE0E /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */,
+				14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */,
 				1474275C2CBD36DF00022865 /* MapScreenVC.swift */,
 				14F26B0A2CC29F8E0092EE0E /* Cells */,
 			);
@@ -383,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14B473322C300CF60058639D /* UIView+Shadow.swift in Sources */,
+				14F26B0E2CC3F5C20092EE0E /* AddressListHeaderView.swift in Sources */,
 				1474275D2CBD36DF00022865 /* MapScreenVC.swift in Sources */,
 				14F26B082CC27DFC0092EE0E /* AddressListScreenVC.swift in Sources */,
 				14BB39822C38249400B8796F /* DetailPhotoCell.swift in Sources */,
