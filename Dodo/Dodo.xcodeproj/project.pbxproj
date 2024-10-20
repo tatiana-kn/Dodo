@@ -15,7 +15,7 @@
 		1456537D2CA9B6C70039C8AE /* StoriesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456537C2CA9B6C70039C8AE /* StoriesCollectionCell.swift */; };
 		1474275B2CBD22EB00022865 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1474275A2CBD22EB00022865 /* Kingfisher */; };
 		1474275D2CBD36DF00022865 /* MapScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1474275C2CBD36DF00022865 /* MapScreenVC.swift */; };
-		149AB76F2CAA8ED90004A66F /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AB76E2CAA8ED90004A66F /* AddressView.swift */; };
+		149AB76F2CAA8ED90004A66F /* CurrentAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AB76E2CAA8ED90004A66F /* CurrentAddressView.swift */; };
 		14B3D92A2C664C500054CDFA /* BannerContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3D9292C664C500054CDFA /* BannerContainerCell.swift */; };
 		14B3D92C2C664D9B0054CDFA /* BannerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3D92B2C664D9B0054CDFA /* BannerCollectionCell.swift */; };
 		14B473102C3003D10058639D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4730F2C3003D10058639D /* AppDelegate.swift */; };
@@ -48,6 +48,12 @@
 		14F26B082CC27DFC0092EE0E /* AddressListScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */; };
 		14F26B0C2CC29FA80092EE0E /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B0B2CC29FA80092EE0E /* AddressCell.swift */; };
 		14F26B0E2CC3F5C20092EE0E /* AddressListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */; };
+		14F26B122CC512710092EE0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 14F26B112CC512710092EE0E /* SnapKit */; };
+		14F26B162CC5320A0092EE0E /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B152CC5320A0092EE0E /* AddressView.swift */; };
+		14F26B182CC532750092EE0E /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B172CC532750092EE0E /* SaveButton.swift */; };
+		14F26B1A2CC5331C0092EE0E /* AddressPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B192CC5331C0092EE0E /* AddressPanelView.swift */; };
+		14F26B1D2CC5345E0092EE0E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B1C2CC5345E0092EE0E /* LocationService.swift */; };
+		14F26B1F2CC5349C0092EE0E /* GeocodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +64,7 @@
 		1456537A2CA9B6A70039C8AE /* StoriesContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesContainerCell.swift; sourceTree = "<group>"; };
 		1456537C2CA9B6C70039C8AE /* StoriesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCollectionCell.swift; sourceTree = "<group>"; };
 		1474275C2CBD36DF00022865 /* MapScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenVC.swift; sourceTree = "<group>"; };
-		149AB76E2CAA8ED90004A66F /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
+		149AB76E2CAA8ED90004A66F /* CurrentAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAddressView.swift; sourceTree = "<group>"; };
 		14B3D9292C664C500054CDFA /* BannerContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerContainerCell.swift; sourceTree = "<group>"; };
 		14B3D92B2C664D9B0054CDFA /* BannerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionCell.swift; sourceTree = "<group>"; };
 		14B4730C2C3003D10058639D /* Dodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +97,11 @@
 		14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListScreenVC.swift; sourceTree = "<group>"; };
 		14F26B0B2CC29FA80092EE0E /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
 		14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListHeaderView.swift; sourceTree = "<group>"; };
+		14F26B152CC5320A0092EE0E /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
+		14F26B172CC532750092EE0E /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		14F26B192CC5331C0092EE0E /* AddressPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPanelView.swift; sourceTree = "<group>"; };
+		14F26B1C2CC5345E0092EE0E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1474275B2CBD22EB00022865 /* Kingfisher in Frameworks */,
+				14F26B122CC512710092EE0E /* SnapKit in Frameworks */,
 				14CAD1EE2CB3F2860009B54C /* SDWebImageMapKit in Frameworks */,
 				14CAD1EC2CB3F2860009B54C /* SDWebImage in Frameworks */,
 			);
@@ -171,7 +183,7 @@
 			children = (
 				1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */,
 				14B473132C3003D10058639D /* MenuScreenVC.swift */,
-				149AB76E2CAA8ED90004A66F /* AddressView.swift */,
+				149AB76E2CAA8ED90004A66F /* CurrentAddressView.swift */,
 				14B473262C300AB70058639D /* Cells */,
 			);
 			path = Menu;
@@ -200,6 +212,7 @@
 		14B473282C300AD90058639D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				14F26B1B2CC534260092EE0E /* Location */,
 				14B4732F2C300CC20058639D /* ProductsService.swift */,
 				1413BDE22C53D71000D5642A /* NetworkClient.swift */,
 				1413BDE02C53D6C600D5642A /* ProductsLoader.swift */,
@@ -291,8 +304,9 @@
 			children = (
 				14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */,
 				14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */,
-				1474275C2CBD36DF00022865 /* MapScreenVC.swift */,
 				14F26B0A2CC29F8E0092EE0E /* Cells */,
+				1474275C2CBD36DF00022865 /* MapScreenVC.swift */,
+				14F26B0F2CC511CE0092EE0E /* Views */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -303,6 +317,25 @@
 				14F26B0B2CC29FA80092EE0E /* AddressCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		14F26B0F2CC511CE0092EE0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				14F26B152CC5320A0092EE0E /* AddressView.swift */,
+				14F26B172CC532750092EE0E /* SaveButton.swift */,
+				14F26B192CC5331C0092EE0E /* AddressPanelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		14F26B1B2CC534260092EE0E /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				14F26B1C2CC5345E0092EE0E /* LocationService.swift */,
+				14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +358,7 @@
 				14CAD1EB2CB3F2860009B54C /* SDWebImage */,
 				14CAD1ED2CB3F2860009B54C /* SDWebImageMapKit */,
 				1474275A2CBD22EB00022865 /* Kingfisher */,
+				14F26B112CC512710092EE0E /* SnapKit */,
 			);
 			productName = Dodo;
 			productReference = 14B4730C2C3003D10058639D /* Dodo.app */;
@@ -357,6 +391,7 @@
 			packageReferences = (
 				14CAD1EA2CB3F2860009B54C /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				147427592CBD22EB00022865 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				14F26B102CC512710092EE0E /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 14B4730D2C3003D10058639D /* Products */;
 			projectDirPath = "";
@@ -390,8 +425,10 @@
 				1474275D2CBD36DF00022865 /* MapScreenVC.swift in Sources */,
 				14F26B082CC27DFC0092EE0E /* AddressListScreenVC.swift in Sources */,
 				14BB39822C38249400B8796F /* DetailPhotoCell.swift in Sources */,
+				14F26B162CC5320A0092EE0E /* AddressView.swift in Sources */,
 				14B3D92C2C664D9B0054CDFA /* BannerCollectionCell.swift in Sources */,
 				14DBF3572C6E6C5D006AED4B /* MainTabVC.swift in Sources */,
+				14F26B1A2CC5331C0092EE0E /* AddressPanelView.swift in Sources */,
 				14DBF3762C75FD2F006AED4B /* CartScreenVC.swift in Sources */,
 				14CAD1E42CB2DD380009B54C /* StoriesScreenVC.swift in Sources */,
 				1413BDE12C53D6C600D5642A /* ProductsLoader.swift in Sources */,
@@ -405,13 +442,15 @@
 				14DBF3812C78C8C7006AED4B /* ProductsRepository.swift in Sources */,
 				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
 				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
+				14F26B1D2CC5345E0092EE0E /* LocationService.swift in Sources */,
 				14BB39862C38307A00B8796F /* ControlsCell.swift in Sources */,
 				14B473102C3003D10058639D /* AppDelegate.swift in Sources */,
 				1456537D2CA9B6C70039C8AE /* StoriesCollectionCell.swift in Sources */,
 				14F26B0C2CC29FA80092EE0E /* AddressCell.swift in Sources */,
 				1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */,
+				14F26B182CC532750092EE0E /* SaveButton.swift in Sources */,
 				14DBF3732C721C29006AED4B /* DetailConfigurator.swift in Sources */,
-				149AB76F2CAA8ED90004A66F /* AddressView.swift in Sources */,
+				149AB76F2CAA8ED90004A66F /* CurrentAddressView.swift in Sources */,
 				14B3D92A2C664C500054CDFA /* BannerContainerCell.swift in Sources */,
 				14CAD1E92CB2F1CD0009B54C /* StoriesLoader.swift in Sources */,
 				14DBF37B2C763260006AED4B /* CustomStepper.swift in Sources */,
@@ -419,6 +458,7 @@
 				1456537B2CA9B6A70039C8AE /* StoriesContainerCell.swift in Sources */,
 				14CAD1E72CB2E11B0009B54C /* StoriesCell.swift in Sources */,
 				14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */,
+				14F26B1F2CC5349C0092EE0E /* GeocodeService.swift in Sources */,
 				14B473302C300CC20058639D /* ProductsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,6 +708,14 @@
 				minimumVersion = 5.19.7;
 			};
 		};
+		14F26B102CC512710092EE0E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -685,6 +733,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 14CAD1EA2CB3F2860009B54C /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
+		};
+		14F26B112CC512710092EE0E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14F26B102CC512710092EE0E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

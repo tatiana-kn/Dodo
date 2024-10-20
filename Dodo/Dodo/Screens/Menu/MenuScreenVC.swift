@@ -27,8 +27,8 @@ class MenuScreenVC: UIViewController {
     
 //    var imageCache: NSCache<NSString, UIImage>?
     
-    private var addressView: AddressView = {
-        let addressView = AddressView()
+    private var addressView: CurrentAddressView = {
+        let addressView = CurrentAddressView()
         return addressView
     }()
     

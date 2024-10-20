@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AddressView: UIView {
+final class CurrentAddressView: UIView {
     var onAdressButtonTapped: (() -> ())?
     
     private let stackView: UIStackView = {
@@ -54,7 +54,7 @@ final class AddressView: UIView {
     
 }
 
-extension AddressView {
+extension CurrentAddressView {
     private func setupViews() {
         addSubview(stackView)
         stackView.addArrangedSubview(addressButton)
@@ -89,5 +89,5 @@ extension AddressView {
 }
 
 #Preview(traits: .portrait) {
-    AddressView()
+    CurrentAddressView()
 }
