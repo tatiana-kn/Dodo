@@ -16,6 +16,7 @@ class AddressPanelView: UIView {
     var delayValue : Double = 2.0
     
     let addressView = AddressView()
+    let placeDescriptionView = PlaceDescriptionView()
     let saveButton = SaveButton()
     
     private let stackView: UIStackView = {
@@ -74,6 +75,7 @@ extension AddressPanelView {
         backgroundColor = .systemBackground
         self.addSubview(stackView)
         stackView.addArrangedSubview(addressView)
+        stackView.addArrangedSubview(placeDescriptionView)
         stackView.addArrangedSubview(saveButton)
         
     }

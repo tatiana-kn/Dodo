@@ -76,14 +76,6 @@ extension AddressListHeaderView {
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        
-
     }
 }
 
-//        NSLayoutConstraint.activate([
-//            newAddressButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
-//            newAddressButton.trailingAnchor.constraint(lessThanOrEqualTo: titleLabel.leadingAnchor),
-//            newAddressButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.topAnchor),
-//            newAddressButton.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
-//        ])

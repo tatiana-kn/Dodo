@@ -54,6 +54,7 @@
 		14F26B1A2CC5331C0092EE0E /* AddressPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B192CC5331C0092EE0E /* AddressPanelView.swift */; };
 		14F26B1D2CC5345E0092EE0E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B1C2CC5345E0092EE0E /* LocationService.swift */; };
 		14F26B1F2CC5349C0092EE0E /* GeocodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */; };
+		14FAA9772CC556C3008CC766 /* PlaceDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FAA9762CC556C3008CC766 /* PlaceDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		14F26B192CC5331C0092EE0E /* AddressPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPanelView.swift; sourceTree = "<group>"; };
 		14F26B1C2CC5345E0092EE0E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeService.swift; sourceTree = "<group>"; };
+		14FAA9762CC556C3008CC766 /* PlaceDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 				14F26B152CC5320A0092EE0E /* AddressView.swift */,
 				14F26B172CC532750092EE0E /* SaveButton.swift */,
 				14F26B192CC5331C0092EE0E /* AddressPanelView.swift */,
+				14FAA9762CC556C3008CC766 /* PlaceDescriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				1456537B2CA9B6A70039C8AE /* StoriesContainerCell.swift in Sources */,
 				14CAD1E72CB2E11B0009B54C /* StoriesCell.swift in Sources */,
 				14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */,
+				14FAA9772CC556C3008CC766 /* PlaceDescriptionView.swift in Sources */,
 				14F26B1F2CC5349C0092EE0E /* GeocodeService.swift in Sources */,
 				14B473302C300CC20058639D /* ProductsService.swift in Sources */,
 			);

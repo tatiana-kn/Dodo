@@ -53,7 +53,9 @@ final class AddressListScreenVC: UIViewController {
 extension AddressListScreenVC {
     func navigateToMapScreenVC() {
         let mapVC = MapScreenVC()
-        present(mapVC, animated: true)
+        let navigationController = UINavigationController(rootViewController: mapVC)
+        present(navigationController, animated: true)
+        //        present(mapVC, animated: true)
     }
 }
 

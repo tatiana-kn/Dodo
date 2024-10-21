@@ -14,11 +14,21 @@ final class CurrentAddressView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 15
-        stackView.alignment = .leading
+//        stackView.alignment = .leading
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
         
         return stackView
+    }()
+    
+    var addressImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "figure.walk.circle")
+        imageView.tintColor = .orange
+        imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        return imageView
     }()
     
     private let addressButton: UIButton = {
@@ -29,13 +39,19 @@ final class CurrentAddressView: UIView {
         return addressButton
     }()
     
-    var imageView: UIImageView = {
+    var accountImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
+        imageView.tintColor = .black
         imageView.contentMode = .scaleAspectFit
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         return imageView
+    }()
+    
+    private let spacerView: UIView = {
+        let spacerView = UIView()
+        return spacerView
     }()
     
     override init(frame: CGRect) {
@@ -57,33 +73,22 @@ final class CurrentAddressView: UIView {
 extension CurrentAddressView {
     private func setupViews() {
         addSubview(stackView)
+        stackView.addArrangedSubview(addressImageView)
         stackView.addArrangedSubview(addressButton)
-        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(spacerView)
+        stackView.addArrangedSubview(accountImageView)
     }
     
     private func setupConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addressButton.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        accountImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            addressButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
-            addressButton.trailingAnchor.constraint(lessThanOrEqualTo: imageView.leadingAnchor),
-            addressButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.topAnchor),
-            addressButton.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            imageView.trailingAnchor.constraint(lessThanOrEqualTo: stackView.trailingAnchor)
-//            imageView.topAnchor.constraint(lessThanOrEqualTo: stackView.topAnchor),
-//            imageView.bottomAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor)
         ])
     }
 }

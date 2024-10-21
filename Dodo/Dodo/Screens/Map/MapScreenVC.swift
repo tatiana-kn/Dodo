@@ -47,6 +47,16 @@ final class MapScreenVC: UIViewController {
         showCurrentLocationOnMap()
         
         observe()
+        setupCloseButton()
+    }
+    
+    private func setupCloseButton() {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeScreen))
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
