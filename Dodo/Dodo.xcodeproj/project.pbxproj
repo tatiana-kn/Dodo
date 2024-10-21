@@ -55,6 +55,7 @@
 		14F26B1D2CC5345E0092EE0E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B1C2CC5345E0092EE0E /* LocationService.swift */; };
 		14F26B1F2CC5349C0092EE0E /* GeocodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */; };
 		14FAA9772CC556C3008CC766 /* PlaceDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FAA9762CC556C3008CC766 /* PlaceDescriptionView.swift */; };
+		14FAA97C2CC66521008CC766 /* AddressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FAA97B2CC66521008CC766 /* AddressRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		14F26B1C2CC5345E0092EE0E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeService.swift; sourceTree = "<group>"; };
 		14FAA9762CC556C3008CC766 /* PlaceDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescriptionView.swift; sourceTree = "<group>"; };
+		14FAA97B2CC66521008CC766 /* AddressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				1413BDE92C5E486400D5642A /* IngredientsLoader.swift */,
 				14CAD1E82CB2F1CD0009B54C /* StoriesLoader.swift */,
 				14DBF3802C78C8C7006AED4B /* ProductsRepository.swift */,
+				14FAA97B2CC66521008CC766 /* AddressRepository.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				14BB39842C382B1800B8796F /* DescriptionCell.swift in Sources */,
 				14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */,
 				14DBF3812C78C8C7006AED4B /* ProductsRepository.swift in Sources */,
+				14FAA97C2CC66521008CC766 /* AddressRepository.swift in Sources */,
 				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
 				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
 				14F26B1D2CC5345E0092EE0E /* LocationService.swift in Sources */,

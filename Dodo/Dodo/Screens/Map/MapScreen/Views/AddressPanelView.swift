@@ -11,13 +11,19 @@ import SnapKit
 class AddressPanelView: UIView {
     
     var onAddressChanged: ((String) -> Void)?
+    var onAddressAdded: ((String) -> Void)?
     
     var timer: Timer?
     var delayValue : Double = 2.0
     
     let addressView = AddressView()
     let placeDescriptionView = PlaceDescriptionView()
-    let saveButton = SaveButton()
+    
+    let saveButton: SaveButton = {
+        let button = SaveButton()
+        button.addTarget(nil, action: #selector(saveAddress), for: .touchUpInside)
+        return button
+    }()
     
     private let stackView: UIStackView = {
         let stack = UIStackView()
@@ -48,6 +54,11 @@ class AddressPanelView: UIView {
     func observe() {
         //addressView.addressTextField.addTarget(nil, action: #selector(addressTextFieldChanged(_:)), for: .editingChanged)
         addressView.addressTextField.addTarget(nil, action: #selector(addressTextFieldChanged(_:)), for: .editingChanged)
+    }
+    
+    @objc func saveAddress() {
+        guard let address = addressView.addressTextField.text else { return }
+        onAddressAdded?(address)
     }
 }
 

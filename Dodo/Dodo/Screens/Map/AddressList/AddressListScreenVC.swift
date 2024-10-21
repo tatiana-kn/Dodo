@@ -8,7 +8,13 @@
 import UIKit
 
 final class AddressListScreenVC: UIViewController {
-    var addressList: [Address] = []
+    var addressRepository = AddressRepository()
+    
+    var addressList: [Address] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private var headerView: AddressListHeaderView = {
         let headerView = AddressListHeaderView()
@@ -40,6 +46,7 @@ final class AddressListScreenVC: UIViewController {
         setupViews()
         setupConstraints()
         setupBindings()
+        loadAddressListFromRepository()
     }
     
     @objc private func deliverToAddress(_ sender: UIButton) {
@@ -74,6 +81,12 @@ extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
 //        let address = addressList[indexPath.row]
 //        cell.update(address)
         return cell
+    }
+}
+
+extension AddressListScreenVC {
+    func loadAddressListFromRepository() {
+        addressList = addressRepository.retrieve()
     }
 }
 

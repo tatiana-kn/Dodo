@@ -39,15 +39,15 @@ class GeocodeService {
             
             if let place = placemarks?.first {
                 
-                //                print(place.country)
-                //                print(place.administrativeArea)
-                //                print(place.locality)
-                //
-                //                print(place.name) //Манеж
-                //                print(place.subAdministrativeArea)
-                //                print(place.subLocality) //Tverskoy District
-                //                print(place.thoroughfare) //Манежная улица
-                //                print(place.subThoroughfare) //номер дома
+//                                print(place.country) // страна
+//                                print(place.administrativeArea)
+//                                print(place.locality)
+//                
+//                                print(place.name) //Манеж
+//                                print(place.subAdministrativeArea)
+//                                print(place.subLocality) //Tverskoy District
+//                                print(place.thoroughfare) //Манежная улица
+//                                print(place.subThoroughfare) //номер дома
                 
                 var address: [String] = []
                 
