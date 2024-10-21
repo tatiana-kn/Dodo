@@ -150,7 +150,7 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
 extension MenuScreenVC {
     func navigateToAddressListScreen() {
         let addressListVC = AddressListScreenVC()
-        present(addressListVC, animated: true)
+        present(addressListVC, animated: true)        
     }
 }
 

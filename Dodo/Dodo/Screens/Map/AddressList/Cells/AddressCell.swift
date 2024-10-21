@@ -56,7 +56,8 @@ final class AddressCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update() {
+    func update(_ address: Address) {
+        addressLabel.text = address.fullAddress
     }
     
     @objc func editButtonTapped(_ sender: UIButton) {

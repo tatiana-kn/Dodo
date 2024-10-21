@@ -8,6 +8,8 @@
 import UIKit
 
 final class AddressListScreenVC: UIViewController {
+    var addressList: [Address] = []
+    
     private var headerView: AddressListHeaderView = {
         let headerView = AddressListHeaderView()
         return headerView
@@ -62,12 +64,15 @@ extension AddressListScreenVC {
 extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
+//        addressList?.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
             return UITableViewCell()
         }
+//        let address = addressList[indexPath.row]
+//        cell.update(address)
         return cell
     }
 }

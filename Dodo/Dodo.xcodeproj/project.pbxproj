@@ -304,11 +304,8 @@
 		14F26B092CC29F630092EE0E /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */,
-				14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */,
-				14F26B0A2CC29F8E0092EE0E /* Cells */,
-				1474275C2CBD36DF00022865 /* MapScreenVC.swift */,
-				14F26B0F2CC511CE0092EE0E /* Views */,
+				14FAA9782CC63C36008CC766 /* AddressList */,
+				14FAA97A2CC63CC3008CC766 /* MapScreen */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -339,6 +336,33 @@
 				14F26B1E2CC5349C0092EE0E /* GeocodeService.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		14FAA9782CC63C36008CC766 /* AddressList */ = {
+			isa = PBXGroup;
+			children = (
+				14F26B072CC27DFC0092EE0E /* AddressListScreenVC.swift */,
+				14FAA9792CC63C59008CC766 /* Views */,
+				14F26B0A2CC29F8E0092EE0E /* Cells */,
+			);
+			path = AddressList;
+			sourceTree = "<group>";
+		};
+		14FAA9792CC63C59008CC766 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				14F26B0D2CC3F5C20092EE0E /* AddressListHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		14FAA97A2CC63CC3008CC766 /* MapScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1474275C2CBD36DF00022865 /* MapScreenVC.swift */,
+				14F26B0F2CC511CE0092EE0E /* Views */,
+			);
+			path = MapScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

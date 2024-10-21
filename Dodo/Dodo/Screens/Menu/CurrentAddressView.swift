@@ -33,8 +33,14 @@ final class CurrentAddressView: UIView {
     
     private let addressButton: UIButton = {
         let addressButton = UIButton()
-        addressButton.setTitle("Address", for: .normal)
-        addressButton.setTitleColor(.black, for: .normal)
+//        addressButton.setTitle("Address", for: .normal)
+//        addressButton.setTitleColor(.black, for: .normal)
+        
+        addressButton.titleLabel?.numberOfLines = 0
+        addressButton.titleLabel?.textAlignment = .left
+        addressButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        addressButton.setAttributedTitle(NSAttributedString(string: "address"), for: .normal)
+        
         addressButton.addTarget(nil, action: #selector(adressButtonTapped), for: .touchUpInside)
         return addressButton
     }()
@@ -66,6 +72,20 @@ final class CurrentAddressView: UIView {
     
     @objc func adressButtonTapped(_ sender: UIButton) {
         onAdressButtonTapped?()
+    }
+    
+    func updateAddressButton(address: String, deliveryTime: String) {
+        let fullText = "\(address)\n\(deliveryTime)"
+        let attributedText = NSMutableAttributedString(string: fullText)
+        
+        attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 16), range: NSRange(location: 0, length: address.count))
+        attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: address.count))
+        
+        let deliveryRange = NSRange(location: address.count + 1, length: deliveryTime.count)
+        attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 14), range: deliveryRange)
+        attributedText.addAttribute(.foregroundColor, value: UIColor.orange, range: deliveryRange)
+        
+        addressButton.setAttributedTitle(attributedText, for: .normal)
     }
     
 }

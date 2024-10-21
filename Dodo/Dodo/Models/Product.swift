@@ -38,3 +38,12 @@ struct StoriesResponse: Codable {
 struct Story: Codable {
     let path: String
 }
+
+struct Address: Codable {
+    let fullAddress: String
+}
+
+struct AddressList: Codable {
+    var AddressList: [Address]
+}
+
