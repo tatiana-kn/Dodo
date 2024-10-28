@@ -68,21 +68,6 @@ final class ProductsRepository: IProductsRepository {
         print(array)
     }
     
-    func delete(_ product: Product) { //  удалить?
-        var array = retrieve()
-        
-        if let index = array.firstIndex(where: { $0.name == product.name }) {
-            if let count = array[index].count {
-                array[index].count = count - 1
-            }
-        }
-        
-        array.removeAll { $0.count == 0 }
-//        array.append(product)
-        save(array)
-        print(array)
-    }
-    
     func update(_ product: Product) {
         var array = retrieve()
         
@@ -94,3 +79,18 @@ final class ProductsRepository: IProductsRepository {
         print(array)
     }
 }
+
+//func delete(_ product: Product) { //  удалить?
+//        var array = retrieve()
+//
+//        if let index = array.firstIndex(where: { $0.name == product.name }) {
+//            if let count = array[index].count {
+//                array[index].count = count - 1
+//            }
+//        }
+//
+//        array.removeAll { $0.count == 0 }
+////        array.append(product)
+//        save(array)
+//        print(array)
+//    }

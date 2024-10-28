@@ -10,6 +10,8 @@ import CoreLocation
 
 class GeocodeService {
     
+    var currentPlacemark: CLPlacemark?
+    
     var geoCoder = CLGeocoder()
     
     func fetchLocationFromAddress(_ addressText: String, completion: @escaping (CLLocation) -> Void) {
@@ -38,7 +40,7 @@ class GeocodeService {
         geoCoder.reverseGeocodeLocation(location, preferredLocale: Locale(identifier: "ru_RU")) { placemarks, error in
             
             if let place = placemarks?.first {
-                
+                self.currentPlacemark = place
 //                                print(place.country) // страна
 //                                print(place.administrativeArea)
 //                                print(place.locality)

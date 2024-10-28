@@ -10,6 +10,8 @@ import UIKit
 final class AddressCell: UITableViewCell {
     static let reuseID = "AddressCell"
     
+    var onEditButtonTapped: (() -> Void)?
+    
     private var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -56,12 +58,15 @@ final class AddressCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ address: Address) {
-        addressLabel.text = address.fullAddress
+    func update(_ address: Address, _ isSelected: Bool = false) {
+        addressLabel.text = address.name
+        if isSelected {
+            selectImageView.image = UIImage(systemName: "largecircle.fill.circle")
+        }
     }
     
     @objc func editButtonTapped(_ sender: UIButton) {
-        print("editButtonTapped")
+        onEditButtonTapped?()
     }
 }
 

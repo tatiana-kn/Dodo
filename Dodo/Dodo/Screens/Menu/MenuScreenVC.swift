@@ -23,7 +23,8 @@ class MenuScreenVC: UIViewController {
         }
     }
     
-    var stories: [Story] = [] 
+    var stories: [Story] = []
+    var address: String?
     
 //    var imageCache: NSCache<NSString, UIImage>?
     
@@ -150,7 +151,12 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
 extension MenuScreenVC {
     func navigateToAddressListScreen() {
         let addressListVC = AddressListScreenVC()
-        present(addressListVC, animated: true)        
+        present(addressListVC, animated: true)
+        
+//        addressListVC.onAddressCellSelected = { address in
+//            self.address = address
+//            print(address)
+//        }
     }
 }
 

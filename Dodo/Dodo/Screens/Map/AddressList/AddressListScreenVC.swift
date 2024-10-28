@@ -9,12 +9,11 @@ import UIKit
 
 final class AddressListScreenVC: UIViewController {
     var addressRepository = AddressRepository()
+//    var onAddressCellSelected: ((Address) -> Void)?
     
-    var addressList: [Address] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var addressList: [Address] = []
+    
+    var currentAddress: Address?
     
     private var headerView: AddressListHeaderView = {
         let headerView = AddressListHeaderView()
@@ -50,6 +49,10 @@ final class AddressListScreenVC: UIViewController {
     }
     
     @objc private func deliverToAddress(_ sender: UIButton) {
+        guard let currentAddress else { return }
+        addressRepository.setCurrentAddress(currentAddress)
+        loadAddressListFromRepository()
+//        print(currentAddress)
     }
     
     func setupBindings() {
@@ -62,6 +65,24 @@ final class AddressListScreenVC: UIViewController {
 extension AddressListScreenVC {
     func navigateToMapScreenVC() {
         let mapVC = MapScreenVC()
+        
+        mapVC.onAddressSaved = { [weak self] in
+            self?.loadAddressListFromRepository()
+        }
+        
+        let navigationController = UINavigationController(rootViewController: mapVC)
+        present(navigationController, animated: true)
+        //        present(mapVC, animated: true)
+    }
+    
+    func navigateToEditMapScreenVC(with address: Address) {
+        let mapVC = MapScreenVC()
+        mapVC.address = address
+        
+        mapVC.onAddressSaved = { [weak self] in
+            self?.loadAddressListFromRepository()
+        }
+        
         let navigationController = UINavigationController(rootViewController: mapVC)
         present(navigationController, animated: true)
         //        present(mapVC, animated: true)
@@ -70,23 +91,43 @@ extension AddressListScreenVC {
 
 extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
-//        addressList?.count
+        addressList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
             return UITableViewCell()
         }
-//        let address = addressList[indexPath.row]
-//        cell.update(address)
+        let address = addressList[indexPath.row]
+        
+        let isSelected = indexPath.row == 0 ? true : false
+        
+//        if indexPath.row == 0 {
+//            cell.update(address, true)
+//        } else {
+        cell.update(address, isSelected)
+        //}
+        
+        
+        
+        cell.onEditButtonTapped = {
+            self.navigateToEditMapScreenVC(with: address)
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let address = addressList[indexPath.row]
+        currentAddress = address
+//        onAddressCellSelected?(address)
     }
 }
 
 extension AddressListScreenVC {
     func loadAddressListFromRepository() {
         addressList = addressRepository.retrieve()
+        tableView.reloadData()
     }
 }
 

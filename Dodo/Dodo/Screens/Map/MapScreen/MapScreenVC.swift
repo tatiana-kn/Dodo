@@ -10,6 +10,8 @@ import MapKit
 import CoreLocation
 
 final class MapScreenVC: UIViewController {
+    var address: Address?
+    
     var bottomConstraint: NSLayoutConstraint?
     var originalConstant: CGFloat = 0
     var keyboardFrame: CGRect = .zero
@@ -17,7 +19,11 @@ final class MapScreenVC: UIViewController {
     var locationService = LocationService()
     var geocodeService = GeocodeService()
     
+    var addressRepository = AddressRepository()
+    
     let addressPanelView = AddressPanelView()
+    
+    var onAddressSaved: (() -> Void)?
     
     var pinImageView: UIImageView = {
         var imageView = UIImageView()
@@ -48,6 +54,9 @@ final class MapScreenVC: UIViewController {
         
         observe()
         setupCloseButton()
+        saveAddress()
+        deleteAddress()
+        setMapScreenMode()
     }
     
     private func setupCloseButton() {
@@ -57,6 +66,51 @@ final class MapScreenVC: UIViewController {
     
     @objc private func closeScreen() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func saveAddress() {
+        addressPanelView.onAddressAdded = { [weak self] addressText in
+            guard let self else { return }
+            
+            guard let placemark = self.geocodeService.currentPlacemark else { return }
+            
+            let address = Address(
+                country: placemark.country ?? "Unknown Country",
+                administrativeArea: placemark.administrativeArea ?? "Unknown Area",
+                name: addressText,
+                subLocality: placemark.subLocality ?? "Unknown SubLocality",
+                thoroughfare: placemark.thoroughfare ?? "Unknown Street",
+                subThoroughfare: placemark.subThoroughfare ?? "Unknown House",
+                floor: self.addressPanelView.placeDescriptionView.floorTextField.text,
+                apartment: self.addressPanelView.placeDescriptionView.apartmentTextField.text
+            )
+            self.addressRepository.add(address)
+            self.onAddressSaved?()
+            self.closeScreen()
+        }
+    }
+    
+    func deleteAddress() {
+        addressPanelView.onAddressDeleted = { [weak self] address in
+            guard let self else { return }
+            guard let address = self.address else { return }
+            
+            self.addressRepository.delete(address)
+            self.onAddressSaved?()
+            self.closeScreen()
+        }
+    }
+    
+    func setMapScreenMode() {
+        if let address {
+            addressPanelView.update(address.name)
+            addressPanelView.placeDescriptionView.floorTextField.text = address.floor
+            addressPanelView.placeDescriptionView.apartmentTextField.text = address.apartment
+            addressPanelView.setEditingMode(true)
+            showAddressOnMap(address.name) // ???
+        } else {
+            addressPanelView.setEditingMode(false)
+        }
     }
 }
 
@@ -120,7 +174,7 @@ extension MapScreenVC {
        }
 }
 
-//MARK: - Business Logicge
+//MARK: - Business Logic
 extension MapScreenVC {
     
     func fetchAddressFromLocation(_ location: CLLocation, completion: @escaping (String) -> Void) {

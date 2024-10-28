@@ -25,7 +25,7 @@ final class SaveButton: UIButton {
         self.layer.cornerRadius = 20
         self.clipsToBounds = true
         
-        self.setTitle("Сохранить", for: .normal)
+//        self.setTitle("Сохранить", for: .normal)
         self.setTitleColor(.white, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 45).isActive = true

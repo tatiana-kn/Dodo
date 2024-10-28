@@ -17,12 +17,14 @@ struct Address: Codable {
     let thoroughfare: String // улица
     let subThoroughfare: String // номер дома
     
-    var floor: Int
-    var apartment: Int
+    var floor: String?
+    var apartment: String?
     
-    var fullAddress: String {
-        country + administrativeArea + thoroughfare + subThoroughfare
-    }
+//    var fullAddress: String {
+//        country + administrativeArea + thoroughfare + subThoroughfare
+//    }
+    
+    var isSelected: Bool = false
 }
 
 extension Address: Equatable {
@@ -35,9 +37,9 @@ extension Address: Equatable {
 }
 
 protocol IAddressRepository {
-    func retrieve() -> [Address] //закдалываем их массивом
+    func retrieve() -> [Address]
     func add(_ address: Address)
-    func update(_ address: Address)
+    func setCurrentAddress(_ address: Address)
     func delete(_ address: Address)
 }
 
@@ -61,9 +63,7 @@ final class AddressRepository: IAddressRepository {
         }
     }
     //retrieve - получить данные
-    func retrieve() -> [Address] {  //метод получить
-        
-        //Data -> Array<Product>
+    func retrieve() -> [Address] {
         //вытаскиваем из UserDefaults бинарник
         guard let data = UserDefaults.standard.data(forKey: key) else { return [] }
         do {
@@ -79,26 +79,22 @@ final class AddressRepository: IAddressRepository {
     func add(_ address: Address) {
         var array = retrieve()
         
-        for item in array {
-            if item == address {
-                update(item)
+        if let index = array.firstIndex(where: { $0 == address }) {
+                array[index].floor = address.floor
+                array[index].apartment = address.apartment
             } else {
                 array.append(address)
             }
-        }
+
         save(array)
-        print(array)
+//        print(array)
     }
     
-    func update(_ address: Address) {
+    func setCurrentAddress(_ address: Address) {
+        delete(address)
         var array = retrieve()
-        
-        if let index = array.firstIndex(where: { $0 == address }) {
-            array[index].floor = address.floor
-            array[index].apartment = address.apartment
-        }
+        array.insert(address, at: 0)
         save(array)
-        print(array)
     }
     
     func delete(_ address: Address) {
@@ -106,8 +102,6 @@ final class AddressRepository: IAddressRepository {
  
         array.removeAll { $0 == address }
         save(array)
-        print(array)
+//        print(array)
     }
-    
-
 }

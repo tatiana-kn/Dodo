@@ -12,6 +12,7 @@ class AddressPanelView: UIView {
     
     var onAddressChanged: ((String) -> Void)?
     var onAddressAdded: ((String) -> Void)?
+    var onAddressDeleted: ((String) -> Void)?
     
     var timer: Timer?
     var delayValue : Double = 2.0
@@ -21,8 +22,26 @@ class AddressPanelView: UIView {
     
     let saveButton: SaveButton = {
         let button = SaveButton()
+        button.setTitle("Сохранить", for: .normal)
         button.addTarget(nil, action: #selector(saveAddress), for: .touchUpInside)
         return button
+    }()
+    
+    let deleteButton: SaveButton = {
+        let button = SaveButton()
+        button.setTitle("Удалить", for: .normal)
+        button.addTarget(nil, action: #selector(deleteAddress), for: .touchUpInside)
+        button.isHidden = true
+        button.backgroundColor = .gray
+        return button
+    }()
+    
+    private let buttonStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.distribution = .fillEqually
+        return stack
     }()
     
     private let stackView: UIStackView = {
@@ -60,6 +79,15 @@ class AddressPanelView: UIView {
         guard let address = addressView.addressTextField.text else { return }
         onAddressAdded?(address)
     }
+    
+    @objc func deleteAddress() {
+        guard let address = addressView.addressTextField.text else { return }
+        onAddressDeleted?(address)
+    }
+    
+    func setEditingMode(_ isEditing: Bool) {
+        deleteButton.isHidden = !isEditing
+    }
 }
 
 //MARK: - Event Handler
@@ -87,8 +115,9 @@ extension AddressPanelView {
         self.addSubview(stackView)
         stackView.addArrangedSubview(addressView)
         stackView.addArrangedSubview(placeDescriptionView)
-        stackView.addArrangedSubview(saveButton)
-        
+        stackView.addArrangedSubview(buttonStackView)
+        buttonStackView.addArrangedSubview(deleteButton)
+        buttonStackView.addArrangedSubview(saveButton)
     }
     
     func setupConstraints() {
