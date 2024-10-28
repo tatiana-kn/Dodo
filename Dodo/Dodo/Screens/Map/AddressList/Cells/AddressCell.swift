@@ -60,9 +60,10 @@ final class AddressCell: UITableViewCell {
     
     func update(_ address: Address, _ isSelected: Bool = false) {
         addressLabel.text = address.name
-        if isSelected {
-            selectImageView.image = UIImage(systemName: "largecircle.fill.circle")
-        }
+        selectImageView.image = isSelected ? UIImage(systemName: "largecircle.fill.circle") : UIImage(systemName: "circle")
+//        if isSelected {
+//            selectImageView.image = UIImage(systemName: "largecircle.fill.circle")
+//        }
     }
     
     @objc func editButtonTapped(_ sender: UIButton) {

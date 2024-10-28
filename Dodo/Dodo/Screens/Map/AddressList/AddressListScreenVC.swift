@@ -50,9 +50,13 @@ final class AddressListScreenVC: UIViewController {
     
     @objc private func deliverToAddress(_ sender: UIButton) {
         guard let currentAddress else { return }
-        addressRepository.setCurrentAddress(currentAddress)
-        loadAddressListFromRepository()
-//        print(currentAddress)
+        for index in 0..<addressList.count {
+            addressList[index].isSelected = (addressList[index] == currentAddress)
+        }
+//        addressRepository.setCurrentAddress(currentAddress)
+//        loadAddressListFromRepository()
+        addressRepository.updateAddressList(addressList)
+        dismiss(animated: true, completion: nil)
     }
     
     func setupBindings() {
@@ -100,33 +104,41 @@ extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
         }
         let address = addressList[indexPath.row]
         
-        let isSelected = indexPath.row == 0 ? true : false
-        
+//        let isSelected = indexPath.row == 0 ? true : false
 //        if indexPath.row == 0 {
 //            cell.update(address, true)
 //        } else {
-        cell.update(address, isSelected)
         //}
-        
-        
+
+        let isSelected = address == currentAddress
+        cell.update(address, isSelected)
         
         cell.onEditButtonTapped = {
             self.navigateToEditMapScreenVC(with: address)
         }
-        
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let address = addressList[indexPath.row]
         currentAddress = address
-//        onAddressCellSelected?(address)
+        tableView.reloadData()
+        
+//        for index in 0..<addressList.count {
+//            if addressList[index] == address {
+//                addressList[index].isSelected = true
+//            } else {
+//                addressList[index].isSelected = false
+//            }
+//        }
     }
 }
 
 extension AddressListScreenVC {
     func loadAddressListFromRepository() {
         addressList = addressRepository.retrieve()
+        currentAddress = addressList.first { $0.isSelected }
         tableView.reloadData()
     }
 }

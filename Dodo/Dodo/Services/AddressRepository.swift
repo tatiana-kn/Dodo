@@ -39,7 +39,6 @@ extension Address: Equatable {
 protocol IAddressRepository {
     func retrieve() -> [Address]
     func add(_ address: Address)
-    func setCurrentAddress(_ address: Address)
     func delete(_ address: Address)
 }
 
@@ -80,21 +79,39 @@ final class AddressRepository: IAddressRepository {
         var array = retrieve()
         
         if let index = array.firstIndex(where: { $0 == address }) {
-                array[index].floor = address.floor
-                array[index].apartment = address.apartment
-            } else {
-                array.append(address)
-            }
+            array[index].floor = address.floor
+            array[index].apartment = address.apartment
+        } else {
+            array.append(address)
+        }
 
         save(array)
 //        print(array)
     }
     
-    func setCurrentAddress(_ address: Address) {
-        delete(address)
-        var array = retrieve()
-        array.insert(address, at: 0)
-        save(array)
+//    func setCurrentAddress(_ address: Address) {
+//        delete(address)
+//        var array = retrieve()
+//
+//        for index in 0..<array.count {
+//            array[index].isSelected = false
+//        }
+//
+//        array.insert(address, at: 0)
+//        array[0].isSelected = true
+//        save(array)
+//    }
+    
+    func updateAddressList(_ address: [Address]) {
+        var addressList = address
+        for index in 0..<address.count {
+            if address[index].isSelected {
+                addressList.remove(at: index)
+                addressList.insert(address[index], at: 0)
+                addressList[0].isSelected = true
+            }
+        }
+        save(addressList)
     }
     
     func delete(_ address: Address) {
