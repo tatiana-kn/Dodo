@@ -9,6 +9,8 @@ import UIKit
 
 final class AddressListScreenVC: UIViewController {
     var addressRepository = AddressRepository()
+    
+    var onDeliverToAddressButtonTapped: (() -> Void)?
 //    var onAddressCellSelected: ((Address) -> Void)?
     
     var addressList: [Address] = []
@@ -57,6 +59,7 @@ final class AddressListScreenVC: UIViewController {
 //        loadAddressListFromRepository()
         addressRepository.updateAddressList(addressList)
         dismiss(animated: true, completion: nil)
+        onDeliverToAddressButtonTapped?()
     }
     
     func setupBindings() {

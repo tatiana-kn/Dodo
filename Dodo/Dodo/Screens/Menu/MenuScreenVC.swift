@@ -16,6 +16,7 @@ enum MenuSections: Int, CaseIterable {
 class MenuScreenVC: UIViewController {
     var productLoader = ProductsLoader()
     var storiesLoader = StoriesLoader()
+    var addressRepository = AddressRepository()
     
     var products: [Product] = [] {
         didSet {
@@ -54,6 +55,7 @@ class MenuScreenVC: UIViewController {
         
         loadProducts()
         loadStories()
+        loadAddressFromRepository()
     }
     
     func setupBindings() {
@@ -153,6 +155,10 @@ extension MenuScreenVC {
         let addressListVC = AddressListScreenVC()
         present(addressListVC, animated: true)
         
+        addressListVC.onDeliverToAddressButtonTapped = {
+            self.loadAddressFromRepository()
+        }
+        
 //        addressListVC.onAddressCellSelected = { address in
 //            self.address = address
 //            print(address)
@@ -192,6 +198,13 @@ extension MenuScreenVC {
             }
         }
     }
+    
+    func loadAddressFromRepository() {
+        let addressList = addressRepository.retrieve()
+        address = addressList.first { $0.isSelected }?.name
+        addressView.updateAddressButton(address: address ?? "адрес", deliveryTime: "30 мин")
+    }
+    
 }
 
 //MARK: - Layout
