@@ -16,8 +16,8 @@ class MainTabVC: UITabBarController {
         return controller
     }()
 
-    let profileController: DetailScreenVC = {
-        let controller = DetailConfigurator().configure()
+    let profileController: UIViewController = {
+        let controller = UIViewController()
         let tabItem = UITabBarItem.init(title: "", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person"))
         controller.tabBarItem = tabItem
         return controller

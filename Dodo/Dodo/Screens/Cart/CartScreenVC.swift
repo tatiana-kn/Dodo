@@ -12,7 +12,7 @@ final class CartScreenVC: UIViewController {
     var productsRepository = ProductsRepository()
     var products: [Product] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     
@@ -48,6 +48,49 @@ final class CartScreenVC: UIViewController {
         setupViews()
         setupConstraints()
         loadProductsFromStorage()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCartUpdate), name: NSNotification.Name("CartUpdated"), object: nil)
+    }
+    
+    @objc private func handleCartUpdate() {
+        loadProductsFromStorage()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("CartUpdated"), object: nil)
+    }
+}
+
+extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        products.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as? CartCell else {
+            fatalError("Fatal error for cell at \(indexPath)")
+        }
+        let product = products[indexPath.row]
+        cell.update(product)
+        
+            
+        cell.onStepperValueChanged = { product in
+            self.updateProductInStorage(product)
+        }
+        return cell
+    }
+}
+//Business logic
+extension CartScreenVC {
+    
+    func updateProductInStorage(_ product: Product) {
+        self.productsRepository.update(product)
+        loadProductsFromStorage()
+    }
+    
+    func loadProductsFromStorage() {
+        products = productsRepository.retrieve()
+        tableView.reloadData()
     }
 }
 
@@ -85,38 +128,6 @@ extension CartScreenVC {
             orderButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-    }
-}
-
-extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        products.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as? CartCell else {
-            fatalError("Fatal error for cell at \(indexPath)")
-        }
-        let product = products[indexPath.row]
-        cell.update(product)
-        
-            
-        cell.onStepperValueChanged = { product in
-            self.updateProductInStorage(product)
-        }
-        return cell
-    }
-}
-//Business logic
-extension CartScreenVC {
-    
-    func updateProductInStorage(_ product: Product) {
-        self.productsRepository.update(product)
-        loadProductsFromStorage()
-    }
-    
-    func loadProductsFromStorage() {
-        products = productsRepository.retrieve()
     }
 }
 

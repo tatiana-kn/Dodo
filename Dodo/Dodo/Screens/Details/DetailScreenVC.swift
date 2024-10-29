@@ -13,7 +13,7 @@ final class DetailScreenVC: UIViewController {
     var ingredients: [Ingredient] = []
     var product: Product?
     var productsRepository = ProductsRepository()
-    
+        
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -64,33 +64,10 @@ final class DetailScreenVC: UIViewController {
         guard let product else { return }
         
         productsRepository.add(product)
-//        print(productsRepository.retrieve())
-    }
-    
-}
-
-extension DetailScreenVC {
-    private func setupViews() {
-        view.addSubview(tableView)
-        view.addSubview(orderButton)
-        view.backgroundColor = .white
-    }
-    
-    private func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        orderButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: orderButton.topAnchor),
-            
-            orderButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
-            orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
-            orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-        ])
+        NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil) // ???
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -155,6 +132,31 @@ extension DetailScreenVC {
                 print(error)
             }
         }
+    }
+}
+
+extension DetailScreenVC {
+    private func setupViews() {
+        view.addSubview(tableView)
+        view.addSubview(orderButton)
+        view.backgroundColor = .white
+    }
+    
+    private func setupConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        orderButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+//            tableView.bottomAnchor.constraint(equalTo: orderButton.topAnchor),
+            
+            orderButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
+            orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
+            orderButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+        ])
     }
 }
 
