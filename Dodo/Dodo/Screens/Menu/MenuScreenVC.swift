@@ -14,7 +14,7 @@ enum MenuSections: Int, CaseIterable {
 }
 
 class MenuScreenVC: UIViewController {
-    var productLoader = ProductsLoader()
+    var productLoader: IProductsLoader
     var storiesLoader = StoriesLoader()
     var addressRepository = AddressRepository()
     
@@ -26,6 +26,15 @@ class MenuScreenVC: UIViewController {
     
     var stories: [Story] = []
     var address: String?
+    
+    init(_ productsLoader: IProductsLoader) {
+        self.productLoader = productsLoader
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 //    var imageCache: NSCache<NSString, UIImage>?
     
@@ -97,7 +106,7 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 }
                 
                 cell.onBannerCellSelected = { product in
-                    let detailVC = DetailConfigurator().configure()
+                    let detailVC = di.screenFactory.makeDetailScreen()
                     detailVC.update(product)
                     self.present(detailVC, animated: true)
                 }
@@ -138,7 +147,7 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let product = products[indexPath.row]
-        let detailVC = DetailConfigurator().configure()
+        let detailVC = di.screenFactory.makeDetailScreen()
         //        let detailVC = DetailScreenVC()
         
         //        detailVC.product = product
@@ -237,8 +246,8 @@ extension MenuScreenVC {
     }
 }
 
-#Preview(traits: .portrait) {
-    MenuScreenVC()
-}
+//#Preview(traits: .portrait) {
+//   /// MenuScreenVC()
+//}
 
 

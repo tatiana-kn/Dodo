@@ -88,6 +88,8 @@ extension ProductCell {
     }
     
     private func setupViews() {
+        selectionStyle = .none
+        
         [containerView].forEach {
             contentView.addSubview($0)
         }
@@ -129,6 +131,6 @@ extension ProductCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    MenuScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    MenuScreenVC()
+//}

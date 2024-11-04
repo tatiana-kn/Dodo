@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailScreenVC: UIViewController {
     
-    var ingredientLoader = IngredientsLoader()
+    var ingredientLoader: IIngredientsLoader
     var ingredients: [Ingredient] = []
     var product: Product?
     var productsRepository = ProductsRepository()
@@ -46,6 +46,15 @@ final class DetailScreenVC: UIViewController {
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
+    
+    init(_ ingredientsLoader: IIngredientsLoader) {
+        self.ingredientLoader = ingredientsLoader
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func update(_ product: Product) {
         self.product = product
@@ -160,7 +169,7 @@ extension DetailScreenVC {
     }
 }
 
-#Preview(traits: .portrait) {
-    DetailScreenVC()
-}
+//#Preview(traits: .portrait) {
+////    DetailScreenVC()
+//}
 

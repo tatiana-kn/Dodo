@@ -47,18 +47,28 @@ final class CartScreenVC: UIViewController {
 
         setupViews()
         setupConstraints()
-        loadProductsFromStorage()
+//        setupNotifications()
+//        loadProductsFromStorage()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleCartUpdate), name: NSNotification.Name("CartUpdated"), object: nil)
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadProductsFromStorage()
+
+    }
+    
+//    func setupNotifications() {
+//        //        NotificationCenter.default.addObserver(self, selector: #selector(handleCartUpdate), name: NSNotification.Name("CartUpdated"), object: nil)
+//    }
     
     @objc private func handleCartUpdate() {
         loadProductsFromStorage()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("CartUpdated"), object: nil)
-    }
+//    deinit {
+////        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("CartUpdated"), object: nil)
+//    }
 }
 
 extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {

@@ -115,6 +115,6 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
     }
 }
 
-#Preview(traits: .portrait) {
-    DetailScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    DetailScreenVC()
+//}

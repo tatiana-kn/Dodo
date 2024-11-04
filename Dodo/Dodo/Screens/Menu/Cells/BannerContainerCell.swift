@@ -90,13 +90,13 @@ extension BannerContainerCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let product = products[indexPath.row]
-        let detailVC = DetailScreenVC()
+        let detailVC = di.screenFactory.makeDetailScreen()
         detailVC.update(product)
     
         onBannerCellSelected?(product)
     }
 }
 
-#Preview(traits: .portrait) {
-    MenuScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    MenuScreenVC()
+//}

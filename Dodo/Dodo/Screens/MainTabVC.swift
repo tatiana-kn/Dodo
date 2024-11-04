@@ -10,7 +10,7 @@ import UIKit
 class MainTabVC: UITabBarController {
     
     let menuController: MenuScreenVC = {
-        let controller = MenuConfigurator().configure()
+        let controller = di.screenFactory.makeMenuScreen()
         let tabItem = UITabBarItem.init(title: "", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house"))
         controller.tabBarItem = tabItem
         return controller

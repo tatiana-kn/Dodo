@@ -119,6 +119,6 @@ extension BannerCollectionCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    MenuScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    MenuScreenVC()
+//}

@@ -7,15 +7,14 @@
 
 import Foundation
 
-final class MenuConfigurator {
-    func configure() -> MenuScreenVC {
-        let decoder = JSONDecoder()
-        let networkClient = NetworkClient()
-        let viewController = MenuScreenVC()
-        
-        viewController.productLoader = ProductsLoader(networkClient: networkClient, decoder: decoder)
-
-        return viewController
-    }
-}
+//final class MenuConfigurator {
+//    func configure(_ di: DI) -> MenuScreenVC {
+//        //let decoder = JSONDecoder()
+//        //let networkClient = NetworkClient()
+//        let viewController = MenuScreenVC()
+//        viewController.productLoader = di.productsLoader//ProductsLoader(networkClient: di.networkClient, decoder: decoder)
+//
+//        return viewController
+//    }
+//}
 
