@@ -10,7 +10,7 @@ import UIKit
 final class StoriesCell: UICollectionViewCell {
     static let reuseID = "StoriesCell"
     
-    var storiesLoader = StoriesLoader()
+//    var storiesLoader = StoriesLoader()
     
     private var containerView: UIView = {
         $0.backgroundColor = .white

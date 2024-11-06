@@ -24,7 +24,7 @@ class MainTabVC: UITabBarController {
     }()
     
     let cartController: CartScreenVC = {
-        let controller = CartScreenVC()
+        let controller = di.screenFactory.makeCartScreen()
         let tabItem = UITabBarItem.init(title: "", image: UIImage(systemName: "cart"), selectedImage: UIImage(systemName: "cart"))
         controller.tabBarItem = tabItem
         return controller

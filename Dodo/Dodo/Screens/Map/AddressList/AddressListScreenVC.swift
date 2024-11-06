@@ -8,7 +8,7 @@
 import UIKit
 
 final class AddressListScreenVC: UIViewController {
-    var addressRepository = AddressRepository()
+    var addressRepository: IAddressRepository
     
     var onDeliverToAddressButtonTapped: (() -> Void)?
 //    var onAddressCellSelected: ((Address) -> Void)?
@@ -41,6 +41,15 @@ final class AddressListScreenVC: UIViewController {
         return button
     }()
     
+    init(_ addressRepository: IAddressRepository) {
+        self.addressRepository = addressRepository
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +80,7 @@ final class AddressListScreenVC: UIViewController {
 
 extension AddressListScreenVC {
     func navigateToMapScreenVC() {
-        let mapVC = MapScreenVC()
+        let mapVC = di.screenFactory.makeMapScreen()
         
         mapVC.onAddressSaved = { [weak self] in
             self?.loadAddressListFromRepository()
@@ -83,7 +92,7 @@ extension AddressListScreenVC {
     }
     
     func navigateToEditMapScreenVC(with address: Address) {
-        let mapVC = MapScreenVC()
+        let mapVC = di.screenFactory.makeMapScreen()
         mapVC.address = address
         
         mapVC.onAddressSaved = { [weak self] in

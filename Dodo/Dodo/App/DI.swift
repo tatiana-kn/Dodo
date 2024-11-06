@@ -14,7 +14,7 @@ final class DI {
     let ingredientsLoader: IngredientsLoader
     let storiesLoader: StoriesLoader
     let productsRepository: ProductsRepository
-    let addressRepository: ProductsRepository
+    let addressRepository: AddressRepository
     let locationService: LocationService
     let geocodeService: GeocodeService
     
@@ -27,7 +27,7 @@ final class DI {
         ingredientsLoader = IngredientsLoader(networkClient: networkClient, decoder: decoder)
         storiesLoader = StoriesLoader(networkClient: networkClient, decoder: decoder)
         productsRepository = ProductsRepository()
-        addressRepository = ProductsRepository()
+        addressRepository = AddressRepository()
         locationService = LocationService()
         geocodeService = GeocodeService()
         
@@ -38,6 +38,11 @@ final class DI {
 
 protocol ScreenFactory {
     func makeMenuScreen() -> MenuScreenVC
+    func makeStoriesScreen() -> StoriesScreenVC
+    func makeDetailScreen() -> DetailScreenVC
+    func makeCartScreen() -> CartScreenVC
+    func makeAddressListScreen() -> AddressListScreenVC
+    func makeMapScreen() -> MapScreenVC
 }
 
 final class ScreenFactoryImpl: ScreenFactory {
@@ -46,14 +51,29 @@ final class ScreenFactoryImpl: ScreenFactory {
     
     func makeMenuScreen() -> MenuScreenVC {
         //MenuConfigurator().configure(di)
-        return MenuScreenVC(di.productsLoader)
+        return MenuScreenVC(di.productsLoader, di.storiesLoader, di.addressRepository)
         //viewController.productLoader = di.productsLoader
         //return viewController
     }
     
     func makeDetailScreen() -> DetailScreenVC {
-        return DetailScreenVC(di.ingredientsLoader)
+        return DetailScreenVC(di.ingredientsLoader, di.productsRepository)
     }
     
+    func makeCartScreen() -> CartScreenVC {
+        return CartScreenVC(di.productsRepository)
+    }
+    
+    func makeStoriesScreen() -> StoriesScreenVC {
+        return StoriesScreenVC() // ??
+    }
+    
+    func makeAddressListScreen() -> AddressListScreenVC {
+        return AddressListScreenVC(di.addressRepository)
+    }
+    
+    func makeMapScreen() -> MapScreenVC {
+        return MapScreenVC(di.addressRepository, di.locationService, di.geocodeService)
+    }
 }
 

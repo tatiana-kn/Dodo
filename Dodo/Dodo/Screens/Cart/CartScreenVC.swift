@@ -9,7 +9,7 @@ import UIKit
 
 final class CartScreenVC: UIViewController {
     
-    var productsRepository = ProductsRepository()
+    var productsRepository: IProductsRepository
     var products: [Product] = [] {
         didSet {
 //            tableView.reloadData()
@@ -41,7 +41,16 @@ final class CartScreenVC: UIViewController {
         button.setTitleColor(.white, for: .normal)
         return button
     }()
-
+    
+    init(_ productsRepository: IProductsRepository) {
+        self.productsRepository = productsRepository
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -141,6 +150,6 @@ extension CartScreenVC {
     }
 }
 
-#Preview(traits: .portrait) {
-    CartScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    CartScreenVC()
+//}

@@ -12,7 +12,7 @@ final class DetailScreenVC: UIViewController {
     var ingredientLoader: IIngredientsLoader
     var ingredients: [Ingredient] = []
     var product: Product?
-    var productsRepository = ProductsRepository()
+    var productsRepository: IProductsRepository
         
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -47,8 +47,10 @@ final class DetailScreenVC: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
-    init(_ ingredientsLoader: IIngredientsLoader) {
+    init(_ ingredientsLoader: IIngredientsLoader, _ productsRepository: IProductsRepository) {
         self.ingredientLoader = ingredientsLoader
+        self.productsRepository = productsRepository
+        
         super.init(nibName: nil, bundle: nil)
     }
     

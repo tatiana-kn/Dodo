@@ -15,8 +15,8 @@ enum MenuSections: Int, CaseIterable {
 
 class MenuScreenVC: UIViewController {
     var productLoader: IProductsLoader
-    var storiesLoader = StoriesLoader()
-    var addressRepository = AddressRepository()
+    var storiesLoader: IStoriesLoader
+    var addressRepository: IAddressRepository
     
     var products: [Product] = [] {
         didSet {
@@ -27,8 +27,12 @@ class MenuScreenVC: UIViewController {
     var stories: [Story] = []
     var address: String?
     
-    init(_ productsLoader: IProductsLoader) {
+    init(_ productsLoader: IProductsLoader, _ storiesLoader: IStoriesLoader, _ addressRepository: IAddressRepository) {
+        
         self.productLoader = productsLoader
+        self.storiesLoader = storiesLoader
+        self.addressRepository = addressRepository
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -129,7 +133,7 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 cell.update(stories)
                 
                 cell.onStoriesCellSelected = { [self] indexPath in
-                    let storiesVC = StoriesScreenVC()
+                    let storiesVC = di.screenFactory.makeStoriesScreen()
 //                    storiesVC.update(story)
 //                    storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
                     self.present(storiesVC, animated: true)
@@ -161,7 +165,7 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
 //MARK: Navigation
 extension MenuScreenVC {
     func navigateToAddressListScreen() {
-        let addressListVC = AddressListScreenVC()
+        let addressListVC = di.screenFactory.makeAddressListScreen()
         present(addressListVC, animated: true)
         
         addressListVC.onDeliverToAddressButtonTapped = {

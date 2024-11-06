@@ -40,6 +40,7 @@ protocol IAddressRepository {
     func retrieve() -> [Address]
     func add(_ address: Address)
     func delete(_ address: Address)
+    func updateAddressList(_ address: [Address])
 }
 
 final class AddressRepository: IAddressRepository {

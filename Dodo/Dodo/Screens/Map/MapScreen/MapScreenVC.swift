@@ -16,10 +16,10 @@ final class MapScreenVC: UIViewController {
     var originalConstant: CGFloat = 0
     var keyboardFrame: CGRect = .zero
     
-    var locationService = LocationService()
-    var geocodeService = GeocodeService()
+    var locationService: LocationService
+    var geocodeService: GeocodeService
     
-    var addressRepository = AddressRepository()
+    var addressRepository: IAddressRepository
     
     let addressPanelView = AddressPanelView()
     
@@ -41,6 +41,18 @@ final class MapScreenVC: UIViewController {
         
         return mapView
     }()
+    
+    init(_ addressRepository: IAddressRepository, _ locationService: LocationService, _ geocodeService: GeocodeService) {
+        self.addressRepository = addressRepository
+        self.locationService = locationService
+        self.geocodeService = geocodeService
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
