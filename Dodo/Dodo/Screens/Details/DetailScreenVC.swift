@@ -60,6 +60,7 @@ final class DetailScreenVC: UIViewController {
     
     func update(_ product: Product) {
         self.product = product
+        orderButton.setTitle("Оформить за \(String(product.price)) р.", for: .normal)
         tableView.reloadData()
     }
     
@@ -84,7 +85,8 @@ final class DetailScreenVC: UIViewController {
 
 extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        product?.type == "пицца" ? 4 : 2
+//        4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

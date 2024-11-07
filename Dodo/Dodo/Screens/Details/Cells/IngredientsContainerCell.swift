@@ -15,11 +15,11 @@ final class IngredientsContainerCell: UITableViewCell {
             collectionView.reloadData()
         }
     }
-    var product: Product? {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+//    var product: Product? {
+//        didSet {
+//            collectionView.reloadData()
+//        }
+//    }
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -58,9 +58,9 @@ final class IngredientsContainerCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ product: Product?) {
-        self.product = product
-    }
+//    func update(_ product: Product?) {
+//        self.product = product
+//    }
     
     func update(_ ingredients: [Ingredient]) {
         self.ingredients = ingredients

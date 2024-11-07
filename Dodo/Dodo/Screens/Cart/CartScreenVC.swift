@@ -64,7 +64,6 @@ final class CartScreenVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadProductsFromStorage()
-
     }
     
 //    func setupNotifications() {
@@ -110,6 +109,16 @@ extension CartScreenVC {
     func loadProductsFromStorage() {
         products = productsRepository.retrieve()
         tableView.reloadData()
+        updateCoast()
+    }
+    
+    func updateCoast() {
+        var cost = 0
+        for product in products {
+            cost += product.price * (product.count ?? 1)
+        }
+        
+        orderButton.setTitle("Оформить за \(cost) р.", for: .normal)
     }
 }
 
