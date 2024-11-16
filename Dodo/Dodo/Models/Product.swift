@@ -25,7 +25,6 @@ struct Product: Codable {
     var doughType: DoughType?
     var size: Size?
     var calculatedPrice: Int?
-
 }
 
 extension Product: Equatable {

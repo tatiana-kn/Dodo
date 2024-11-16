@@ -65,11 +65,10 @@ final class CartCell: UITableViewCell {
     }(UILabel())
     
     private var ingredientsLabel: UILabel = {
-        $0.text = "Ингредиенты"
+//        $0.text = "Ингредиенты"
         $0.textColor = .darkGray
         $0.numberOfLines = 0
         $0.font = UIFont.boldSystemFont(ofSize: 12)
-        $0.isHidden = true
         return $0
     }(UILabel())
     
@@ -117,12 +116,11 @@ final class CartCell: UITableViewCell {
         doughLabel.text = "\(product.doughType?.rawValue ?? "Традиционное") тесто"
         sizeLabel.text = "\(product.size?.rawValue ?? "Средняя")"
         if let ingredients = product.ingredients {
-            ingredientsLabel.isHidden = false
-                ingredientsLabel.text = ingredients.map { $0.name }.joined(separator: ", ")
-            }
-//        priceLabel.text = "\(product.calculatedPrice ?? product.price) р"
+            ingredientsLabel.text = ingredients.map { $0.name }.joined(separator: ", ")
+        }
         productImageView.image = UIImage(named: product.image) ?? UIImage(named: "default")
         stepper.currentValue = product.count ?? 0
+        
         updatePrice()
     }
     
@@ -131,6 +129,7 @@ final class CartCell: UITableViewCell {
         product?.calculatePrice()
         guard let product else { return }
         onStepperValueChanged?(product)
+        
         updatePrice()
     }
     

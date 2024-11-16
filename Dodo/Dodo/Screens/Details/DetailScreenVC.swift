@@ -78,19 +78,16 @@ final class DetailScreenVC: UIViewController {
         
         productsRepository.update(product, with: selectedIngredients)
 //        productsRepository.add(product)
-        
-//        NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil) // ???
-        
+                
         dismiss(animated: true, completion: nil)
     }
     
     func setPrice() {
         let multiplier = Size.getPriceMultiplier(for: product?.size ?? Size.medium)
         let price = Int(Double(product?.basePrice ?? 1) * multiplier)
-        
         let ingredientsPrice = selectedIngredients.compactMap { $0.price }.reduce(0, +)
-        
         product?.calculatedPrice = price + ingredientsPrice
+        
         orderButton.setTitle("Оформить за \(String(product?.calculatedPrice ?? 0)) р.", for: .normal)
     }
 }
