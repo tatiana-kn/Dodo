@@ -35,6 +35,7 @@ final class CartScreenVC: UIViewController {
         button.backgroundColor = .orange
         button.layer.cornerRadius = 20
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(nil, action: #selector(placeOrder), for: .touchUpInside)
         return button
     }()
     
@@ -58,8 +59,23 @@ final class CartScreenVC: UIViewController {
         loadProductsFromStorage()
     }
 
-    @objc private func handleCartUpdate() {
-        loadProductsFromStorage()
+//    @objc private func handleCartUpdate() {
+//        loadProductsFromStorage()
+//    }
+    
+    @objc private func placeOrder() {
+        showAlert()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Заказ принят",
+            message: "Ваш заказ успешно принят и готовится. Спасибо за покупку!",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 

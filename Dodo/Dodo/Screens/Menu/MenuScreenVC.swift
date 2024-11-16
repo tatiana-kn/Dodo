@@ -182,7 +182,7 @@ extension MenuScreenVC {
 //MARK: Business logic
 extension MenuScreenVC {
     private func loadProducts() {
-        productLoader.loadUsers { [weak self] result in
+        productLoader.loadProducts { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let products):

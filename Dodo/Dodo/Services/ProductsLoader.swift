@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IProductsLoader {
-    func loadUsers(handler: @escaping(Result<[Product], Error>) -> Void)
+    func loadProducts(handler: @escaping(Result<[Product], Error>) -> Void)
 }
 
 struct ProductsLoader: IProductsLoader {
@@ -28,7 +28,7 @@ struct ProductsLoader: IProductsLoader {
         return url
     }
     
-    func loadUsers(handler: @escaping (Result<[Product], Error>) -> Void) {
+    func loadProducts(handler: @escaping (Result<[Product], Error>) -> Void) {
         networkClient.fetch(url: productsURL) { result in
             switch result {
             case .success(let data):
