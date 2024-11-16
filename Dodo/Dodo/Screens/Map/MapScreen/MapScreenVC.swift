@@ -42,7 +42,7 @@ final class MapScreenVC: UIViewController {
         return mapView
     }()
     
-    init(_ addressRepository: IAddressRepository, _ locationService: LocationService, _ geocodeService: GeocodeService) {
+    init(addressRepository: IAddressRepository, locationService: LocationService, geocodeService: GeocodeService) {
         self.addressRepository = addressRepository
         self.locationService = locationService
         self.geocodeService = geocodeService

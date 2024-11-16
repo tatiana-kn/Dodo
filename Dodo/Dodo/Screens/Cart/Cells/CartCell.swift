@@ -22,7 +22,6 @@ final class CartCell: UITableViewCell {
     
     private var containerView: UIView = {
         $0.backgroundColor = .white
-//        $0.applyShadow(cornerRadius: 10)
         return $0
     }(UIView())
     
@@ -45,7 +44,32 @@ final class CartCell: UITableViewCell {
         $0.text = "Тесто, Цыпленок, моцарелла, томатный соус"
         $0.textColor = .darkGray
         $0.numberOfLines = 0
-        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.font = UIFont.boldSystemFont(ofSize: 14)
+        return $0
+    }(UILabel())
+    
+    private var doughLabel: UILabel = {
+        $0.text = "Тесто"
+        $0.textColor = .darkGray
+        $0.numberOfLines = 0
+        $0.font = UIFont.boldSystemFont(ofSize: 12)
+        return $0
+    }(UILabel())
+    
+    private var sizeLabel: UILabel = {
+        $0.text = "Размер"
+        $0.textColor = .darkGray
+        $0.numberOfLines = 0
+        $0.font = UIFont.boldSystemFont(ofSize: 12)
+        return $0
+    }(UILabel())
+    
+    private var ingredientsLabel: UILabel = {
+        $0.text = "Ингредиенты"
+        $0.textColor = .darkGray
+        $0.numberOfLines = 0
+        $0.font = UIFont.boldSystemFont(ofSize: 12)
+        $0.isHidden = true
         return $0
     }(UILabel())
     
@@ -67,8 +91,8 @@ final class CartCell: UITableViewCell {
         $0.image = UIImage(named: "default")
         $0.contentMode = .scaleAspectFill
         let width = UIScreen.main.bounds.width
-        $0.heightAnchor.constraint(equalToConstant: 0.40 * width).isActive = true
-        $0.widthAnchor.constraint(equalToConstant: 0.40 * width).isActive = true
+        $0.heightAnchor.constraint(equalToConstant: 0.4 * width).isActive = true
+        $0.widthAnchor.constraint(equalToConstant: 0.4 * width).isActive = true
         return $0
     }(UIImageView())
     
@@ -89,23 +113,46 @@ final class CartCell: UITableViewCell {
     func update(_ product: Product) {
         self.product = product
         nameLabel.text = product.name
-        detailedLabel.text = product.detail
-        priceLabel.text = "\(product.price) р"
+        detailedLabel.text = "\(product.detail)"
+        doughLabel.text = "\(product.doughType?.rawValue ?? "Традиционное") тесто"
+        sizeLabel.text = "\(product.size?.rawValue ?? "Средняя")"
+        if let ingredients = product.ingredients {
+            ingredientsLabel.isHidden = false
+                ingredientsLabel.text = ingredients.map { $0.name }.joined(separator: ", ")
+            }
+//        priceLabel.text = "\(product.calculatedPrice ?? product.price) р"
         productImageView.image = UIImage(named: product.image) ?? UIImage(named: "default")
         stepper.currentValue = product.count ?? 0
+        updatePrice()
+    }
+    
+    @objc private func stepperChangedValueAction(sender: CustomStepper) {
+        product?.count = sender.currentValue
+        product?.calculatePrice()
+        guard let product else { return }
+        onStepperValueChanged?(product)
+        updatePrice()
+    }
+    
+    func updatePrice() {
+        guard let product else { return }
+        let cost = (product.calculatedPrice ?? product.price) * (product.count ?? 1)
+        priceLabel.text = "\(cost) р."
     }
 }
 
 extension CartCell {
+    
+    private func setupStepper() {
+        stepper.addTarget(self, action: #selector(stepperChangedValueAction), for: .valueChanged)
+    }
     
     struct Layout {
         static let offset: CGFloat = 8
     }
     
     private func setupViews() {
-//        [containerView].forEach {
-//            contentView.addSubview($0)
-//        }
+        selectionStyle = .none
         
         [cardStackView].forEach {
             contentView.addSubview($0)
@@ -119,7 +166,7 @@ extension CartCell {
             containerView.addSubview($0)
         }
         
-        [nameLabel, detailedLabel].forEach {
+        [nameLabel, detailedLabel, doughLabel, sizeLabel, ingredientsLabel].forEach {
             verticalStackView.addArrangedSubview($0)
         }
         
@@ -173,22 +220,6 @@ extension CartCell {
         NSLayoutConstraint.activate([
             stepper.widthAnchor.constraint(greaterThanOrEqualToConstant: 150)
         ])
-    }
-    
-    private func setupStepper() {
-        stepper.addTarget(self, action: #selector(stepperChangedValueAction), for: .valueChanged)
-    }
-    
-    @objc private func stepperChangedValueAction(sender: CustomStepper) {
-        
-        
-        product?.count = sender.currentValue
-        
-        guard let product else { return }
-        onStepperValueChanged?(product)
-        
-//        print(sender)
-//        print(sender.currentValue)
     }
 }
 

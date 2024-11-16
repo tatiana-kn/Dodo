@@ -41,7 +41,7 @@ final class AddressListScreenVC: UIViewController {
         return button
     }()
     
-    init(_ addressRepository: IAddressRepository) {
+    init(addressRepository: IAddressRepository) {
         self.addressRepository = addressRepository
         super.init(nibName: nil, bundle: nil)
     }

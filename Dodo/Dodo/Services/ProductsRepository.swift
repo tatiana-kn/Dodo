@@ -12,6 +12,7 @@ import Foundation
 protocol IProductsRepository {
     func retrieve() -> [Product] //закдалываем их массивом
     func add(_ product: Product)
+    func update(_ product: Product, with  ingredients: [Ingredient])
     func update(_ product: Product)
 }
 
@@ -53,7 +54,7 @@ final class ProductsRepository: IProductsRepository {
     func add(_ product: Product) {
         var array = retrieve()
         
-        if let index = array.firstIndex(where: { $0.name == product.name }) {
+        if let index = array.firstIndex(where: { $0 == product && $0.ingredients == product.ingredients }) {
             if let count = array[index].count {
                 array[index].count = count + 1
             }
@@ -68,11 +69,42 @@ final class ProductsRepository: IProductsRepository {
         print(array)
     }
     
+    func update(_ product: Product, with ingredients: [Ingredient]) {
+        var array = retrieve()
+        
+        if let index = array.firstIndex(where: { $0 == product && $0.ingredients == product.ingredients }) {
+            var productWithIngredients = product
+            
+            if productWithIngredients.ingredients == nil {
+                productWithIngredients.ingredients = []
+            }
+//            productWithIngredients.ingredients?.append(contentsOf: ingredients)
+            productWithIngredients.ingredients?.formUnion(ingredients)
+            productWithIngredients.calculatePrice()
+            array[index] = productWithIngredients
+            if let count = array[index].count {
+                array[index].count = count + 1
+            }
+        } else {
+            var newProduct = product
+            newProduct.ingredients = Set(ingredients)
+            newProduct.count = 1
+            newProduct.calculatePrice()
+            array.append(newProduct)
+        }
+        save(array)
+        print(array)
+    }
+    
     func update(_ product: Product) {
         var array = retrieve()
         
-        if let index = array.firstIndex(where: { $0.name == product.name }) {
-            array[index].count = product.count
+        if let index = array.firstIndex(where: { $0 == product && $0.ingredients == product.ingredients }) {
+//            array[index].count = product.count
+            var updatedProduct = array[index]
+            updatedProduct.count = product.count
+            updatedProduct.calculatePrice()
+            array[index] = updatedProduct
         }
         array.removeAll { $0.count == 0 }
         save(array)

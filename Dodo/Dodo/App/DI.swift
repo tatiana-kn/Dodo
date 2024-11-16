@@ -51,17 +51,17 @@ final class ScreenFactoryImpl: ScreenFactory {
     
     func makeMenuScreen() -> MenuScreenVC {
         //MenuConfigurator().configure(di)
-        return MenuScreenVC(di.productsLoader, di.storiesLoader, di.addressRepository)
+        return MenuScreenVC(productsLoader: di.productsLoader, storiesLoader: di.storiesLoader, addressRepository: di.addressRepository)
         //viewController.productLoader = di.productsLoader
         //return viewController
     }
     
     func makeDetailScreen() -> DetailScreenVC {
-        return DetailScreenVC(di.ingredientsLoader, di.productsRepository)
+        return DetailScreenVC(ingredientsLoader: di.ingredientsLoader, productsRepository: di.productsRepository)
     }
     
     func makeCartScreen() -> CartScreenVC {
-        return CartScreenVC(di.productsRepository)
+        return CartScreenVC(productsRepository: di.productsRepository)
     }
     
     func makeStoriesScreen() -> StoriesScreenVC {
@@ -69,11 +69,11 @@ final class ScreenFactoryImpl: ScreenFactory {
     }
     
     func makeAddressListScreen() -> AddressListScreenVC {
-        return AddressListScreenVC(di.addressRepository)
+        return AddressListScreenVC(addressRepository: di.addressRepository)
     }
     
     func makeMapScreen() -> MapScreenVC {
-        return MapScreenVC(di.addressRepository, di.locationService, di.geocodeService)
+        return MapScreenVC(addressRepository: di.addressRepository, locationService: di.locationService, geocodeService: di.geocodeService)
     }
 }
 

@@ -27,7 +27,7 @@ class MenuScreenVC: UIViewController {
     var stories: [Story] = []
     var address: String?
     
-    init(_ productsLoader: IProductsLoader, _ storiesLoader: IStoriesLoader, _ addressRepository: IAddressRepository) {
+    init(productsLoader: IProductsLoader, storiesLoader: IStoriesLoader, addressRepository: IAddressRepository) {
         
         self.productLoader = productsLoader
         self.storiesLoader = storiesLoader

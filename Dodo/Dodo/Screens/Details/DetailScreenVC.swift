@@ -12,6 +12,7 @@ final class DetailScreenVC: UIViewController {
     var ingredientLoader: IIngredientsLoader
     var ingredients: [Ingredient] = []
     var product: Product?
+    var selectedIngredients: [Ingredient] = []
     var productsRepository: IProductsRepository
         
     private lazy var tableView: UITableView = {
@@ -47,7 +48,7 @@ final class DetailScreenVC: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
-    init(_ ingredientsLoader: IIngredientsLoader, _ productsRepository: IProductsRepository) {
+    init(ingredientsLoader: IIngredientsLoader, productsRepository: IProductsRepository) {
         self.ingredientLoader = ingredientsLoader
         self.productsRepository = productsRepository
         
@@ -75,11 +76,22 @@ final class DetailScreenVC: UIViewController {
     @objc private func addToCart(_ sender: UIButton) {
         guard let product else { return }
         
-        productsRepository.add(product)
+        productsRepository.update(product, with: selectedIngredients)
+//        productsRepository.add(product)
         
-        NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil) // ???
+//        NotificationCenter.default.post(name: NSNotification.Name("CartUpdated"), object: nil) // ???
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func setPrice() {
+        let multiplier = Size.getPriceMultiplier(for: product?.size ?? Size.medium)
+        let price = Int(Double(product?.price ?? 1) * multiplier)
+        
+        let ingredientsPrice = selectedIngredients.compactMap { $0.price }.reduce(0, +)
+        
+        product?.calculatedPrice = price + ingredientsPrice
+        orderButton.setTitle("Оформить за \(String(product?.calculatedPrice ?? 0)) р.", for: .normal)
     }
 }
 
@@ -114,6 +126,16 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ControlsCell.reuseID, for: indexPath) as? ControlsCell else {
                 return UITableViewCell()
             }
+            
+            cell.onDoughChanged =  { doughType in
+                self.product?.doughType = doughType
+            }
+            
+            cell.onSizeChanged = { size in
+                self.product?.size = size
+                self.setPrice()
+            }
+            
             return cell
         }
         
@@ -123,6 +145,11 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             }
 //            cell.update(product)
             cell.update(ingredients)
+            
+            cell.onIngredientItemSelected = { ingredients in
+                self.selectedIngredients = ingredients
+                self.setPrice()
+            }
             
             return cell
         }

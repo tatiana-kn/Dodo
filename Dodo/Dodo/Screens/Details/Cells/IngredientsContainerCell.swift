@@ -15,11 +15,10 @@ final class IngredientsContainerCell: UITableViewCell {
             collectionView.reloadData()
         }
     }
-//    var product: Product? {
-//        didSet {
-//            collectionView.reloadData()
-//        }
-//    }
+    
+    private var selectedIngredients: [Ingredient] = []
+    
+    var onIngredientItemSelected: (([Ingredient]) -> Void)?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,11 +34,11 @@ final class IngredientsContainerCell: UITableViewCell {
         let cellSize = (UIScreen.main.bounds.width - paddingSize) / itemCount
         
         layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        layout.itemSize = CGSize(width: cellSize, height: cellSize * 2)
+        layout.itemSize = CGSize(width: cellSize, height: cellSize * 1.6)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .orange
-        collectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: 500).isActive = true
+        collectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: 430).isActive = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -58,31 +57,8 @@ final class IngredientsContainerCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func update(_ product: Product?) {
-//        self.product = product
-//    }
-    
     func update(_ ingredients: [Ingredient]) {
         self.ingredients = ingredients
-    }
-}
-
-//MARK: - Layout
-extension IngredientsContainerCell {
-    private func setupViews() {
-        contentView.addSubview(collectionView)
-    }
-    
-    private func setupConstraints() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
-//            collectionView.heightAnchor.constraint(equalToConstant: 500)
-        ])
     }
 }
 
@@ -106,12 +82,46 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
 //            cell.update(ingredient)
 //        }
         
-        let ingredient = ingredients[indexPath.row]
-        cell.update(ingredient)
-
+        let ingredient = ingredients[indexPath.item]
+        let isSelected = selectedIngredients.contains(ingredient)
         
-        cell.backgroundColor = .yellow
+        cell.update(ingredient, isSelected: isSelected)
+
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let ingredient = ingredients[indexPath.item]
+        
+        if selectedIngredients.contains(ingredient) {
+            selectedIngredients.removeAll { $0 == ingredient }
+        } else {
+            selectedIngredients.append(ingredient)
+        }
+        
+        onIngredientItemSelected?(selectedIngredients)
+        
+        collectionView.reloadItems(at: [indexPath])
+    }
+    
+}
+
+//MARK: - Layout
+extension IngredientsContainerCell {
+    private func setupViews() {
+        contentView.addSubview(collectionView)
+    }
+    
+    private func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+//            collectionView.heightAnchor.constraint(equalToConstant: 500)
+        ])
     }
 }
 

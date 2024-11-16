@@ -10,11 +10,7 @@ import UIKit
 final class CartScreenVC: UIViewController {
     
     var productsRepository: IProductsRepository
-    var products: [Product] = [] {
-        didSet {
-//            tableView.reloadData()
-        }
-    }
+    var products: [Product] = []
     
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -42,7 +38,7 @@ final class CartScreenVC: UIViewController {
         return button
     }()
     
-    init(_ productsRepository: IProductsRepository) {
+    init(productsRepository: IProductsRepository) {
         self.productsRepository = productsRepository
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,27 +52,15 @@ final class CartScreenVC: UIViewController {
 
         setupViews()
         setupConstraints()
-//        setupNotifications()
-//        loadProductsFromStorage()
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadProductsFromStorage()
     }
-    
-//    func setupNotifications() {
-//        //        NotificationCenter.default.addObserver(self, selector: #selector(handleCartUpdate), name: NSNotification.Name("CartUpdated"), object: nil)
-//    }
-    
+
     @objc private func handleCartUpdate() {
         loadProductsFromStorage()
     }
-    
-//    deinit {
-////        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("CartUpdated"), object: nil)
-//    }
 }
 
 extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
@@ -109,15 +93,14 @@ extension CartScreenVC {
     func loadProductsFromStorage() {
         products = productsRepository.retrieve()
         tableView.reloadData()
-        updateCoast()
+        updateCost()
     }
     
-    func updateCoast() {
+    func updateCost() {
         var cost = 0
         for product in products {
-            cost += product.price * (product.count ?? 1)
+            cost += (product.calculatedPrice ?? product.price) * (product.count ?? 1)
         }
-        
         orderButton.setTitle("Оформить за \(cost) р.", for: .normal)
     }
 }
