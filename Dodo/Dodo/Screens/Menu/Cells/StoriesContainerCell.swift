@@ -9,9 +9,7 @@ import UIKit
 
 final class StoriesContainerCell: UITableViewCell {
     static let reuseID = "StoriesContainerCell"
-    
-//    let imageCache = NSCache<NSString, UIImage>()
-    
+        
     var stories: [Story] = [] {
         didSet {
             collectionView.reloadData()
@@ -66,15 +64,11 @@ extension StoriesContainerCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let story = stories[indexPath.item]
-//        cell.update(story, imageCache: imageCache)
         cell.update(story)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let story = stories[indexPath.item]
-        //let storiesVC = StoriesScreenVC()
-        //storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
         onStoriesCellSelected?(indexPath)
     }
 }

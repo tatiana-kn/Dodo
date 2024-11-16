@@ -61,7 +61,7 @@ final class DetailScreenVC: UIViewController {
     
     func update(_ product: Product) {
         self.product = product
-        orderButton.setTitle("Оформить за \(String(product.price)) р.", for: .normal)
+        orderButton.setTitle("Оформить за \(String(product.basePrice)) р.", for: .normal)
         tableView.reloadData()
     }
     
@@ -86,7 +86,7 @@ final class DetailScreenVC: UIViewController {
     
     func setPrice() {
         let multiplier = Size.getPriceMultiplier(for: product?.size ?? Size.medium)
-        let price = Int(Double(product?.price ?? 1) * multiplier)
+        let price = Int(Double(product?.basePrice ?? 1) * multiplier)
         
         let ingredientsPrice = selectedIngredients.compactMap { $0.price }.reduce(0, +)
         
@@ -98,7 +98,6 @@ final class DetailScreenVC: UIViewController {
 extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         product?.type == "пицца" ? 4 : 2
-//        4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,7 +108,6 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             }
             
             cell.update(product)
-            
             return cell
         }
         
@@ -143,7 +141,6 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsContainerCell.reuseID, for: indexPath) as? IngredientsContainerCell else {
                 return UITableViewCell()
             }
-//            cell.update(product)
             cell.update(ingredients)
             
             cell.onIngredientItemSelected = { ingredients in

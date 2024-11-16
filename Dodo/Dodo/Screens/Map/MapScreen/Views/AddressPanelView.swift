@@ -110,7 +110,6 @@ extension AddressPanelView {
 extension AddressPanelView {
     
     func setupViews() {
-        //backgroundColor = .lightGray.withAlphaComponent(0.1)
         backgroundColor = .systemBackground
         self.addSubview(stackView)
         stackView.addArrangedSubview(addressView)

@@ -14,7 +14,6 @@ final class CurrentAddressView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 15
-//        stackView.alignment = .leading
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
         
@@ -33,14 +32,10 @@ final class CurrentAddressView: UIView {
     
     private let addressButton: UIButton = {
         let addressButton = UIButton()
-//        addressButton.setTitle("Address", for: .normal)
-//        addressButton.setTitleColor(.black, for: .normal)
-        
         addressButton.titleLabel?.numberOfLines = 0
         addressButton.titleLabel?.textAlignment = .left
         addressButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         addressButton.setAttributedTitle(NSAttributedString(string: "address"), for: .normal)
-        
         addressButton.addTarget(nil, action: #selector(adressButtonTapped), for: .touchUpInside)
         return addressButton
     }()

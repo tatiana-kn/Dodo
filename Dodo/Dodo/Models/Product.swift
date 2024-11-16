@@ -16,7 +16,7 @@ struct Product: Codable {
     let name: String
     let type: String
     let detail: String
-    let price: Int
+    let basePrice: Int
     let image: String
     
 //    var ingredients: [Ingredient]?
@@ -39,7 +39,7 @@ extension Product: Equatable {
 
 extension Product {
     mutating func calculatePrice() {
-        let basePrice = Double(price) * Size.getPriceMultiplier(for: size ?? .medium)
+        let basePrice = Double(basePrice) * Size.getPriceMultiplier(for: size ?? .medium)
         let ingredientsPrice = (ingredients?.compactMap { $0.price }.reduce(0, +)) ?? 0
         self.calculatedPrice = Int(basePrice) + ingredientsPrice
     }

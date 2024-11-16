@@ -28,7 +28,6 @@ final class PlaceDescriptionView: UIView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .leading
-        //stack.spacing = 4
         
         stack.layer.borderWidth = 2
         stack.layer.borderColor = UIColor.lightGray.cgColor
@@ -153,14 +152,6 @@ extension PlaceDescriptionView {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().inset(16)
         }
-        
-//        floorStackView.snp.makeConstraints { make in
-//            make.width.equalToSuperview().multipliedBy(0.5)
-//        }
-//        
-//        apartmentStackView.snp.makeConstraints { make in
-//            make.width.equalToSuperview().multipliedBy(0.5)
-//        }
     }
 }
 

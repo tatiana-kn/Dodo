@@ -10,7 +10,6 @@ import UIKit
 final class BannerContainerCell: UITableViewCell {
     static let reuseID = "BannerContainerCell"
     
-    
     var onBannerCellSelected: ((Product)->())?
     
     var products: [Product] = [] {
@@ -47,26 +46,6 @@ final class BannerContainerCell: UITableViewCell {
     func update(_ products: [Product]) {
         self.products = products
     }
-
-}
-
-//MARK: - Layout
-extension BannerContainerCell {
-    private func setupViews() {
-        contentView.addSubview(collectionView)
-    }
-    
-    private func setupConstraints() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 150)
-        ])
-    }
 }
 
 //MARK: - UICollectionViewDelegate
@@ -94,6 +73,25 @@ extension BannerContainerCell: UICollectionViewDataSource {
         detailVC.update(product)
     
         onBannerCellSelected?(product)
+    }
+}
+
+//MARK: - Layout
+extension BannerContainerCell {
+    private func setupViews() {
+        contentView.addSubview(collectionView)
+    }
+    
+    private func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            collectionView.heightAnchor.constraint(equalToConstant: 150)
+        ])
     }
 }
 

@@ -14,7 +14,6 @@ final class AddressListScreenVC: UIViewController {
 //    var onAddressCellSelected: ((Address) -> Void)?
     
     var addressList: [Address] = []
-    
     var currentAddress: Address?
     
     private var headerView: AddressListHeaderView = {

@@ -14,7 +14,6 @@ final class AddressListHeaderView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 15
-//        stackView.alignment = .leading
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
         
@@ -55,7 +54,6 @@ final class AddressListHeaderView: UIView {
     @objc func newAddressButtonTapped(_ sender: UIButton) {
         onNewAddressButtonTapped?()
     }
-    
 }
 
 extension AddressListHeaderView {

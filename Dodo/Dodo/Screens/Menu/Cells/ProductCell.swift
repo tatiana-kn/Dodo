@@ -75,7 +75,7 @@ final class ProductCell: UITableViewCell {
     func update(_ product: Product) {
         nameLabel.text = product.name
         detailedLabel.text = product.detail
-        priceButton.setTitle("\(product.price) р", for: .normal)
+        priceButton.setTitle("\(product.basePrice) р", for: .normal)
         productImageView.image = UIImage(named: product.image) ?? UIImage(named: "default")
     }
 }

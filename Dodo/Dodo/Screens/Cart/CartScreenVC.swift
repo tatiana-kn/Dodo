@@ -93,15 +93,15 @@ extension CartScreenVC {
     func loadProductsFromStorage() {
         products = productsRepository.retrieve()
         tableView.reloadData()
-        updateCost()
+        updatePrice()
     }
     
-    func updateCost() {
-        var cost = 0
+    func updatePrice() {
+        var price = 0
         for product in products {
-            cost += (product.calculatedPrice ?? product.price) * (product.count ?? 1)
+            price += (product.calculatedPrice ?? product.basePrice) * (product.count ?? 1)
         }
-        orderButton.setTitle("Оформить за \(cost) р.", for: .normal)
+        orderButton.setTitle("Оформить за \(price) р.", for: .normal)
     }
 }
 

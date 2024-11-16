@@ -16,7 +16,6 @@ class GeocodeService {
     
     func fetchLocationFromAddress(_ addressText: String, completion: @escaping (CLLocation) -> Void) {
         
-        // let addressString = "Ростов-на-Дону, Ерёменко 110, строение 2"
         let addressString = addressText
         geoCoder.geocodeAddressString(addressString) { (placemarks, error) in
             if let error = error {

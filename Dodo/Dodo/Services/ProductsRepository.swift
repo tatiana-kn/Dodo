@@ -7,10 +7,8 @@
 
 import Foundation
 
-//Класс-сервис - бизнес-логика - архивируем массив продуктов
-
 protocol IProductsRepository {
-    func retrieve() -> [Product] //закдалываем их массивом
+    func retrieve() -> [Product] 
     func add(_ product: Product)
     func update(_ product: Product, with  ingredients: [Ingredient])
     func update(_ product: Product)
@@ -18,16 +16,13 @@ protocol IProductsRepository {
 
 final class ProductsRepository: IProductsRepository {
     
-    private let encoder = JSONEncoder() //кодирует в бинарник
-    private let decoder = JSONDecoder() //разкодирует
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
     
     private let key = "Products"
     
     //MARK: - Public methods
-    private func save(_ products: [Product]) { //метод сохранить
-        
-        //Array<Product> -> Data
-        //массив кладем в бинарник и кодируем, бинарник кладем в UserDefaults
+    private func save(_ products: [Product]) {
         do {
             let data = try encoder.encode(products)
             UserDefaults.standard.set(data, forKey: key)
@@ -35,14 +30,10 @@ final class ProductsRepository: IProductsRepository {
             print(error)
         }
     }
-    //retrieve - получить данные
-    func retrieve() -> [Product] {  //метод получить
-        
-        //Data -> Array<Product>
-        //вытаскиваем из UserDefaults бинарник
+
+    func retrieve() -> [Product] {
         guard let data = UserDefaults.standard.data(forKey: key) else { return [] }
         do {
-            //раскодировали бинарник в массив
             let array = try decoder.decode(Array<Product>.self, from: data)
             return array
         } catch {

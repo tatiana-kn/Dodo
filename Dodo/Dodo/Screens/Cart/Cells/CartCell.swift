@@ -136,8 +136,8 @@ final class CartCell: UITableViewCell {
     
     func updatePrice() {
         guard let product else { return }
-        let cost = (product.calculatedPrice ?? product.price) * (product.count ?? 1)
-        priceLabel.text = "\(cost) р."
+        let price = (product.calculatedPrice ?? product.basePrice) * (product.count ?? 1)
+        priceLabel.text = "\(price) р."
     }
 }
 

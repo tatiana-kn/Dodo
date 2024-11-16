@@ -78,10 +78,6 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-//        if let ingredient = product?.ingredients?[indexPath.row] {
-//            cell.update(ingredient)
-//        }
-        
         let ingredient = ingredients[indexPath.item]
         let isSelected = selectedIngredients.contains(ingredient)
         
@@ -103,7 +99,6 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
         
         collectionView.reloadItems(at: [indexPath])
     }
-    
 }
 
 //MARK: - Layout
@@ -120,7 +115,6 @@ extension IngredientsContainerCell {
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
-//            collectionView.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
 }

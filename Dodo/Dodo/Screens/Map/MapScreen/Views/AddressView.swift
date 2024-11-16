@@ -28,7 +28,6 @@ final class AddressView: UIView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .leading
-        //stack.spacing = 4
         
         stack.layer.borderWidth = 2
         stack.layer.borderColor = UIColor.lightGray.cgColor

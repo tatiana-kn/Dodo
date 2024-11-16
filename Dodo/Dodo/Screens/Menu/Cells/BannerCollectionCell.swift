@@ -65,7 +65,7 @@ final class BannerCollectionCell: UICollectionViewCell {
     
     func update(_ product: Product) {
         nameLabel.text = product.name
-        priceButton.setTitle("\(product.price) р", for: .normal)
+        priceButton.setTitle("\(product.basePrice) р", for: .normal)
         productImageView.image = UIImage(named: product.image) ?? UIImage(named: "default")
     }
 }
