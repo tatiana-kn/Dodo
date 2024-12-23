@@ -1,59 +1,36 @@
 //
-//  DI.swift
+//  ScreenFactory.swift
 //  Dodo
 //
-//  Created by Tia M on 11/4/24.
+//  Created by Tia M on 12/8/24.
 //
 
 import Foundation
 
-final class DI {
-    let networkClient: NetworkClient
-    let decoder: JSONDecoder
-    let productsLoader: ProductsLoader
-    let ingredientsLoader: IngredientsLoader
-    let storiesLoader: StoriesLoader
-    let productsRepository: ProductsRepository
-    let addressRepository: AddressRepository
-    let locationService: LocationService
-    let geocodeService: GeocodeService
-    
-    let screenFactory: ScreenFactoryImpl
-    
-    init() {
-        networkClient = NetworkClient()
-        decoder = JSONDecoder()
-        productsLoader = ProductsLoader(networkClient: networkClient, decoder: decoder)
-        ingredientsLoader = IngredientsLoader(networkClient: networkClient, decoder: decoder)
-        storiesLoader = StoriesLoader(networkClient: networkClient, decoder: decoder)
-        productsRepository = ProductsRepository()
-        addressRepository = AddressRepository()
-        locationService = LocationService()
-        geocodeService = GeocodeService()
-        
-        screenFactory = ScreenFactoryImpl()
-        screenFactory.di = self
-    }
-}
-
 protocol ScreenFactory {
+    func makeLoginScreen() -> LoginScreenVC
     func makeMenuScreen() -> MenuScreenVC
     func makeStoriesScreen() -> StoriesScreenVC
     func makeDetailScreen() -> DetailScreenVC
     func makeCartScreen() -> CartScreenVC
     func makeAddressListScreen() -> AddressListScreenVC
     func makeMapScreen() -> MapScreenVC
+    func makeProfileScreen() -> ProfileScreenVC
 }
 
 final class ScreenFactoryImpl: ScreenFactory {
-    weak var di: DI!
+    weak var di: DependencyContainer!
+
+    init(){}
     
+    func makeLoginScreen() -> LoginScreenVC {
+        return LoginScreenVC()
+    }
     
     func makeMenuScreen() -> MenuScreenVC {
-        //MenuConfigurator().configure(di)
+
         return MenuScreenVC(productsLoader: di.productsLoader, storiesLoader: di.storiesLoader, addressRepository: di.addressRepository)
-        //viewController.productLoader = di.productsLoader
-        //return viewController
+
     }
     
     func makeDetailScreen() -> DetailScreenVC {
@@ -75,5 +52,8 @@ final class ScreenFactoryImpl: ScreenFactory {
     func makeMapScreen() -> MapScreenVC {
         return MapScreenVC(addressRepository: di.addressRepository, locationService: di.locationService, geocodeService: di.geocodeService)
     }
+    
+    func makeProfileScreen() -> ProfileScreenVC {
+        return ProfileScreenVC()
+    }
 }
-

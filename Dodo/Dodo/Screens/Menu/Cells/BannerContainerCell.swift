@@ -68,10 +68,7 @@ extension BannerContainerCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let product = products[indexPath.row]
-        let detailVC = di.screenFactory.makeDetailScreen()
-        detailVC.update(product)
-    
+        let product = products[indexPath.row] 
         onBannerCellSelected?(product)
     }
 }

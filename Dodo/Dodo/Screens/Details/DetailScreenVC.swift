@@ -39,15 +39,6 @@ final class DetailScreenVC: UIViewController {
         return button
     }()
     
-//    init(product: Product) {
-//        self.product = product
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     init(ingredientsLoader: IIngredientsLoader, productsRepository: IProductsRepository) {
         self.ingredientLoader = ingredientsLoader
         self.productsRepository = productsRepository

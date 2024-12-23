@@ -27,6 +27,10 @@ class MenuScreenVC: UIViewController {
     var stories: [Story] = []
     var address: String?
     
+    var onProductSelected: ((Product)->())?
+    var onStorySelected: (([Story], IndexPath)->())?
+    var onAddressTapped: (()->())?
+        
     init(productsLoader: IProductsLoader, storiesLoader: IStoriesLoader, addressRepository: IAddressRepository) {
         
         self.productLoader = productsLoader
@@ -39,9 +43,7 @@ class MenuScreenVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    var imageCache: NSCache<NSString, UIImage>?
-    
+        
     private var addressView: CurrentAddressView = {
         let addressView = CurrentAddressView()
         return addressView
@@ -49,7 +51,6 @@ class MenuScreenVC: UIViewController {
     
     private lazy var tableView: UITableView = {
         $0.separatorStyle = .none
-//        $0.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
         $0.delegate = self
         $0.dataSource = self
         $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
@@ -70,6 +71,8 @@ class MenuScreenVC: UIViewController {
         loadStories()
         loadAddressFromRepository()
     }
+    
+    
     
     func setupBindings() {
         addressView.onAdressButtonTapped = {
@@ -110,9 +113,10 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 }
                 
                 cell.onBannerCellSelected = { product in
-                    let detailVC = di.screenFactory.makeDetailScreen()
-                    detailVC.update(product)
-                    self.present(detailVC, animated: true)
+//                    let detailVC = di.screenFactory.makeDetailScreen()
+//                    detailVC.update(product)
+//                    self.present(detailVC, animated: true)
+                    self.onProductSelected?(product)
                 }
                 
                 cell.update(products)
@@ -132,14 +136,12 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 }
                 cell.update(stories)
                 
-                cell.onStoriesCellSelected = { [self] indexPath in
-                    let storiesVC = di.screenFactory.makeStoriesScreen()
-//                    storiesVC.update(story)
-//                    storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
-                    self.present(storiesVC, animated: true)
-                    
-                    storiesVC.update(stories, indexPath)
-                    
+                cell.onStoriesCellSelected = { indexPath in
+//                    let storiesVC = di.screenFactory.makeStoriesScreen()
+//                    self.present(storiesVC, animated: true)
+//                    
+//                    storiesVC.update(stories, indexPath)
+                    self.onStorySelected?(self.stories, indexPath)
                 }
                 return cell
             }
@@ -151,31 +153,23 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let product = products[indexPath.row]
-        let detailVC = di.screenFactory.makeDetailScreen()
-        //        let detailVC = DetailScreenVC()
-        
-        //        detailVC.product = product
-        //        let detailVC = DetailScreenVC(product: product)
-        
-        detailVC.update(product)
-        present(detailVC, animated: true)
+        onProductSelected?(product)
+//        let detailVC = di.screenFactory.makeDetailScreen()
+//        detailVC.update(product)
+//        present(detailVC, animated: true)
     }
 }
 
 //MARK: Navigation
 extension MenuScreenVC {
     func navigateToAddressListScreen() {
-        let addressListVC = di.screenFactory.makeAddressListScreen()
-        present(addressListVC, animated: true)
-        
-        addressListVC.onDeliverToAddressButtonTapped = {
-            self.loadAddressFromRepository()
-        }
-        
-//        addressListVC.onAddressCellSelected = { address in
-//            self.address = address
-//            print(address)
+//        let addressListVC = di.screenFactory.makeAddressListScreen()
+//        present(addressListVC, animated: true)
+//        
+//        addressListVC.onDeliverToAddressButtonTapped = {
+//            self.loadAddressFromRepository()
 //        }
+        onAddressTapped?()
     }
 }
 

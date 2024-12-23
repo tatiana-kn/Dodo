@@ -10,7 +10,10 @@ import UIKit
 final class AddressListScreenVC: UIViewController {
     var addressRepository: IAddressRepository
     
-    var onDeliverToAddressButtonTapped: (() -> Void)?
+    var onDeliverToAddressButtonTapped: (() -> ())?
+
+    var onNewAddressButtonTapped: (() -> ())?
+    var onEditButtonTapped: ((Address) -> ())?
 //    var onAddressCellSelected: ((Address) -> Void)?
     
     var addressList: [Address] = []
@@ -79,28 +82,29 @@ final class AddressListScreenVC: UIViewController {
 
 extension AddressListScreenVC {
     func navigateToMapScreenVC() {
-        let mapVC = di.screenFactory.makeMapScreen()
+//        let mapVC = di.screenFactory.makeMapScreen()
         
-        mapVC.onAddressSaved = { [weak self] in
-            self?.loadAddressListFromRepository()
-        }
+//        mapVC.onAddressSaved = { [weak self] in
+//            self?.loadAddressListFromRepository()
+//        }
+//        
+//        let navigationController = UINavigationController(rootViewController: mapVC)
+//        present(navigationController, animated: true)
+    onNewAddressButtonTapped?()
         
-        let navigationController = UINavigationController(rootViewController: mapVC)
-        present(navigationController, animated: true)
-        //        present(mapVC, animated: true)
     }
     
     func navigateToEditMapScreenVC(with address: Address) {
-        let mapVC = di.screenFactory.makeMapScreen()
-        mapVC.address = address
+//        let mapVC = di.screenFactory.makeMapScreen()
+//        mapVC.address = address
+//        
+//        mapVC.onAddressSaved = { [weak self] in
+//            self?.loadAddressListFromRepository()
+//        }
         
-        mapVC.onAddressSaved = { [weak self] in
-            self?.loadAddressListFromRepository()
-        }
-        
-        let navigationController = UINavigationController(rootViewController: mapVC)
-        present(navigationController, animated: true)
-        //        present(mapVC, animated: true)
+//        let navigationController = UINavigationController(rootViewController: mapVC)
+//        present(navigationController, animated: true)
+        onEditButtonTapped?(address)
     }
 }
 
