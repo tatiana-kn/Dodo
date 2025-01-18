@@ -28,7 +28,8 @@ final class AddressListScreenVC: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(AddressCell.self, forCellReuseIdentifier: AddressCell.reuseID)
+//        tableView.register(AddressCell.self, forCellReuseIdentifier: AddressCell.reuseID)
+        tableView.registerCell(AddressCell.self)
         return tableView
     }()
     
@@ -114,9 +115,10 @@ extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
-            return UITableViewCell()
-        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
+//            return UITableViewCell()
+//        }
+        let cell = tableView.dequeueCell(indexPath) as AddressCell
         let address = addressList[indexPath.row]
         
 //        let isSelected = indexPath.row == 0 ? true : false

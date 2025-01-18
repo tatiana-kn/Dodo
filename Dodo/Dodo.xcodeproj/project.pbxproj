@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14061AE52D3BB9440087344E /* UITableView + dequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14061AE42D3BB9440087344E /* UITableView + dequeueCell.swift */; };
+		14061AE82D3BC4000087344E /* UICollectionView + dequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14061AE72D3BC4000087344E /* UICollectionView + dequeueCell.swift */; };
 		1413BDE12C53D6C600D5642A /* ProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE02C53D6C600D5642A /* ProductsLoader.swift */; };
 		1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE22C53D71000D5642A /* NetworkClient.swift */; };
 		1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14061AE42D3BB9440087344E /* UITableView + dequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + dequeueCell.swift"; sourceTree = "<group>"; };
+		14061AE72D3BC4000087344E /* UICollectionView + dequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + dequeueCell.swift"; sourceTree = "<group>"; };
 		1413BDE02C53D6C600D5642A /* ProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsLoader.swift; sourceTree = "<group>"; };
 		1413BDE22C53D71000D5642A /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigurator.swift; sourceTree = "<group>"; };
@@ -145,6 +149,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14061AE32D3BB92A0087344E /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				14061AE42D3BB9440087344E /* UITableView + dequeueCell.swift */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		14061AE62D3BC3E00087344E /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				14061AE72D3BC4000087344E /* UICollectionView + dequeueCell.swift */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
 		147427582CBD222000022865 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +276,8 @@
 		14B473292C300AEF0058639D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				14061AE32D3BB92A0087344E /* UITableView */,
+				14061AE62D3BC3E00087344E /* UICollectionView */,
 				14B473312C300CF60058639D /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
@@ -545,6 +567,7 @@
 				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
 				14CFF5972D05B13300AC1F27 /* CoordinatorFactory.swift in Sources */,
 				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
+				14061AE82D3BC4000087344E /* UICollectionView + dequeueCell.swift in Sources */,
 				14CFF5A32D05C4ED00AC1F27 /* TabBarCoordinator.swift in Sources */,
 				14F26B1D2CC5345E0092EE0E /* LocationService.swift in Sources */,
 				14BB39862C38307A00B8796F /* ControlsCell.swift in Sources */,
@@ -565,6 +588,7 @@
 				1456537B2CA9B6A70039C8AE /* StoriesContainerCell.swift in Sources */,
 				14CAD1E72CB2E11B0009B54C /* StoriesCell.swift in Sources */,
 				14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */,
+				14061AE52D3BB9440087344E /* UITableView + dequeueCell.swift in Sources */,
 				14D348DF2D1038F000FAC5E9 /* AppCoordinator.swift in Sources */,
 				14FAA9772CC556C3008CC766 /* PlaceDescriptionView.swift in Sources */,
 				14F26B1F2CC5349C0092EE0E /* GeocodeService.swift in Sources */,

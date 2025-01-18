@@ -28,7 +28,9 @@ final class BannerContainerCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(BannerCollectionCell.self, forCellWithReuseIdentifier: BannerCollectionCell.reuseID)
+//        collectionView.register(BannerCollectionCell.self, forCellWithReuseIdentifier: BannerCollectionCell.reuseID)
+        collectionView.registerCell(BannerCollectionCell.self)
+
         return collectionView
     }()
     
@@ -59,9 +61,10 @@ extension BannerContainerCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionCell.reuseID, for: indexPath) as? BannerCollectionCell else {
-            return UICollectionViewCell()
-        }
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionCell.reuseID, for: indexPath) as? BannerCollectionCell else {
+//            return UICollectionViewCell()
+//        }
+        let cell = collectionView.dequeueCell(indexPath) as BannerCollectionCell
         let product = products[indexPath.row]
         cell.update(product)
         return cell

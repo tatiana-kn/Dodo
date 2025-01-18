@@ -44,12 +44,6 @@ class MapCoordinator: BaseCoordinator {
     
     func configureAddressListScreen(_ screen: AddressListScreenVC) {
         screen.onNewAddressButtonTapped = {
-//            let mapScreen = self.screenFactory.makeMapScreen()
-//            
-//            let navigationController = UINavigationController(rootViewController: mapScreen)
-//            self.router.present(navigationController, animated: true, onRoot: false)
-//            self.router.present(mapScreen, animated: true, onRoot: false)
-            
             let mapScreen = self.showMapScreen()
             
             mapScreen.onAddressSaved = {
@@ -69,6 +63,48 @@ class MapCoordinator: BaseCoordinator {
         }
         
         screen.onDeliverToAddressButtonTapped = {
+            
+            //print(mapScreen.presentingViewController)
+            guard let navigationVC = screen.presentingViewController as? UINavigationController else { return }
+            
+            guard let tabVC = navigationVC.viewControllers.first as? UITabBarController else { return }
+            
+            for navVC in tabVC.viewControllers?.compactMap({ $0 as? UINavigationController }) ?? [] {
+                for controller in navVC.viewControllers {
+                    
+                    if let menuVC  = controller as? MenuScreenVC {
+                        
+                        menuVC.loadAddressFromRepository()
+                    }
+                }
+            }
+            
+            
+            
+//            if let navigationVC = screen.presentingViewController as? UINavigationController {
+//                
+//                for controller in navigationVC.viewControllers {
+//                    
+//                    if let tabVC = controller as? UITabBarController {
+//                        
+//                        for controller in tabVC.viewControllers ?? [] {
+//                            
+//                            if let navVC = controller as? UINavigationController {
+//                                for controller in navVC.viewControllers {
+//                                    
+//                                    if let menuVC  = controller as? MenuScreenVC {
+//                                        
+//                                        menuVC.loadAddressFromRepository()
+//                                    }
+//                                }
+//                            
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            
+//            NotificationCenter.default.post(name: NSNotification.Name("addressUpdated"), object: nil)
             self.finishFlow?()
         }
     }

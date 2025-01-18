@@ -53,9 +53,12 @@ class MenuScreenVC: UIViewController {
         $0.separatorStyle = .none
         $0.delegate = self
         $0.dataSource = self
-        $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
-        $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
-        $0.register(StoriesContainerCell.self, forCellReuseIdentifier: StoriesContainerCell.reuseID)
+//        $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
+//        $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
+//        $0.register(StoriesContainerCell.self, forCellReuseIdentifier: StoriesContainerCell.reuseID)
+        $0.registerCell(ProductCell.self)
+        $0.registerCell(BannerContainerCell.self)
+        $0.registerCell(StoriesContainerCell.self)
         
         return $0
     }(UITableView())
@@ -70,15 +73,27 @@ class MenuScreenVC: UIViewController {
         loadProducts()
         loadStories()
         loadAddressFromRepository()
+        setupNotifications()
     }
     
-    
+    deinit {
+      NotificationCenter.default.removeObserver(self, name: NSNotification.Name("addressUpdated"), object: nil)
+    }
     
     func setupBindings() {
         addressView.onAdressButtonTapped = {
             self.navigateToAddressListScreen()
         }
     }
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(addressUpdated), name: NSNotification.Name("addressUpdated"), object: nil)
+    }
+    
+    @objc private func addressUpdated() {
+        loadAddressFromRepository()
+    }
+    
 }
 
 //MARK: - UITableViewDataSource
@@ -108,9 +123,11 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
         if let sectionType = MenuSections(rawValue: indexPath.section) {
             switch sectionType {
             case .banners:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
-                    fatalError("Fatal error for cell at \(indexPath)")
-                }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
+//                    fatalError("Fatal error for cell at \(indexPath)")
+//                }
+                
+                let cell = tableView.dequeueCell(indexPath) as BannerContainerCell
                 
                 cell.onBannerCellSelected = { product in
 //                    let detailVC = di.screenFactory.makeDetailScreen()
@@ -123,17 +140,19 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
                 return cell
                 
             case .products:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
-                    fatalError("Fatal error for cell at \(indexPath)")
-                }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
+//                    fatalError("Fatal error for cell at \(indexPath)")
+//                }
+                let cell = tableView.dequeueCell(indexPath) as ProductCell
                 let product = products[indexPath.row]
                 cell.update(product)
                 return cell
                 
             case .stories:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
-                    fatalError("Fatal error for cell at \(indexPath)")
-                }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
+//                    fatalError("Fatal error for cell at \(indexPath)")
+//                }
+                let cell = tableView.dequeueCell(indexPath) as StoriesContainerCell
                 cell.update(stories)
                 
                 cell.onStoriesCellSelected = { indexPath in

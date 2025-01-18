@@ -48,8 +48,8 @@ protocol AppFactory {
 extension DependencyContainer: AppFactory {
 
     func makeKeyWindowWithAppCoordinator(_ window: UIWindow?) -> (UIWindow?, Coordinator) {
-  
         let rootVC = UINavigationController()
+        rootVC.setNavigationBarHidden(true, animated: false)
         
         let router = RouterImpl(rootController: rootVC)
         

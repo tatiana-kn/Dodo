@@ -20,10 +20,14 @@ final class DetailScreenVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(DetailPhotoCell.self, forCellReuseIdentifier: DetailPhotoCell.reuseID)
-        tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.reuseID)
-        tableView.register(ControlsCell.self, forCellReuseIdentifier: ControlsCell.reuseID)
-        tableView.register(IngredientsContainerCell.self, forCellReuseIdentifier: IngredientsContainerCell.reuseID)
+//        tableView.register(DetailPhotoCell.self, forCellReuseIdentifier: DetailPhotoCell.reuseID)
+//        tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.reuseID)
+//        tableView.register(ControlsCell.self, forCellReuseIdentifier: ControlsCell.reuseID)
+//        tableView.register(IngredientsContainerCell.self, forCellReuseIdentifier: IngredientsContainerCell.reuseID)
+        tableView.registerCell(DetailPhotoCell.self)
+        tableView.registerCell(DescriptionCell.self)
+        tableView.registerCell(ControlsCell.self)
+        tableView.registerCell(IngredientsContainerCell.self)
         
         return tableView
     }()
@@ -91,27 +95,30 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailPhotoCell.reuseID, for: indexPath) as? DetailPhotoCell else {
-                return UITableViewCell()
-            }
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailPhotoCell.reuseID, for: indexPath) as? DetailPhotoCell else {
+//                return UITableViewCell()
+//            }
+            let cell = tableView.dequeueCell(indexPath) as DetailPhotoCell
             
             cell.update(product)
             return cell
         }
         
         if indexPath.row == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionCell.reuseID, for: indexPath) as? DescriptionCell else {
-                return UITableViewCell()
-            }
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionCell.reuseID, for: indexPath) as? DescriptionCell else {
+//                return UITableViewCell()
+//            }
+            let cell = tableView.dequeueCell(indexPath) as DescriptionCell
             
             cell.update(product)
             return cell
         }
         
         if indexPath.row == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ControlsCell.reuseID, for: indexPath) as? ControlsCell else {
-                return UITableViewCell()
-            }
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: ControlsCell.reuseID, for: indexPath) as? ControlsCell else {
+//                return UITableViewCell()
+//            }
+            let cell = tableView.dequeueCell(indexPath) as ControlsCell
             
             cell.onDoughChanged =  { doughType in
                 self.product?.doughType = doughType
@@ -126,9 +133,10 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.row == 3 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsContainerCell.reuseID, for: indexPath) as? IngredientsContainerCell else {
-                return UITableViewCell()
-            }
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsContainerCell.reuseID, for: indexPath) as? IngredientsContainerCell else {
+//                return UITableViewCell()
+//            }
+            let cell = tableView.dequeueCell(indexPath) as IngredientsContainerCell
             cell.update(ingredients)
             
             cell.onIngredientItemSelected = { ingredients in

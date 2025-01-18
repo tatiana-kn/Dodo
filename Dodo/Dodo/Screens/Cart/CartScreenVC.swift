@@ -23,7 +23,8 @@ final class CartScreenVC: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CartCell.self, forCellReuseIdentifier: CartCell.reuseID)
+//        tableView.register(CartCell.self, forCellReuseIdentifier: CartCell.reuseID)
+        tableView.registerCell(CartCell.self)
         tableView.backgroundColor = .lightGray.withAlphaComponent(0.3)
         return tableView
     }()
@@ -85,9 +86,10 @@ extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as? CartCell else {
-            fatalError("Fatal error for cell at \(indexPath)")
-        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as? CartCell else {
+//            fatalError("Fatal error for cell at \(indexPath)")
+//        }
+        let cell = tableView.dequeueCell(indexPath) as CartCell
         let product = products[indexPath.row]
         cell.update(product)
         
