@@ -7,21 +7,28 @@
 
 import UIKit
 
-let di = DI()
+//let di = DI()
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    private let appFactory: AppFactory = DependencyContainer()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow.init(windowScene: windowScene)
-//        let menuVC = MenuScreenVC()
-//        window?.rootViewController = MenuConfigurator().configure()
-        window?.rootViewController = MainTabVC()
 
+//        window?.rootViewController = MainTabVC()
+
+        let (window, coordinator) = appFactory.makeKeyWindowWithAppCoordinator(window)
+        self.window = window
+        
+        coordinator.start()
+        
         window?.makeKeyAndVisible()
     }
 

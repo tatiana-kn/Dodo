@@ -27,6 +27,10 @@ class MenuScreenVC: UIViewController {
     var stories: [Story] = []
     var address: String?
     
+    var onProductSelected: ((Product)->())?
+    var onStorySelected: (([Story], IndexPath)->())?
+    var onAddressTapped: (()->())?
+        
     init(productsLoader: IProductsLoader, storiesLoader: IStoriesLoader, addressRepository: IAddressRepository) {
         
         self.productLoader = productsLoader
@@ -39,9 +43,7 @@ class MenuScreenVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    var imageCache: NSCache<NSString, UIImage>?
-    
+        
     private var addressView: CurrentAddressView = {
         let addressView = CurrentAddressView()
         return addressView
@@ -49,12 +51,14 @@ class MenuScreenVC: UIViewController {
     
     private lazy var tableView: UITableView = {
         $0.separatorStyle = .none
-//        $0.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
         $0.delegate = self
         $0.dataSource = self
-        $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
-        $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
-        $0.register(StoriesContainerCell.self, forCellReuseIdentifier: StoriesContainerCell.reuseID)
+//        $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
+//        $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
+//        $0.register(StoriesContainerCell.self, forCellReuseIdentifier: StoriesContainerCell.reuseID)
+        $0.registerCell(ProductCell.self)
+        $0.registerCell(BannerContainerCell.self)
+        $0.registerCell(StoriesContainerCell.self)
         
         return $0
     }(UITableView())
@@ -69,6 +73,11 @@ class MenuScreenVC: UIViewController {
         loadProducts()
         loadStories()
         loadAddressFromRepository()
+        setupNotifications()
+    }
+    
+    deinit {
+      NotificationCenter.default.removeObserver(self, name: NSNotification.Name("addressUpdated"), object: nil)
     }
     
     func setupBindings() {
@@ -76,6 +85,15 @@ class MenuScreenVC: UIViewController {
             self.navigateToAddressListScreen()
         }
     }
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(addressUpdated), name: NSNotification.Name("addressUpdated"), object: nil)
+    }
+    
+    @objc private func addressUpdated() {
+        loadAddressFromRepository()
+    }
+    
 }
 
 //MARK: - UITableViewDataSource
@@ -105,41 +123,44 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
         if let sectionType = MenuSections(rawValue: indexPath.section) {
             switch sectionType {
             case .banners:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
-                    fatalError("Fatal error for cell at \(indexPath)")
-                }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
+//                    fatalError("Fatal error for cell at \(indexPath)")
+//                }
+                
+                let cell = tableView.dequeueCell(indexPath) as BannerContainerCell
                 
                 cell.onBannerCellSelected = { product in
-                    let detailVC = di.screenFactory.makeDetailScreen()
-                    detailVC.update(product)
-                    self.present(detailVC, animated: true)
+//                    let detailVC = di.screenFactory.makeDetailScreen()
+//                    detailVC.update(product)
+//                    self.present(detailVC, animated: true)
+                    self.onProductSelected?(product)
                 }
                 
                 cell.update(products)
                 return cell
                 
             case .products:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
-                    fatalError("Fatal error for cell at \(indexPath)")
-                }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
+//                    fatalError("Fatal error for cell at \(indexPath)")
+//                }
+                let cell = tableView.dequeueCell(indexPath) as ProductCell
                 let product = products[indexPath.row]
                 cell.update(product)
                 return cell
                 
             case .stories:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
-                    fatalError("Fatal error for cell at \(indexPath)")
-                }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
+//                    fatalError("Fatal error for cell at \(indexPath)")
+//                }
+                let cell = tableView.dequeueCell(indexPath) as StoriesContainerCell
                 cell.update(stories)
                 
-                cell.onStoriesCellSelected = { [self] indexPath in
-                    let storiesVC = di.screenFactory.makeStoriesScreen()
-//                    storiesVC.update(story)
-//                    storiesVC.update(stories, startingAt: indexPath.item, imageCache: imageCache)
-                    self.present(storiesVC, animated: true)
-                    
-                    storiesVC.update(stories, indexPath)
-                    
+                cell.onStoriesCellSelected = { indexPath in
+//                    let storiesVC = di.screenFactory.makeStoriesScreen()
+//                    self.present(storiesVC, animated: true)
+//                    
+//                    storiesVC.update(stories, indexPath)
+                    self.onStorySelected?(self.stories, indexPath)
                 }
                 return cell
             }
@@ -151,31 +172,23 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let product = products[indexPath.row]
-        let detailVC = di.screenFactory.makeDetailScreen()
-        //        let detailVC = DetailScreenVC()
-        
-        //        detailVC.product = product
-        //        let detailVC = DetailScreenVC(product: product)
-        
-        detailVC.update(product)
-        present(detailVC, animated: true)
+        onProductSelected?(product)
+//        let detailVC = di.screenFactory.makeDetailScreen()
+//        detailVC.update(product)
+//        present(detailVC, animated: true)
     }
 }
 
 //MARK: Navigation
 extension MenuScreenVC {
     func navigateToAddressListScreen() {
-        let addressListVC = di.screenFactory.makeAddressListScreen()
-        present(addressListVC, animated: true)
-        
-        addressListVC.onDeliverToAddressButtonTapped = {
-            self.loadAddressFromRepository()
-        }
-        
-//        addressListVC.onAddressCellSelected = { address in
-//            self.address = address
-//            print(address)
+//        let addressListVC = di.screenFactory.makeAddressListScreen()
+//        present(addressListVC, animated: true)
+//        
+//        addressListVC.onDeliverToAddressButtonTapped = {
+//            self.loadAddressFromRepository()
 //        }
+        onAddressTapped?()
     }
 }
 

@@ -10,7 +10,10 @@ import UIKit
 final class AddressListScreenVC: UIViewController {
     var addressRepository: IAddressRepository
     
-    var onDeliverToAddressButtonTapped: (() -> Void)?
+    var onDeliverToAddressButtonTapped: (() -> ())?
+
+    var onNewAddressButtonTapped: (() -> ())?
+    var onEditButtonTapped: ((Address) -> ())?
 //    var onAddressCellSelected: ((Address) -> Void)?
     
     var addressList: [Address] = []
@@ -25,7 +28,8 @@ final class AddressListScreenVC: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(AddressCell.self, forCellReuseIdentifier: AddressCell.reuseID)
+//        tableView.register(AddressCell.self, forCellReuseIdentifier: AddressCell.reuseID)
+        tableView.registerCell(AddressCell.self)
         return tableView
     }()
     
@@ -79,28 +83,29 @@ final class AddressListScreenVC: UIViewController {
 
 extension AddressListScreenVC {
     func navigateToMapScreenVC() {
-        let mapVC = di.screenFactory.makeMapScreen()
+//        let mapVC = di.screenFactory.makeMapScreen()
         
-        mapVC.onAddressSaved = { [weak self] in
-            self?.loadAddressListFromRepository()
-        }
+//        mapVC.onAddressSaved = { [weak self] in
+//            self?.loadAddressListFromRepository()
+//        }
+//        
+//        let navigationController = UINavigationController(rootViewController: mapVC)
+//        present(navigationController, animated: true)
+    onNewAddressButtonTapped?()
         
-        let navigationController = UINavigationController(rootViewController: mapVC)
-        present(navigationController, animated: true)
-        //        present(mapVC, animated: true)
     }
     
     func navigateToEditMapScreenVC(with address: Address) {
-        let mapVC = di.screenFactory.makeMapScreen()
-        mapVC.address = address
+//        let mapVC = di.screenFactory.makeMapScreen()
+//        mapVC.address = address
+//        
+//        mapVC.onAddressSaved = { [weak self] in
+//            self?.loadAddressListFromRepository()
+//        }
         
-        mapVC.onAddressSaved = { [weak self] in
-            self?.loadAddressListFromRepository()
-        }
-        
-        let navigationController = UINavigationController(rootViewController: mapVC)
-        present(navigationController, animated: true)
-        //        present(mapVC, animated: true)
+//        let navigationController = UINavigationController(rootViewController: mapVC)
+//        present(navigationController, animated: true)
+        onEditButtonTapped?(address)
     }
 }
 
@@ -110,9 +115,10 @@ extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
-            return UITableViewCell()
-        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
+//            return UITableViewCell()
+//        }
+        let cell = tableView.dequeueCell(indexPath) as AddressCell
         let address = addressList[indexPath.row]
         
 //        let isSelected = indexPath.row == 0 ? true : false

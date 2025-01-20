@@ -42,7 +42,9 @@ final class IngredientsContainerCell: UITableViewCell {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(IngredientCollectionCell.self, forCellWithReuseIdentifier: IngredientCollectionCell.reuseID)
+//        collectionView.register(IngredientCollectionCell.self, forCellWithReuseIdentifier: IngredientCollectionCell.reuseID)
+        collectionView.registerCell(IngredientCollectionCell.self)
+
         return collectionView
     }()
     
@@ -74,9 +76,10 @@ extension IngredientsContainerCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IngredientCollectionCell.reuseID, for: indexPath) as? IngredientCollectionCell else {
-            return UICollectionViewCell()
-        }
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IngredientCollectionCell.reuseID, for: indexPath) as? IngredientCollectionCell else {
+//            return UICollectionViewCell()
+//        }
+        let cell = collectionView.dequeueCell(indexPath) as IngredientCollectionCell
         
         let ingredient = ingredients[indexPath.item]
         let isSelected = selectedIngredients.contains(ingredient)

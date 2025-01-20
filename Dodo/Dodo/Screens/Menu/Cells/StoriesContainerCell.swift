@@ -28,7 +28,8 @@ final class StoriesContainerCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(StoriesCollectionCell.self, forCellWithReuseIdentifier: StoriesCollectionCell.reuseID)
+//        collectionView.register(StoriesCollectionCell.self, forCellWithReuseIdentifier: StoriesCollectionCell.reuseID)
+        collectionView.registerCell(StoriesCollectionCell.self)
         return collectionView
     }()
     
@@ -60,9 +61,10 @@ extension StoriesContainerCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoriesCollectionCell.reuseID, for: indexPath) as? StoriesCollectionCell else {
-            return UICollectionViewCell()
-        }
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoriesCollectionCell.reuseID, for: indexPath) as? StoriesCollectionCell else {
+//            return UICollectionViewCell()
+//        }
+        let cell = collectionView.dequeueCell(indexPath) as StoriesCollectionCell
         let story = stories[indexPath.item]
         cell.update(story)
         return cell
