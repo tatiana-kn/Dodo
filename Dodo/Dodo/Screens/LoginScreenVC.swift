@@ -34,6 +34,7 @@ class LoginScreenVC: UIViewController  {
     
     @objc func loginAction(_ sender: Any) {
         let userIsLogged = true
+        print("LoginScreenVC: Login button pressed, isLogged = \(userIsLogged)")
         onUserLogged?(userIsLogged)
     }
 }

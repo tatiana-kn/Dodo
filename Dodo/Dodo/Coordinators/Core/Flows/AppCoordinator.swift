@@ -25,16 +25,15 @@ class AppCoordinator: BaseCoordinator {
     }
     
     func runLoginFlow() {
-        
         let coordinator = coordinatorFactory.makeLoginCoordinator(router: router)
         
-        coordinator.finishFlow = { isLogged in
-            
+        coordinator.finishFlow = { [weak coordinator] isLogged in
+            print("Starting Main Flow")
             self.runMainFlow()
-            
             self.removeDependency(coordinator)
+            print("Login Flow finished, left \(String(describing: coordinator))")
         }
-        
+
         self.addDependency(coordinator)
         
         coordinator.start()
@@ -44,29 +43,15 @@ class AppCoordinator: BaseCoordinator {
         
         let coordinator = coordinatorFactory.makeTabBarCoordinator(router: router)
         
-        coordinator.finishFlow = { isLogouted in
+        coordinator.finishFlow = { [weak coordinator] isLogouted in
             
             self.runLoginFlow()
-            
             self.removeDependency(coordinator)
+            print("Main flow finished, left \(String(describing: coordinator))")
         }
         
         self.addDependency(coordinator)
         coordinator.start()
     }
-    
-//    func runMapFlow() { // ???
-//        
-//        let coordinator = coordinatorFactory.makeMapCoordinator(router: router)
-//        
-//        
-//        coordinator.onAddressSaved = {
-//            
-//            self.removeDependency(coordinator)
-//        }
-//
-//        
-//        self.addDependency(coordinator)
-//        coordinator.start()
-//    }
 }
+

@@ -20,6 +20,7 @@ class BaseCoordinator: Coordinator {
     func addDependency(_ coordinator: Coordinator) {
         guard !childCoordinators.contains(where: { $0 === coordinator }) else { return }
         childCoordinators.append(coordinator)
+        print("AppCoordinator: Added dependency \(coordinator)")
     }
     
     func removeDependency(_ coordinator: Coordinator?) {

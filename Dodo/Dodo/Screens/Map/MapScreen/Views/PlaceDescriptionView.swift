@@ -155,6 +155,6 @@ extension PlaceDescriptionView {
     }
 }
 
-#Preview(traits: .portrait) {
-    PlaceDescriptionView()
-}
+//#Preview(traits: .portrait) {
+//    PlaceDescriptionView()
+//}

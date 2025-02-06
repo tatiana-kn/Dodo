@@ -222,6 +222,6 @@ extension CartCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    CartCell()
-}
+//#Preview(traits: .portrait) {
+//    CartCell()
+//}

@@ -108,7 +108,7 @@ extension IngredientCollectionCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    IngredientCollectionCell()
-}
+//#Preview(traits: .portrait) {
+//    IngredientCollectionCell()
+//}
 

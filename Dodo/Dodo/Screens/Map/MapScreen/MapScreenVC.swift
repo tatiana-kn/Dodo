@@ -258,8 +258,8 @@ extension MapScreenVC: MKMapViewDelegate {
         
         let location = CLLocation(latitude: center.latitude, longitude: center.longitude)
         
-        fetchAddressFromLocation(location) { addressText in
-            self.addressPanelView.update(addressText)
+        fetchAddressFromLocation(location) { [weak self] addressText in
+            self?.addressPanelView.update(addressText)
         }
         
     }

@@ -108,6 +108,6 @@ extension CurrentAddressView {
     }
 }
 
-#Preview(traits: .portrait) {
-    CurrentAddressView()
-}
+//#Preview(traits: .portrait) {
+//    CurrentAddressView()
+//}

@@ -42,8 +42,8 @@ final class StoriesScreenVC: UIViewController {
         self.stories = stories
         collectionView.performBatchUpdates({
             collectionView.reloadData()
-        }, completion: { _ in
-            self.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        }, completion: { [weak self] _ in
+            self?.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         })
     }
 }
@@ -87,6 +87,6 @@ extension StoriesScreenVC {
 }
 
 
-#Preview(traits: .portrait) {
-    StoriesScreenVC()
-}
+//#Preview(traits: .portrait) {
+//    StoriesScreenVC()
+//}

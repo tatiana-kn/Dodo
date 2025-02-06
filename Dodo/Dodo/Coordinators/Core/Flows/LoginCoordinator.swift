@@ -25,9 +25,10 @@ class LoginCoordinator: BaseCoordinator {
         
         let loginScreen = screenFactory.makeLoginScreen()
         
-        loginScreen.onUserLogged = { isLogged in
-            
-            self.finishFlow?(isLogged)
+        loginScreen.onUserLogged = { [weak self] isLogged in
+//            guard let self else { return }
+            print("LoginCoordinator: finishFlow called with isLogged = \(isLogged)")
+            self?.finishFlow?(isLogged)
         }
         
         router.setRootModule(loginScreen, hideBar: false)

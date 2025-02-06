@@ -75,8 +75,8 @@ final class AddressListScreenVC: UIViewController {
     }
     
     func setupBindings() {
-        headerView.onNewAddressButtonTapped = {
-            self.navigateToMapScreenVC()
+        headerView.onNewAddressButtonTapped = { [weak self] in
+            self?.navigateToMapScreenVC()
         }
     }
 }
@@ -115,9 +115,6 @@ extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressCell.reuseID, for: indexPath) as? AddressCell else {
-//            return UITableViewCell()
-//        }
         let cell = tableView.dequeueCell(indexPath) as AddressCell
         let address = addressList[indexPath.row]
         
@@ -130,8 +127,8 @@ extension AddressListScreenVC: UITableViewDelegate, UITableViewDataSource {
         let isSelected = address == currentAddress
         cell.update(address, isSelected)
         
-        cell.onEditButtonTapped = {
-            self.navigateToEditMapScreenVC(with: address)
+        cell.onEditButtonTapped = { [weak self] in
+            self?.navigateToEditMapScreenVC(with: address)
         }
 
         return cell

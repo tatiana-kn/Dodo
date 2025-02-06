@@ -47,6 +47,7 @@ final class RouterImpl: Router {
     private weak var rootController: UINavigationController?
     private var presentController: UIViewController?
     
+//    private var completions: [UIViewController : () -> Void]
     private var completions: [UIViewController : () -> Void]
     
     init(rootController: UINavigationController) {
@@ -154,8 +155,9 @@ final class RouterImpl: Router {
     }
     
     private func runCompletion(for controller: UIViewController) {
-        guard let completion = completions[controller] else { return }
-        completion()
+//        guard let completion = completions[controller] else { return }
+//        completion()
+        completions[controller]?()
         completions.removeValue(forKey: controller)
     }
 }

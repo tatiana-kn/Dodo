@@ -53,9 +53,6 @@ class MenuScreenVC: UIViewController {
         $0.separatorStyle = .none
         $0.delegate = self
         $0.dataSource = self
-//        $0.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
-//        $0.register(BannerContainerCell.self, forCellReuseIdentifier: BannerContainerCell.reuseID)
-//        $0.register(StoriesContainerCell.self, forCellReuseIdentifier: StoriesContainerCell.reuseID)
         $0.registerCell(ProductCell.self)
         $0.registerCell(BannerContainerCell.self)
         $0.registerCell(StoriesContainerCell.self)
@@ -81,8 +78,8 @@ class MenuScreenVC: UIViewController {
     }
     
     func setupBindings() {
-        addressView.onAdressButtonTapped = {
-            self.navigateToAddressListScreen()
+        addressView.onAdressButtonTapped = { [weak self] in
+            self?.navigateToAddressListScreen()
         }
     }
     
@@ -123,39 +120,31 @@ extension MenuScreenVC: UITableViewDataSource, UITableViewDelegate {
         if let sectionType = MenuSections(rawValue: indexPath.section) {
             switch sectionType {
             case .banners:
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerContainerCell.reuseID, for: indexPath) as? BannerContainerCell else {
-//                    fatalError("Fatal error for cell at \(indexPath)")
-//                }
-                
                 let cell = tableView.dequeueCell(indexPath) as BannerContainerCell
                 
-                cell.onBannerCellSelected = { product in
+                cell.onBannerCellSelected = { [weak self] product in
+
 //                    let detailVC = di.screenFactory.makeDetailScreen()
 //                    detailVC.update(product)
 //                    self.present(detailVC, animated: true)
-                    self.onProductSelected?(product)
+                    self?.onProductSelected?(product)
                 }
                 
                 cell.update(products)
                 return cell
                 
             case .products:
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as? ProductCell else {
-//                    fatalError("Fatal error for cell at \(indexPath)")
-//                }
                 let cell = tableView.dequeueCell(indexPath) as ProductCell
                 let product = products[indexPath.row]
                 cell.update(product)
                 return cell
                 
             case .stories:
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesContainerCell.reuseID, for: indexPath) as? StoriesContainerCell else {
-//                    fatalError("Fatal error for cell at \(indexPath)")
-//                }
                 let cell = tableView.dequeueCell(indexPath) as StoriesContainerCell
                 cell.update(stories)
                 
-                cell.onStoriesCellSelected = { indexPath in
+                cell.onStoriesCellSelected = { [weak self] indexPath in
+                    guard let self else { return }
 //                    let storiesVC = di.screenFactory.makeStoriesScreen()
 //                    self.present(storiesVC, animated: true)
 //                    
@@ -257,7 +246,6 @@ extension MenuScreenVC {
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
-//            tableView.topAnchor.constraint(equalTo: addressView.bottomAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
         ])
     }

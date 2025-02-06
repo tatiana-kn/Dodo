@@ -83,6 +83,6 @@ extension DescriptionCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    DescriptionCell()
-}
+//#Preview(traits: .portrait) {
+//    DescriptionCell()
+//}

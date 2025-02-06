@@ -32,26 +32,16 @@ class TabBarCoordinator: BaseCoordinator {
         setupTabBarController(withTabControllers: controllers)
     }
     
-    func showDetail(_ product: Product) {
-        let detailScreen = screenFactory.makeDetailScreen()
-        detailScreen.update(product)
-        router.present(detailScreen, animated: true)
-    }
+//    func showDetail(_ product: Product) {
+//        let detailScreen = screenFactory.makeDetailScreen()
+//        detailScreen.update(product)
+//        router.present(detailScreen, animated: true)
+//    }
     
-    func showStory(_ stories: [Story], _ indexPath: IndexPath) {
-        let storiesScreen = screenFactory.makeStoriesScreen()
-        router.present(storiesScreen, animated: true)
-        storiesScreen.update(stories, indexPath)
-    }
-    
-//    func showAddressList() {
-//        let addressListScreen = screenFactory.makeAddressListScreen()
-//        
-//        router.present(addressListScreen, animated: true)
-//        
-//        addressListScreen.onNewAddressButtonTapped = {
-//            self.runMapFlow()
-//        }
+//    func showStory(_ stories: [Story], _ indexPath: IndexPath) {
+//        let storiesScreen = screenFactory.makeStoriesScreen()
+//        router.present(storiesScreen, animated: true)
+//        storiesScreen.update(stories, indexPath)
 //    }
 }
 
@@ -62,8 +52,8 @@ extension TabBarCoordinator {
         
         let coordinator = coordinatorFactory.makeMapCoordinator(router: router)
         
-        coordinator.finishFlow = {
-            self.removeDependency(coordinator)
+        coordinator.finishFlow = { [weak self, weak coordinator] in // ???
+            self?.removeDependency(coordinator)
         }
 
         
@@ -95,17 +85,23 @@ extension TabBarCoordinator {
         case .menu:
             let menuVC = screenFactory.makeMenuScreen()
             
-            menuVC.onProductSelected = { product in
-                self.showDetail(product)
+            menuVC.onProductSelected = { [weak self, weak router] product in
+                let detailScreen = self?.screenFactory.makeDetailScreen()
+                detailScreen?.update(product)
+                router?.present(detailScreen, animated: true)
+//                self?.showDetail(product)
             }
             
-            menuVC.onStorySelected = { stories, indexPath in
-                self.showStory(stories, indexPath)
+            menuVC.onStorySelected = { [weak self, weak router] stories, indexPath in
+                let storiesScreen = self?.screenFactory.makeStoriesScreen()
+                router?.present(storiesScreen, animated: true)
+                storiesScreen?.update(stories, indexPath)
+//                self?.showStory(stories, indexPath)
             }
             
-            menuVC.onAddressTapped = {
+            menuVC.onAddressTapped = { [weak self] in
 //                self.showAddressList()
-                self.runMapFlow()
+                self?.runMapFlow()
             }
             
             navController.pushViewController(menuVC, animated: true)
@@ -113,8 +109,8 @@ extension TabBarCoordinator {
         case .profile:
             let profileVC = screenFactory.makeProfileScreen()
             
-            profileVC.onLogout = { isLogout in
-                self.finishFlow?(isLogout)
+            profileVC.onLogout = { [weak self] isLogout in
+                self?.finishFlow?(isLogout)
             }
             navController.pushViewController(profileVC, animated: true)
             

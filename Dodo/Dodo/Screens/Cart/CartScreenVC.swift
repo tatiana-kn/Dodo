@@ -94,8 +94,8 @@ extension CartScreenVC: UITableViewDelegate, UITableViewDataSource {
         cell.update(product)
         
             
-        cell.onStepperValueChanged = { product in
-            self.updateProductInStorage(product)
+        cell.onStepperValueChanged = { [weak self] product in
+            self?.updateProductInStorage(product)
         }
         return cell
     }

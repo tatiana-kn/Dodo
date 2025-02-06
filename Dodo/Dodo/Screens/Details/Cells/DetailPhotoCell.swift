@@ -55,6 +55,6 @@ extension DetailPhotoCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    DetailPhotoCell()
-}
+//#Preview(traits: .portrait) {
+//    DetailPhotoCell()
+//}

@@ -32,7 +32,6 @@ class ProfileScreenVC: UIViewController {
     }
     
     @objc func logoutAction(_ sender: Any) {
-        
         self.onLogout?(true)
     }
     

@@ -20,10 +20,6 @@ final class DetailScreenVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-//        tableView.register(DetailPhotoCell.self, forCellReuseIdentifier: DetailPhotoCell.reuseID)
-//        tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.reuseID)
-//        tableView.register(ControlsCell.self, forCellReuseIdentifier: ControlsCell.reuseID)
-//        tableView.register(IngredientsContainerCell.self, forCellReuseIdentifier: IngredientsContainerCell.reuseID)
         tableView.registerCell(DetailPhotoCell.self)
         tableView.registerCell(DescriptionCell.self)
         tableView.registerCell(ControlsCell.self)
@@ -68,11 +64,14 @@ final class DetailScreenVC: UIViewController {
         loadIngredients()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        print("detail disappear")
+    }
+    
     @objc private func addToCart(_ sender: UIButton) {
         guard let product else { return }
         
         productsRepository.update(product, with: selectedIngredients)
-//        productsRepository.add(product)
                 
         dismiss(animated: true, completion: nil)
     }
@@ -95,9 +94,6 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailPhotoCell.reuseID, for: indexPath) as? DetailPhotoCell else {
-//                return UITableViewCell()
-//            }
             let cell = tableView.dequeueCell(indexPath) as DetailPhotoCell
             
             cell.update(product)
@@ -105,9 +101,6 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.row == 1 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionCell.reuseID, for: indexPath) as? DescriptionCell else {
-//                return UITableViewCell()
-//            }
             let cell = tableView.dequeueCell(indexPath) as DescriptionCell
             
             cell.update(product)
@@ -115,33 +108,27 @@ extension DetailScreenVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.row == 2 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: ControlsCell.reuseID, for: indexPath) as? ControlsCell else {
-//                return UITableViewCell()
-//            }
             let cell = tableView.dequeueCell(indexPath) as ControlsCell
             
-            cell.onDoughChanged =  { doughType in
-                self.product?.doughType = doughType
+            cell.onDoughChanged =  { [weak self] doughType in
+                self?.product?.doughType = doughType
             }
             
-            cell.onSizeChanged = { size in
-                self.product?.size = size
-                self.setPrice()
+            cell.onSizeChanged = { [weak self] size in
+                self?.product?.size = size
+                self?.setPrice()
             }
             
             return cell
         }
         
         if indexPath.row == 3 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsContainerCell.reuseID, for: indexPath) as? IngredientsContainerCell else {
-//                return UITableViewCell()
-//            }
             let cell = tableView.dequeueCell(indexPath) as IngredientsContainerCell
             cell.update(ingredients)
             
-            cell.onIngredientItemSelected = { ingredients in
-                self.selectedIngredients = ingredients
-                self.setPrice()
+            cell.onIngredientItemSelected = { [weak self] ingredients in
+                self?.selectedIngredients = ingredients
+                self?.setPrice()
             }
             
             return cell
@@ -170,6 +157,7 @@ extension DetailScreenVC {
 
 extension DetailScreenVC {
     private func setupViews() {
+        
         view.addSubview(tableView)
         view.addSubview(orderButton)
         view.backgroundColor = .white
@@ -183,7 +171,6 @@ extension DetailScreenVC {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: orderButton.topAnchor),
             
             orderButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
             orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
@@ -192,8 +179,4 @@ extension DetailScreenVC {
         ])
     }
 }
-
-//#Preview(traits: .portrait) {
-////    DetailScreenVC()
-//}
 

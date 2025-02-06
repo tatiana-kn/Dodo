@@ -43,28 +43,29 @@ class MapCoordinator: BaseCoordinator {
     }
     
     func configureAddressListScreen(_ screen: AddressListScreenVC) {
-        screen.onNewAddressButtonTapped = {
+        screen.onNewAddressButtonTapped = { [weak self] in
+            guard let self = self else { return }
             let mapScreen = self.showMapScreen()
             
-            mapScreen.onAddressSaved = {
-                screen.loadAddressListFromRepository()
+            mapScreen.onAddressSaved = { [weak screen] in
+                screen?.loadAddressListFromRepository()
             }
         }
         
-        screen.onEditButtonTapped = { address in
+        screen.onEditButtonTapped = { [weak self] address in
 //            let mapScreen = self.screenFactory.makeMapScreen()
+            guard let self = self else { return }
             let mapScreen = self.showMapScreen()
             mapScreen.address = address
 //            self.router.present(mapScreen, animated: true, onRoot: false)
             
-            mapScreen.onAddressSaved = {
-                screen.loadAddressListFromRepository()
+            mapScreen.onAddressSaved = { [weak screen] in
+                screen?.loadAddressListFromRepository()
             }
         }
         
-        screen.onDeliverToAddressButtonTapped = {
+        screen.onDeliverToAddressButtonTapped = { [weak self] in
             
-            //print(mapScreen.presentingViewController)
             guard let navigationVC = screen.presentingViewController as? UINavigationController else { return }
             
             guard let tabVC = navigationVC.viewControllers.first as? UITabBarController else { return }
@@ -78,34 +79,7 @@ class MapCoordinator: BaseCoordinator {
                     }
                 }
             }
-            
-            
-            
-//            if let navigationVC = screen.presentingViewController as? UINavigationController {
-//                
-//                for controller in navigationVC.viewControllers {
-//                    
-//                    if let tabVC = controller as? UITabBarController {
-//                        
-//                        for controller in tabVC.viewControllers ?? [] {
-//                            
-//                            if let navVC = controller as? UINavigationController {
-//                                for controller in navVC.viewControllers {
-//                                    
-//                                    if let menuVC  = controller as? MenuScreenVC {
-//                                        
-//                                        menuVC.loadAddressFromRepository()
-//                                    }
-//                                }
-//                            
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-            
-//            NotificationCenter.default.post(name: NSNotification.Name("addressUpdated"), object: nil)
-            self.finishFlow?()
+            self?.finishFlow?()
         }
     }
     
@@ -116,7 +90,6 @@ class MapCoordinator: BaseCoordinator {
         self.router.present(navigationController, animated: true, onRoot: false)
         return mapScreen
     }
-    
 }
 //    func showMapScreen() {
 //        let mapScreen = screenFactory.makeMapScreen()

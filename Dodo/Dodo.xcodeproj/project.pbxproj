@@ -11,7 +11,6 @@
 		14061AE82D3BC4000087344E /* UICollectionView + dequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14061AE72D3BC4000087344E /* UICollectionView + dequeueCell.swift */; };
 		1413BDE12C53D6C600D5642A /* ProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE02C53D6C600D5642A /* ProductsLoader.swift */; };
 		1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE22C53D71000D5642A /* NetworkClient.swift */; };
-		1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */; };
 		1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413BDE92C5E486400D5642A /* IngredientsLoader.swift */; };
 		1456537B2CA9B6A70039C8AE /* StoriesContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456537A2CA9B6A70039C8AE /* StoriesContainerCell.swift */; };
 		1456537D2CA9B6C70039C8AE /* StoriesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456537C2CA9B6C70039C8AE /* StoriesCollectionCell.swift */; };
@@ -35,7 +34,6 @@
 		14BB39842C382B1800B8796F /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB39832C382B1800B8796F /* DescriptionCell.swift */; };
 		14BB39862C38307A00B8796F /* ControlsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB39852C38307A00B8796F /* ControlsCell.swift */; };
 		14BB39882C396F4D00B8796F /* IngredientsContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB39872C396F4D00B8796F /* IngredientsContainerCell.swift */; };
-		14C2BF4A2CD8D4C9001C03E2 /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C2BF492CD8D4C9001C03E2 /* DI.swift */; };
 		14CAD1E42CB2DD380009B54C /* StoriesScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CAD1E32CB2DD380009B54C /* StoriesScreenVC.swift */; };
 		14CAD1E72CB2E11B0009B54C /* StoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CAD1E62CB2E11B0009B54C /* StoriesCell.swift */; };
 		14CAD1E92CB2F1CD0009B54C /* StoriesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CAD1E82CB2F1CD0009B54C /* StoriesLoader.swift */; };
@@ -53,7 +51,6 @@
 		14D348DD2D1038AE00FAC5E9 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D348DC2D1038AE00FAC5E9 /* MapCoordinator.swift */; };
 		14D348DF2D1038F000FAC5E9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D348DE2D1038F000FAC5E9 /* AppCoordinator.swift */; };
 		14DBF3572C6E6C5D006AED4B /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3562C6E6C5D006AED4B /* MainTabVC.swift */; };
-		14DBF3732C721C29006AED4B /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3722C721C29006AED4B /* DetailConfigurator.swift */; };
 		14DBF3762C75FD2F006AED4B /* CartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */; };
 		14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF3782C7603F7006AED4B /* CartCell.swift */; };
 		14DBF37B2C763260006AED4B /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBF37A2C763260006AED4B /* CustomStepper.swift */; };
@@ -76,7 +73,6 @@
 		14061AE72D3BC4000087344E /* UICollectionView + dequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + dequeueCell.swift"; sourceTree = "<group>"; };
 		1413BDE02C53D6C600D5642A /* ProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsLoader.swift; sourceTree = "<group>"; };
 		1413BDE22C53D71000D5642A /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConfigurator.swift; sourceTree = "<group>"; };
 		1413BDE92C5E486400D5642A /* IngredientsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsLoader.swift; sourceTree = "<group>"; };
 		1456537A2CA9B6A70039C8AE /* StoriesContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesContainerCell.swift; sourceTree = "<group>"; };
 		1456537C2CA9B6C70039C8AE /* StoriesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCollectionCell.swift; sourceTree = "<group>"; };
@@ -101,7 +97,6 @@
 		14BB39832C382B1800B8796F /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		14BB39852C38307A00B8796F /* ControlsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsCell.swift; sourceTree = "<group>"; };
 		14BB39872C396F4D00B8796F /* IngredientsContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsContainerCell.swift; sourceTree = "<group>"; };
-		14C2BF492CD8D4C9001C03E2 /* DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
 		14CAD1E32CB2DD380009B54C /* StoriesScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesScreenVC.swift; sourceTree = "<group>"; };
 		14CAD1E62CB2E11B0009B54C /* StoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCell.swift; sourceTree = "<group>"; };
 		14CAD1E82CB2F1CD0009B54C /* StoriesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesLoader.swift; sourceTree = "<group>"; };
@@ -117,7 +112,6 @@
 		14D348DC2D1038AE00FAC5E9 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		14D348DE2D1038F000FAC5E9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		14DBF3562C6E6C5D006AED4B /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
-		14DBF3722C721C29006AED4B /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
 		14DBF3752C75FD2F006AED4B /* CartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreenVC.swift; sourceTree = "<group>"; };
 		14DBF3782C7603F7006AED4B /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		14DBF37A2C763260006AED4B /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
@@ -231,7 +225,6 @@
 		14B473252C300AA60058639D /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				1413BDE72C5CD71400D5642A /* MenuConfigurator.swift */,
 				14B473132C3003D10058639D /* MenuScreenVC.swift */,
 				149AB76E2CAA8ED90004A66F /* CurrentAddressView.swift */,
 				14B473262C300AB70058639D /* Cells */,
@@ -297,7 +290,6 @@
 		14BB39792C36BCA400B8796F /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				14DBF3722C721C29006AED4B /* DetailConfigurator.swift */,
 				14BB397F2C38225500B8796F /* DetailScreenVC.swift */,
 				14BB397C2C36BD7900B8796F /* Cells */,
 			);
@@ -336,7 +328,6 @@
 		14CFF5912D05AD6200AC1F27 /* DI */ = {
 			isa = PBXGroup;
 			children = (
-				14C2BF492CD8D4C9001C03E2 /* DI.swift */,
 				14CFF5942D05B0F600AC1F27 /* DependencyContainer.swift */,
 				14CFF5962D05B13300AC1F27 /* CoordinatorFactory.swift */,
 				14CFF5922D05B08200AC1F27 /* ScreenFactory.swift */,
@@ -539,7 +530,6 @@
 			files = (
 				14D348DB2D10388400FAC5E9 /* LoginCoordinator.swift in Sources */,
 				14CFF59F2D05BAEB00AC1F27 /* LoginScreenVC.swift in Sources */,
-				14C2BF4A2CD8D4C9001C03E2 /* DI.swift in Sources */,
 				14CFF5A12D05C11500AC1F27 /* ProfileScreenVC.swift in Sources */,
 				14CFF5932D05B08200AC1F27 /* ScreenFactory.swift in Sources */,
 				14B473322C300CF60058639D /* UIView+Shadow.swift in Sources */,
@@ -564,7 +554,6 @@
 				14DBF3792C7603F7006AED4B /* CartCell.swift in Sources */,
 				14DBF3812C78C8C7006AED4B /* ProductsRepository.swift in Sources */,
 				14FAA97C2CC66521008CC766 /* AddressRepository.swift in Sources */,
-				1413BDE82C5CD71400D5642A /* MenuConfigurator.swift in Sources */,
 				14CFF5972D05B13300AC1F27 /* CoordinatorFactory.swift in Sources */,
 				1413BDEA2C5E486400D5642A /* IngredientsLoader.swift in Sources */,
 				14061AE82D3BC4000087344E /* UICollectionView + dequeueCell.swift in Sources */,
@@ -577,7 +566,6 @@
 				1413BDE32C53D71000D5642A /* NetworkClient.swift in Sources */,
 				14CFF59D2D05B67700AC1F27 /* Router.swift in Sources */,
 				14F26B182CC532750092EE0E /* SaveButton.swift in Sources */,
-				14DBF3732C721C29006AED4B /* DetailConfigurator.swift in Sources */,
 				149AB76F2CAA8ED90004A66F /* CurrentAddressView.swift in Sources */,
 				14B3D92A2C664C500054CDFA /* BannerContainerCell.swift in Sources */,
 				14CAD1E92CB2F1CD0009B54C /* StoriesLoader.swift in Sources */,
@@ -741,8 +729,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dodo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -758,6 +748,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ta.tiana.Dodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -773,8 +764,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dodo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -790,6 +783,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ta.tiana.Dodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

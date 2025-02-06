@@ -67,7 +67,7 @@ extension StoriesCell {
     }
 }
 
-#Preview(traits: .portrait) {
-    StoriesCell()
-}
+//#Preview(traits: .portrait) {
+//    StoriesCell()
+//}
 

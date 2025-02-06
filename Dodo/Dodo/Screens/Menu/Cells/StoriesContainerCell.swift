@@ -61,9 +61,6 @@ extension StoriesContainerCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoriesCollectionCell.reuseID, for: indexPath) as? StoriesCollectionCell else {
-//            return UICollectionViewCell()
-//        }
         let cell = collectionView.dequeueCell(indexPath) as StoriesCollectionCell
         let story = stories[indexPath.item]
         cell.update(story)
